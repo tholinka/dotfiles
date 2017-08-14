@@ -1,4 +1,5 @@
 # Installing Part 1 - Before Partitioning
+###### Note: You may find it easier to skip this, go to partitioning, do that in [GParted live](http://gparted.org/), and then come back and do this
 1) Get an [arch image](https://www.archlinux.org/download/).
 2) Put it on a usb ([dd](https://wiki.archlinux.org/index.php/USB_flash_installation_media) or [yumi](https://www.pendrivelinux.com/yumi-multiboot-usb-creator/) (use the UEFI version of yumi if you want to install using systemd-boot / UEFI)
 3) reboot computer with usb drive in, select usb from bios / boot menu
