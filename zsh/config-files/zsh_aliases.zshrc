@@ -153,6 +153,7 @@ if which wine &> /dev/null ; then
 
     # see if steam is installed, assumes 64bit wine
     if [ -d ~/.wine/drive_c/Program\ Files\ \(x86\)/Steam ]; then
+        # run wine reg.exe ADD "HKEY_CURRENT_USER\Software\Wine\AppDefaults\Steam.exe" /v "Version" /t "REG_SZ" /d "winxp" /f to run steam under xp mode
         alias steam-wine="wine ~/.wine/drive_c/Program\ Files\ \(x86\)/Steam/Steam.exe -no-cef-sandbox &>/dev/null &"
 
         # see if path of exile is installed
