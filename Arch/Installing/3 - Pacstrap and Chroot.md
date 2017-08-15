@@ -26,6 +26,7 @@
 		* ```options        root=[READ BELOW]```
 			* IF you used lvm for part 2, set ```options root=``` to the location of your root partition logical volume, e.g. ```/dev/mapper/VolGroup00-rootpart```
 			* Otherwise, find your UUID by first knowing your /dev/sdXn of your root partition (use ```fdisk -l``` to find it), and then ```ls /dev/disk/by-partuuid -l``` and finding which uuid -> to your sdXn.  Write that down and edit that the options line to be ```options root=PARTUUID=[your part uuid]``` to it
+			* If you have an nvidia graphics card, you may want to add ``nomodeset`` to the options, the nvidia drivers should fix this, but we don't install these until reboot
 11) Set your hostname in ```/etc/hostname```, set the file to the name, e.g. ```DesktopArch```
 12) enable the dhcpcd service to ensure we get an ip on reboot, ```systemctl enable dhcpcd.service```
 13) set the root password ```passwd```
