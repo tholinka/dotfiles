@@ -4,6 +4,8 @@
 2) Put it on a usb ([dd](https://wiki.archlinux.org/index.php/USB_flash_installation_media) or [yumi](https://www.pendrivelinux.com/yumi-multiboot-usb-creator/) (use the UEFI version of yumi if you want to install using systemd-boot / UEFI)
 3) reboot computer with usb drive in, select usb from bios / boot menu
 4) You should boot into the Arch image.
+	* if your screen instead looks corrupted, reboot and hit 'e' on the boot manager screen and add "nomodeset" to the end. 
+		* If you don't see one, shut off the computer, mount the install drive on a different one (e.g. ```sudo mount /dev/sdX2 /mnt```) and edit the line ```initrd  /EFI/archiso/archiso.img``` in /mnt/loader/entries/archiso-x86_64.conf to ```initrd  /EFI/archiso/archiso.img nomodeset```
 5) See if your in UEFI mode by running: ```ls /sys/firmware/efi/efivars```, if the directory has contents your in UEFI mode.  If not, don't use systemd-boot, use grub instead.
 6) run ```load-keys [country e.g. us]```. The default is the us, see available ones in ```ls /usr/share/kbd/keymaps/**/*.map.gz```, you might have to change the font if some characters don't display, through ```etfont lat9w-16``` or other font.
 7) connect to the internet, if your using ethernet, see if it's already working through ```ping google.com```
