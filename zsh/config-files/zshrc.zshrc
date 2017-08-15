@@ -111,8 +111,8 @@ if ! type "nvm" &> /dev/null ; then
 	#export -f nvm
 fi
 
-if [ -f ~/.zsh-config/.zsh_aliases.zshrc ]; then
-  source ~/.zsh_aliases.zshrc
+if [ -f ~/.zsh-config/zsh_aliases.zshrc  ]; then
+  source ~/.zsh-config/zsh_aliases.zshrc
 fi
 
 if [ -f ~/.zsh_local.zshrc ]; then
