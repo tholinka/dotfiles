@@ -12,3 +12,4 @@
     * enable / start the service ```systemctl enable org.cups.cupsd.service``` ```systemctl start org.cups.cupsd.service```
 4) set up firewall
     * run ```gufw```, turn ```status``` to on, and that's good enough
+5) enable color in pacman, uncomment ```Color``` in ```/etc/pacman.conf```
