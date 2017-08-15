@@ -6,5 +6,5 @@ colorschemes include submodules with a few color themes in them (vertex isn't ne
 Settings includes my basic settings, and a symlink to link them
 and zsh includes my basic zsh setup, and a script to link that
 
-Clone this repository into something like ```.settings``` so it can sit there forever.
+Clone this repository into something like ```.settings``` so it can sit there forever. Also clone with ```git clone --recursive``` to get the submodules.
 Warning: a couple scripts use ```$PWD```, so they break if they're called from a folder they're not in
