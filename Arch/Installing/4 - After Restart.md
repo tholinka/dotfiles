@@ -1,5 +1,5 @@
 # Installing Part 4 - After restart
-###### This assumes that Part 3 is already done and you restarted.  And that successed.
+###### This assumes that Part 3 is already done and you restarted.  And that succeeded.
 1) Login as root
 2) add a new user: ```useradd -m -g users -G wheel,storage,power -s /bin/bash 'username'```
 	* set a password for this user, passwd 'username'
