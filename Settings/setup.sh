@@ -45,6 +45,20 @@ fi
 if [ ! -d ~/.local/share/konsole ]; then
     mkdir ~/.local/share/konsole
 fi
+
+# see if ~/.steam exists
+if [ ! -d ~/.steam ]; then
+    mkdir ~/.steam
+fi
+if [ -L ~/.steam/steam ]; then
+    ln -sf ~/.steam/steam ~/.local/share/Steam/
+fi
+if [ ! -d ~/.local/share/Steam ]; then
+    mkdir ~/.local/share/Steam
+fi
+if [ ! -d ~/.local/share/Steam/skins ]; then
+    mkdir ~/.local/share/Steam/skins
+fi
 ### end .local section ###
 
 ### couple random folders ###
@@ -73,6 +87,9 @@ ln -sf "$PWD/config/chromium-flags.conf" ~/.config/chrome-flags.conf
 ### .local section ###
 ln -sf "$PWD/local/share/konsole/monokai.colorscheme" ~/.local/share/konsole/
 ln -sf "$PWD/local/share/konsole/Shell.profile" ~/.local/share/konsole/Shell.profile
+
+## have to copy, steam can't do symlinks for skins
+cp -r "$PWD/local/share/Steam/skins/Metro 4.2.4" ~/.steam/steam/skins/
 ### end of .local ###
 ### couple random folders ###
 ln -sf "$PWD/vim" ~/.vim
