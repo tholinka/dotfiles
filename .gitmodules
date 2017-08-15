@@ -10,3 +10,9 @@
 [submodule "Settings/vim/vim-runtime"]
 	path = Settings/vim/vim-runtime
 	url = git@github.com:amix/vimrc.git
+[submodule "colorschemes/gedit-super-monokai-theme"]
+	path = colorschemes/gedit-super-monokai-theme
+	url = git@github.com:saahov/gedit-super-monokai-theme.git
+[submodule "colorschemes/gnome-terminal-colors-monokai"]
+	path = colorschemes/gnome-terminal-colors-monokai
+	url = git@github.com:pricco/gnome-terminal-colors-monokai.git
