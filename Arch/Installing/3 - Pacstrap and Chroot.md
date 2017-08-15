@@ -2,8 +2,8 @@
 ###### This assumes that Part 2 is already done, and your sitting on the command prompt with your partitions mount to /mnt.
 
 1) run ```pacstrap /mnt base base-devel vim```.
-	* add '''intel-ucode''' if you have an intel cpu
-	* add '''networkmanager''' if you use wifi
+	* add ```intel-ucode``` if you have an intel cpu
+	* add ```networkmanager``` if you use wifi
 2) Make fstab with ```genfstab -U /mnt >> /mnt/etc/fstab```
 3) Chroot into the new install, ```arch-chroot /mnt /bin/bash```
 4) Uncomment ```en_US.UTF-8 UTF-8``` (or your locale, you can uncomment multiple) in ```/etc/locale.gen``` and then run ```locale-gen``` and then run ```echo LANG=en_US.UTF-8 > /etc/locale.conf``` (replace en_US.UTF-8 with your locale).
