@@ -16,8 +16,5 @@
 11) Set your hostname in ```/etc/hostname```, set the file to the name, e.g. ```DesktopArch```
 12) enable the dhcpcd service to ensure we get an ip on reboot, ```systemctl enable dhcpcd.service```
 13) set the root password ```passwd```
-14) add a new user: ```useradd -m -g users -G wheel,storage,power -s /bin/zsh 'username'```
-	* set a password for this user, passwd 'username'
-15) Add the ```wheel``` group to the sudoers file, run ```visudo``` and find the line that says ```Uncomment to allow members of group wheel to execute any command```, uncomment that line
 15) ```exit``` to exit the Chroot, ```umount -R /mnt``` to unmount everything, and then ```reboot``` and pull out your usb drive
 16) Continue to 4 - After rebooting if reboot was successful, otherwise 3b - Fixing failed boot if it wasn't
