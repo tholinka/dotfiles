@@ -12,7 +12,7 @@
 	* If you are using systemd (all new Arch installs are), replace ``udev`` with ```systemd``` and add ```sd-lvm2``` before ```filesystems``` on the HOOKS= line of ```/etc/mkinitcpio.conf```
 	* If you are using non-systemd init (for some reason), add ```lvm2``` to the above file
 	* Then run ```mkinitcpio -p linux```
-8) Time to install some packages so we can boot directly to graphics and for ease  ```pacman -S zsh git budgie-desktop gdm nemo chromium gnome-terminal guake vim gufw```
+8) Time to install some packages so we can boot directly to graphics and for ease  ```pacman -S --needed --noconfirm xorg zsh git budgie-desktop gdm nemo chromium gnome-terminal guake vim gufw```
 	* add ```crda networkmanager dhclient``` if you have wifi
 	* add ```intel-ucode``` if you have an intel processor
 	* add a different linux kernel, either ```linux-zen``` or ```linux-hardened```
