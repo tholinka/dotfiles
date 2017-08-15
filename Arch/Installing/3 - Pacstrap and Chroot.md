@@ -4,7 +4,7 @@
 1) run ```pacstrap /mnt base base-devel```.
 2) Make fstab with ```genfstab -U /mnt >> /mnt/etc/fstab```
 3) Chroot into the new install, ```arch-chroot /mnt /bin/bash```
-4) you may want to install vim, ```pacman -Sy vim```
+4) If you have an intel cpu: install intel-ucode: ```pacman -Sy intel-ucode```, you may always want to install ```vim``` at the same time
 4) Uncomment ```en_US.UTF-8 UTF-8``` (or your locale, you can uncomment multiple) in ```/etc/locale.gen``` and then run ```locale-gen``` and then run ```echo LANG=en_US.UTF-8 > /etc/locale.conf``` (replace en_US.UTF-8 with your locale).
 	* if you set your keyboard earlier (to anything non-us), make those changes perminent in by editing ```/etc/vconsole.conf``` to include ```KEYMAP=[keymap setting]``` and, after a newline ```FONT=[font setting]```
 5) Select a timezone, ```tzselect``` to find the timezone to us, and then ```ln -s /usr/share/zoneinfo/[zone]/[subzone] /etc/localtime```, you may need to ```rm /etc/localtime``` first
@@ -15,7 +15,7 @@
 	* Then run ```mkinitcpio -p linux```
 10) set up bootloader (systemd-boot), ```bootctl install```, then configure it
 	* Set ```/boot/loader/loader.conf``` to (each bullet point is a new line)
-		* ```default arch``
+		* ```default arch```
 		* ```timeout 5```
 		*  ```editor 0```
 	* Create /boot/loader/entries/arch.conf
