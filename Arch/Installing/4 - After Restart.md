@@ -6,7 +6,7 @@
 3) Add the ```wheel``` group to the sudoers file, run ```EDITOR=vim visudo``` and find the line that says ```Uncomment to allow members of group wheel to execute any command```, uncomment that line
 4) ```exit``` and login to your user account
 5) ```ping google.com```, if you don't have a connection, repeat process from step 1
-6) Time to install a bunch of packages ```pacman -Sy --needed --noconfirm xorg zsh git budgie-desktop gdm nemo chromium gnome-terminal guake vim gufw gnome gnome-backgrounds gnome-control-center gnome-screensaver network-manager-applet```
+6) Time to install a bunch of packages ```pacman -Sy --needed --noconfirm xorg zsh git budgie-desktop gdm nemo chromium gnome-terminal guake vim gufw gnome gnome-backgrounds gnome-control-center gnome-screensaver cpu-power```
 	* add ```crda networkmanager dhclient``` if you have wifi
 	* add a different linux kernel, either ```linux-zen``` or ```linux-hardened```
 		* ```linux-zen``` is generally faster, ```linux-hardened``` is a bit more secure
@@ -17,8 +17,9 @@
 		* INTEL: add ```xf86-video-intel mesa libva-intel-driver libvdpau-va-gl```
 		* Virtualbox: add ```open-vm-tools xf86-video-vmware xf86-input-vmmouse mesa-libgl libva-mesa-driver mesa-vdpau```, also add ```virtualbox-guest-dkms```, or if it's a host, ```virtualbox-host-dkms``` 
 7) configure installed packages
-	1) enable gdm, ```systemctl enable gdm```
+    1) enable gdm, ```systemctl enable gdm```
     2) enable networkmanager, ```systemctl enable NetworkManager```, and disable netctl if needed, ```netctl disable <wifi-menu profile>```, ```systemctl disable netctl@<wifi-menu profile>
+    3) switch to performance cpu govener, edit ```/etc/default/cpupower``` and uncomment ```governor='``` and replace what is there with ```performance```, and then run ```systemctl enable cpupower```
     2) switch to zsh, ```chsh -s /usr/bin/zsh```
     3) switch to new kernel
     	* edit ```/boot/loader/loader.conf``` to default to linux-[kernel name], e.g. linux-zen
