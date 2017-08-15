@@ -10,3 +10,5 @@
 3) install printers
     * install ```cups gtk3-print-backends cups-pdf```
     * enable / start the service ```systemctl enable org.cups.cupsd.service``` ```systemctl start org.cups.cupsd.service```
+4) set up firewall
+    * run ```gufw```, turn ```status``` to on, and that's good enough
