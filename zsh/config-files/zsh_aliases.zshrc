@@ -144,20 +144,26 @@ function vimeo-password()
 }
 
 if which wine &> /dev/null ; then
+    # probably want to install some lib32 libs: lib32-cairo lib32-libcups lib32-gnutls lib32-gtk3 lib32-v4l-utils lib32-libva lib32-libxcomposite lib32-libxinerama lib32-libxslt lib32-libxml2 lib32-mpg123 lib32-lcms2 lib32-giflib lib32-libpng lib32-gnutls
+    # and lib32-libva-vdpau-driver if on nvidia, lib32-libva-intel-driver if using intel graphics
+    # also winecfg -> staging -> Enable CSMT, Enable VAAPI, Enable GTK3
     # set up some wine stuff
     export WINEDEBUG=-all
 
     # run this at some point, really don't need to be done on every shell tho
     # it sets up a paged pool size for wine, source games require it
     # wine reg add "HKLM\\System\\CurrentControlSet\\Control\\Session Manager\\Memory Management\\" /v PagedPoolSize /t REG_DWORD /d 402653184 /f
+    # also link system fonts:  cd ${WINEPREFIX:-~/.wine}/drive_c/windows/Fonts && for i in /usr/share/fonts/**/*.{ttf,otf}; do ln -s "$i" ; done
 
     # see if steam is installed, assumes 64bit wine
     if [ -d ~/.wine/drive_c/Program\ Files\ \(x86\)/Steam ]; then
         # run wine reg.exe ADD "HKEY_CURRENT_USER\Software\Wine\AppDefaults\Steam.exe" /v "Version" /t "REG_SZ" /d "winxp" /f to run steam under xp mode
-        alias steam-wine="wine ~/.wine/drive_c/Program\ Files\ \(x86\)/Steam/Steam.exe -no-cef-sandbox &>/dev/null &"
+        alias steam-wine="env WINEPREFIX=\"/home/tyler/.wine\" wine ~/.wine/drive_c/Program\ Files\ \(x86\)/Steam/Steam.exe -no-cef-sandbox &>/dev/null & disown"
 
         # see if path of exile is installed
         if [ -d  ~/.wine/drive_c/Program\ Files\ \(x86\)/Steam/steamapps/common/Path\ of\ Exile ]; then
+            # need some 32 bit libs:
+            # lib32-libldap lib32-alsa-plugins lib32-libpulse lib32-openal
             # https://appdb.winehq.org/objectManager.php?sClass=version&iId=25078&iTestingId=95811
             # launch with garbage collector set to 100, will eventually run out of ram, but it reduces lag a ton
             # also, run winetricks glsl=disable ; winetricks vcrun2010 usp10
@@ -171,7 +177,7 @@ if which wine &> /dev/null ; then
             # antialias_mode=0
             # screen_shake=false
             # texture_quality=1
-            alias path-of-exile="WINEDEBUG=fixme-all wine ~/.wine/drive_c/Program\ Files\ \(x86\)/Steam/steamapps/common/Path\ of\ Exile/PathOfExile_x64Steam.exe -gc 100"
+            alias path-of-exile="env WINEPREFIX=\"/home/tyler/.wine\" WINEDEBUG=fixme-all wine ~/.wine/drive_c/Program\ Files\ \(x86\)/Steam/steamapps/common/Path\ of\ Exile/PathOfExileSteam.exe -gc 100 &>/dev/null & disown"
         fi
     fi
 fi
