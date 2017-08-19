@@ -1,8 +1,12 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-# Path to your oh-my-zsh installation.
-  export ZSH=~/.zsh-config/oh-my-zsh
+# Path to config if not already set
+if [ -z ${ZSH_CONFIG+x} ]; then
+  export ZSH_CONFIG="$HOME/.zsh-config"
+fi
+
+export ZSH="$ZSH_CONFIG/oh-my-zsh"
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -29,7 +33,7 @@ HYPHEN_INSENSITIVE="true"
 # DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
-ENABLE_CORRECTION="true"
+# ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
 COMPLETION_WAITING_DOTS="true"
@@ -72,9 +76,9 @@ fi
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
 # set editor to vim for git / etc
-export VISUAL=vim
-export SUDO_EDITOR=vim
-export EDITOR="$VISUAL"
+export EDITOR=vim
+export SUDO_EDITOR="$EDITOR"
+export VISUAL="$EDITOR"
 
 #echo $PROMPT / $PS1 is normally "%{%f%b%k%}$(build_prompt)" for my theme (agnoster)
 function build_custom_prompt()
@@ -111,8 +115,8 @@ if ! type "nvm" &> /dev/null ; then
 	#export -f nvm
 fi
 
-if [ -f ~/.zsh-config/zsh_aliases.zshrc  ]; then
-  source ~/.zsh-config/zsh_aliases.zshrc
+if [ -f $ZSH_CONFIG/zsh_aliases.zshrc  ]; then
+  source $ZSH_CONFIG/zsh_aliases.zshrc
 fi
 
 if [ -f ~/.zsh_local.zshrc ]; then

@@ -5,7 +5,7 @@ ALIASES_FILE_LOC="~/.zsh_aliases.zshrc" # hacky workaround to replace bash's exp
 COL_OPT="--color=always"
 
 # switch ls to exa if it exists ; either way add color support
-if type "exa" &> /dev/null ; then
+if type exa &> /dev/null ; then
     alias ls="exa $COL_OPT"
 else
     alias ls="ls $COL_OPT"
@@ -43,7 +43,14 @@ alias ll='ls -alFh'
 alias la='ls -a'
 alias l='ls -F'
 
-# set resolution to 1080p
+# have top use color (even if it's ugly af)
+alias top="top -c"
+# make iotop easier to use
+alias iotop="sudo iotop -Pao"
+# add default glances stuff
+alias glances="glances -t 5"
+
+# set resolution to 1080p, mostly useful in vms
 alias fixres="xrandr --newmode \"1920x1080\"  173.00  1920 2048 2248 2576  1080 1083 1088 1120 -hsync +vsync && xrandr --addmode Virtual1 1920x1080 && xrandr --output Virtual1 --mode 1920x1080"
 
 alias c="clear"
@@ -118,30 +125,34 @@ function findhere()
     grep "$include" "$exclude" -Rnwi . -e \""$1"\" || echo "nothing found"
 }
 
-YOUTUBE_DL_OUTPUT_FOLDER="$HOME/Downloads/youtube-dl/"
+YOUTUBE_DL_OUTPUT_FOLDER="$HOME/Downloads/youtube-dl"
 YOUTUBE_DL_OUTPUT_FILE="%(title)s.%(ext)s"
-YOUTUBE_DL_OUTPUT="--output ${YOUTUBE_DL_OUTPUT_FOLDER}${YOUTUBE_DL_OUTPUT_FILE}"
+YOUTUBE_DL_OUTPUT="-o$YOUTUBE_DL_OUTPUT_FILE"
 
 function check-youtube-dl-loc()
 {
-    if [ ! -d ${YOUTUBE_DL_OUTPUT_FOLDER} ]; then
-        mkdir ${YOUTUBE_DL_OUTPUT_FOLDER}
+    if [ ! -d "$YOUTUBE_DL_OUTPUT_FOLDER" ]; then
+        mkdir "$YOUTUBE_DL_OUTPUT_FOLDER"
     fi
 }
 
 function youtube-mp3()
-{
+(
     check-youtube-dl-loc
+
+    cd "$YOUTUBE_DL_OUTPUT_FOLDER"
 
     youtube-dl --extract-audio --audio-format mp3 --audio-quality 0 "$YOUTUBE_DL_OUTPUT" "$@" || echo "Usage: youtube-mp3 VIDEO-URL"
-}
+)
 
 function vimeo-password()
-{
+(
     check-youtube-dl-loc
 
-    youtube-dl -v "$1" --video-password "$2" "$YOUTUBE_DL_OUTPUT" "${@:3}" || echo "Usage: vimeo-password VIDEO-URL PASSWORD"
-}
+    cd "$YOUTUBE_DL_OUTPUT_FOLDER"
+
+    youtube-dl "$1" --video-password "$2" "$YOUTUBE_DL_OUTPUT" "${@:3}" || echo "Usage: vimeo-password VIDEO-URL PASSWORD"
+)
 
 if which wine &> /dev/null ; then
     # probably want to install some lib32 libs: lib32-cairo lib32-libcups lib32-gnutls lib32-gtk3 lib32-v4l-utils lib32-libva lib32-libxcomposite lib32-libxinerama lib32-libxslt lib32-libxml2 lib32-mpg123 lib32-lcms2 lib32-giflib lib32-libpng lib32-gnutls

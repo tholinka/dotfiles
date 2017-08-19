@@ -9,7 +9,7 @@
     // disable wrap
     "editor.wordWrap": "off",
     "editor.tabSize": 4,
-    "editor.insertSpaces": false,
+    "editor.insertSpaces": true,
     "editor.detectIndentation": true,
     "editor.autoClosingBrackets": false,
     "astyle.astylerc": "/home/developer/.astylerc",
