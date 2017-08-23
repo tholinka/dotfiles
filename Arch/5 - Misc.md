@@ -12,4 +12,6 @@
     * enable / start the service ```systemctl enable org.cups.cupsd.service``` ```systemctl start org.cups.cupsd.service```
 4) set up firewall
     * run ```gufw```, turn ```status``` to on, and that's good enough
-5) enable color in pacman, uncomment ```Color``` in ```/etc/pacman.conf```
+5) enable color in pacman: uncomment ```Color``` in ```/etc/pacman.conf```
+6) enable syslog forwarding to journalctl: install ```syslog-ng```, and enable it through ```systemctl enable syslog-ng```
+    * start it as well, if not restarting
