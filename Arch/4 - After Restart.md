@@ -15,7 +15,9 @@
 		* NVIDIA: add ```nvidia nvidia-utils libva-vdpau-driver xorg-server-devel nvidia-settings opencl-nvidia``` (if your using linux-zen or linux-hardened, use ```nvidia-dkms linux-[kernel name]-headers``` instead of ```nvidia```, to make the dkms modules for those kernels)
 		* AMD: add ```xf86-video-amdgpu mesa libva-mesa-driver mesa-vdpau```
 		* INTEL: add ```xf86-video-intel mesa libva-intel-driver libvdpau-va-gl```
-		* Virtualbox: add ```open-vm-tools xf86-video-vmware xf86-input-vmmouse mesa-libgl libva-mesa-driver mesa-vdpau```, also add ```virtualbox-guest-dkms```, or if it's a host, ```virtualbox-host-dkms```
+		* Virtualbox: add ```open-vm-tools xf86-video-vmware xf86-input-vmmouse mesa-libgl libva-mesa-driver mesa-vdpau```
+		  * Guests also add ```virtualbox-guest-dkms virtualbox-guest-utils```
+		  * Hosts also add ```virtualbox-host-dkms```
 7) configure installed packages
     1) enable gdm, ```systemctl enable gdm```
     2) enable networkmanager, ```systemctl enable NetworkManager```, and disable netctl if needed, ```netctl disable <wifi-menu profile>```, ```systemctl disable netctl@<wifi-menu profile>```
@@ -27,6 +29,8 @@
     	* edit ```/boot/loader/loader.conf``` to default to linux-[kernel name], e.g. linux-zen
     	* copy ```/boot/loader/config/arch.conf``` to arch-[kernel name].conf
     	* add ```-kernelname``` to the vmlinuz and initramfs lines of the config
+    4) Virtualbox setup, ```systemctl enable vmware-vmblock-fuse.service```
+        * update kernel info ```ln -s /proc/version etc/arch-release```
 8) Reconfigure your boot options to be quieter / faster
 	* Add ```rw splash quiet loglevel=3 rd.systemd.show_status=auto rd.udev.log-priority=3``` to the end of the options line of ```/boot/loader/config```.  If you would like to enable hibernate, add ```resume=PARTUUID=[your swap partition]```.
 	* For a marginal boot speed increase, edit ```/etc/fstab``` and remove the ```rw``` line from your ```/``` partition, as systemd will now do that instead
