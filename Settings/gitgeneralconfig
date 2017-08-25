@@ -1,2 +1,10 @@
 [pull]
 	rebase = true
+[push]
+    default = simple
+[rerere]
+    enabled = true
+[core]
+    autocrlf = input
+[rebase]
+    autoStash = true
