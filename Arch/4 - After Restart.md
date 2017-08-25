@@ -8,7 +8,7 @@
 5) ```ping google.com```, if you don't have a connection, repeat process from step 1
 6) Time to install a bunch of packages ```pacman -Sy --needed --noconfirm xorg zsh git budgie-desktop gdm nemo chromium gnome-terminal guake vim gufw gnome gnome-backgrounds gnome-control-center gnome-screensaver gnome-keyring gnome-tweak-tool cpupower```
 	* add ```crda networkmanager dhclient``` if you have wifi, and remove ```netctl``` (networkmanager replaces it)
-	* add a different linux kernel, either ```linux-zen``` or ```linux-hardened```
+	* add a different linux kernel, either ```linux-zen``` or ```linux-hardened```, also include the ```[kernelname]-headers``` package
 		* ```linux-zen``` is generally faster, ```linux-hardened``` is a bit more secure
 		* Uninstall the normal linux kernel to free up space in /boot, ```pacman -Rns linux```
 	* Video Card Drivers:
