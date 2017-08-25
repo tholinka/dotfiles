@@ -35,7 +35,7 @@
 10) Enable multilib: edit ```/etc/pacman.conf```, find [multilib] and uncomment it and the line below it
 11) customize makepkg: edit ```/etc/makepkg.conf```
 	* replace the following portion of ```CFLAGS```: ```-march=x86-64 -mtune=generic -O2``` with ```-march=native -mtune=native -O3```
-	* replace ```CXXFLAGS``` with ```${CFLAGS}
+	* replace ```CXXFLAGS``` with ```${CFLAGS}```
 12) run ```pacman -Sy``` to grab the multilib stuff
 10) git clone this repository into something like .settings-git
 11) run AurSetup.sh to install pacaur
