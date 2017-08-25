@@ -18,7 +18,7 @@
 		* Virtualbox: add ```open-vm-tools xf86-video-vmware xf86-input-vmmouse mesa-libgl libva-mesa-driver mesa-vdpau```, also add ```virtualbox-guest-dkms```, or if it's a host, ```virtualbox-host-dkms```
 7) configure installed packages
     1) enable gdm, ```systemctl enable gdm```
-    2) enable networkmanager, ```systemctl enable NetworkManager```, and disable netctl if needed, ```netctl disable <wifi-menu profile>```, ```systemctl disable netctl@<wifi-menu profile>
+    2) enable networkmanager, ```systemctl enable NetworkManager```, and disable netctl if needed, ```netctl disable <wifi-menu profile>```, ```systemctl disable netctl@<wifi-menu profile>```
     3) set crda regdom, edit ```/etc/conf.d/wireless-regdom``` and uncomment your country
     3) switch to performance cpu govener, edit ```/etc/default/cpupower``` and uncomment ```governor='``` and replace what is there with ```performance```, and then run ```systemctl enable cpupower```
     2) switch to zsh, ```chsh -s /usr/bin/zsh```
