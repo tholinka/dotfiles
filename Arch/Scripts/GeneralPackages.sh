@@ -11,6 +11,7 @@
 # nemo extentions
 # gedit
 # eye of gnome
+# krita image editor
 
 sudo pacman -S --needed --noconfirm \
 wine-staging wine-mono wine_gecko winetricks \
@@ -21,4 +22,5 @@ gst-libav gst-plugins-bad gst-plugins-base gst-plugins-good gst-plugins-ugly fla
 exa \
 nemo-fileroller p7zip unrar nemo-preview nemo-seahorse nemo-share \
 gedit \
-eog eog-plugins
+eog eog-plugins \
+krita

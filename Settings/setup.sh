@@ -50,7 +50,7 @@ fi
 if [ ! -d ~/.steam ]; then
     mkdir ~/.steam
 fi
-if [ -L ~/.steam/steam ]; then
+if [ ! -e ~/.steam/steam ]; then
     ln -sf ~/.steam/steam ~/.local/share/Steam/
 fi
 if [ ! -d ~/.local/share/Steam ]; then
