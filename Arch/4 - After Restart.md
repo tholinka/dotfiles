@@ -6,7 +6,7 @@
 3) Add the ```wheel``` group to the sudoers file, run ```EDITOR=vim visudo``` and find the line that says ```Uncomment to allow members of group wheel to execute any command```, uncomment that line
 4) ```exit``` and login to your user account
 5) ```ping google.com```, if you don't have a connection, repeat process from step 1
-6) Time to install a bunch of packages ```pacman -Sy --needed --noconfirm xorg zsh git budgie-desktop gdm nemo chromium gnome-terminal guake vim gufw gnome gnome-backgrounds gnome-control-center gnome-screensaver gnome-keyring gnome-tweak-tool cpupower```
+6) Time to install a bunch of packages ```pacman -Sy --needed --noconfirm xorg zsh git budgie-desktop gdm nemo chromium gnome-terminal guake vim gufw gnome gnome-backgrounds gnome-control-center gnome-screensaver gnome-keyring gnome-tweak-tool cpupower openssh```
 	* add ```crda networkmanager dhclient``` if you have wifi, and remove ```netctl``` (networkmanager replaces it)
 	* add a different linux kernel, either ```linux-zen``` or ```linux-hardened```, also include the ```[kernelname]-headers``` package
 		* ```linux-zen``` is generally faster, ```linux-hardened``` is a bit more secure
