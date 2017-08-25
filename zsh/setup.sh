@@ -13,7 +13,13 @@ ln -s "$PWD/config-files" ~/.zsh-config
 echo "source ~/.zsh-config/zshrc.zshrc" > ~/.zshrc
 
 # clone in oh-my-zsh
-if ! dir ~/.zsh-config/oh-my-zsh &> /dev/null; then 
+if [ ! -e ~/.zsh-config/oh-my-zsh/oh-my-zsh.sh ]; then
+    # not cloned ?
+    if [ -d ~/.zsh-config/oh-my-zsh ]; then
+        rm ~/.zsh-config/oh-my-zsh -r
+    fi
+
+    clone
     git clone https://github.com/robbyrussell/oh-my-zsh.git ~/.zsh-config/oh-my-zsh > /dev/null
 else
     # just update it
