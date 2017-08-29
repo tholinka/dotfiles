@@ -12,6 +12,7 @@
 # gedit
 # eye of gnome
 # krita image editor
+# commandline network tools
 
 sudo pacman -S --needed --noconfirm \
 wine-staging wine-mono wine_gecko winetricks \
@@ -23,4 +24,5 @@ exa \
 nemo-fileroller p7zip unrar nemo-preview nemo-seahorse nemo-share \
 gedit \
 eog eog-plugins \
-krita
+krita \
+net-tools wget
