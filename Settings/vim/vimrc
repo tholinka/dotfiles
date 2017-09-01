@@ -1,4 +1,5 @@
 set runtimepath+=~/.vim_runtime
+source ~/.vim/vim-runtime/autoload/pathogen.vim
 
 source ~/.vim/vim-runtime/vimrcs/basic.vim
 source ~/.vim/vim-runtime/vimrcs/filetypes.vim
