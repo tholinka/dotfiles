@@ -1,4 +1,4 @@
-#!/bin/sh
+#/bin/sh
 
 echo "RUN THIS FROM THE FOLDER IT IS SITTING IN OR IT WILL BREAK, rerun it if you move this folder"
 
@@ -19,7 +19,6 @@ if [ ! -e ~/.zsh-config/oh-my-zsh/oh-my-zsh.sh ]; then
         rm ~/.zsh-config/oh-my-zsh -r
     fi
 
-    clone
     git clone https://github.com/robbyrussell/oh-my-zsh.git ~/.zsh-config/oh-my-zsh > /dev/null
 else
     # just update it

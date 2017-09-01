@@ -1,9 +1,3 @@
-[submodule "Settings/colorschemes/gedit-super-monokai-theme"]
-	path = Settings/colorschemes/gedit-super-monokai-theme
-	url = git@github.com:saahov/gedit-super-monokai-theme.git
-[submodule "Settings/colorschemes/gnome-terminal-colors-monokai"]
-	path = Settings/colorschemes/gnome-terminal-colors-monokai
-	url = git@github.com:pricco/gnome-terminal-colors-monokai.git
 [submodule "colorschemes/vertex-theme"]
 	path = colorschemes/vertex-theme
 	url = git@github.com:horst3180/vertex-theme.git
