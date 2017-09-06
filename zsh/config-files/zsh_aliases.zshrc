@@ -1,4 +1,4 @@
-ALIASES_FILE_LOC="~/.zsh_aliases.zshrc" # hacky workaround to replace bash's export
+ALIASES_FILE_LOC="${(%):-%N}" # hacky workaround to replace bash's export
 
 # color stuff
 
