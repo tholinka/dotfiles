@@ -5,7 +5,6 @@ DEFAULT="\e[39m"
 if ! which pacaur &> /dev/null; then
 	# need cower
 	if ! which cower &> /dev/null; then
-		sucess="f"
 		echo -e "${CYAN}Installing cower, pacaur needs it${DEFAULT}"
 		git clone https://aur.archlinux.org/cower.git
 		cd cower
@@ -17,12 +16,9 @@ if ! which pacaur &> /dev/null; then
 		makepkg -si $skipkey
 		cd -
 		rm cower -rf
-		success="s"
-	else
-		sucess="s"
 	fi
 
-	if [ "$sucess" == "s" ]; then
+	if which cower &>/dev/null; then
 		echo -e "${CYAN}Install pacaur${DEFAULT}"
 		git clone https://aur.archlinux.org/pacaur.git
 		cd pacaur
