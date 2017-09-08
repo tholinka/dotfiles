@@ -4,16 +4,18 @@ ALIASES_FILE_LOC="${(%):-%N}" # hacky workaround to replace bash's export
 
 COL_OPT="--color=always"
 
-# switch ls to exa if it exists ; either way add color support
+# switch ls to exa if it exists
+ls="ls"
 if type exa &> /dev/null ; then
-    alias ls="exa $COL_OPT"
-else
-    alias ls="ls $COL_OPT"
+    ls="exa"
 fi
 
+# ls options that are the same for ls and exa, set to always use color
+alias ls="$ls $COL_OPT --group-directories-first"
+
 # add color support to a bunch of commands
-alias dir='dir $COL_OPT'
-alias vdir='vdir $COL_OPT'
+alias dir="dir $COL_OPT"
+alias vdir="vdir $COL_OPT"
 
 # there are to many different greps
 alias bzgrep="bzgrep $COL_OPT"
@@ -58,7 +60,7 @@ alias get="git"
 alias gitk="gitk &>/dev/null & "
 alias gitgui="git gui &>/dev/null &"
 
-# convince upgrade function for debian based distros
+# semi-useful upgrade function for debian based distros
 if type "apt" &> /dev/null ; then
     alias aptupdateall="sudo apt update && sudo apt upgrade -y && sudo apt dist-upgrade -y"
 fi
@@ -105,6 +107,7 @@ function gitcheckall()
      xargs -P10 -I{} zsh -c ". $ALIASES_FILE_LOC ; git_step {} checkout $branch"; # see gitall for hacky workaround reason
 }
 
+# grep wrapper (even though it's called findhere) that does grep --include "..." --exclude "..." -Rnwi . -e "[pattern]" in an easy function of findhere [pattern] [exclude] [include]
 function findhere()
 {
     # echo "findhere pattern exclude include e.g. findhere \"hello world\" \"*.o\" \"*.{c,h}\""
@@ -125,6 +128,7 @@ function findhere()
     grep "$include" "$exclude" -Rnwi . -e \""$1"\" || echo "nothing found"
 }
 
+# wrap a few youtube-dl commands, e.g. youtube-mp3 [video] and vimeo-password [video] [password]
 YOUTUBE_DL_OUTPUT_FOLDER="$HOME/Downloads/youtube-dl"
 YOUTUBE_DL_OUTPUT_FILE="%(title)s.%(ext)s"
 YOUTUBE_DL_OUTPUT="-o$YOUTUBE_DL_OUTPUT_FILE"

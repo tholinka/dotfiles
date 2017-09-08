@@ -1,6 +1,5 @@
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
-
+# make sure zprofile gets sourced, as for some reason it doesn't sometimes
+source $HOME/.zprofile
 # Path to config if not already set
 if [ -z ${ZSH_CONFIG+x} ]; then
   export ZSH_CONFIG="$HOME/.zsh-config"

@@ -12,6 +12,9 @@ ln -s "$PWD/config-files" ~/.zsh-config
 # replace ~/.zshrc with a pointer here
 echo "source ~/.zsh-config/zshrc.zshrc" > ~/.zshrc
 
+# replace ~/.zprofile with a pointer here
+echo "source ~/.zsh-config/zprofile.zshrc" > ~/.zprofile
+
 # clone in oh-my-zsh
 if [ ! -e ~/.zsh-config/oh-my-zsh/oh-my-zsh.sh ]; then
     # not cloned ?
