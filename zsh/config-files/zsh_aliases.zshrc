@@ -59,6 +59,7 @@ alias c="clear"
 alias get="git"
 alias gitk="gitk &>/dev/null & "
 alias gitgui="git gui &>/dev/null &"
+alias gitupdatesubmodules="git submodule update --recursive --remote"
 
 # semi-useful upgrade function for debian based distros
 if type "apt" &> /dev/null ; then
@@ -196,3 +197,10 @@ if which wine &> /dev/null ; then
         fi
     fi
 fi
+
+# kill dhcpcd and restart it to get a new ip from my school's crappy af network
+function reset-dhcpcd()
+{
+    sudo dhcpcd -k
+    sudo dhcpcd &
+}
