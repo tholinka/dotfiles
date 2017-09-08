@@ -13,5 +13,9 @@
     "editor.detectIndentation": true,
     "editor.autoClosingBrackets": false,
     "astyle.astylerc": "/home/developer/.astylerc",
-    "workbench.colorTheme": "Monokai Dark Soda"
+    "workbench.colorTheme": "Monokai Dark Soda",
+    "rust.rustup": {
+        "toolchain": "stable-x86_64-unknown-linux-gnu"
+    },
+    "rust.mode": "legacy"
 }
