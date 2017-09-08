@@ -86,12 +86,18 @@ function git_step()
     return 0
 }
 
+function gitsubdirs()
+{
+    unalias ls 2> /dev/null
+    ls=`which ls`
+    "ls" -R --directory --color=never */.git | sed 's/\/.git//'
+}
+
 function gitall()
 {
     git_step . pull
-    ls -R --directory --color=never */.git |
-     sed 's/\/.git//' |
-     xargs -P10 -I{} zsh -c ". $ALIASES_FILE_LOC ; git_step {} pull"; # hacky workaround to get around the fact that zsh doesn't have export -f
+    gitsubdirs |
+     xargs -P10 -I{} zsh -c "source $ALIASES_FILE_LOC ; git_step {} pull"; # hacky workaround to get around the fact that zsh doesn't have export -f
 }
 
 function gitcheckall()
@@ -103,9 +109,8 @@ function gitcheckall()
     fi
 
     git_step . checkout $branch
-    ls -R --directory --color=never */.git |
-     sed 's/\/.git//' |
-     xargs -P10 -I{} zsh -c ". $ALIASES_FILE_LOC ; git_step {} checkout $branch"; # see gitall for hacky workaround reason
+    gitsubdirs |
+     xargs -P10 -I{} zsh -c "source $ALIASES_FILE_LOC ; git_step {} checkout $branch"; # see gitall for hacky workaround reason
 }
 
 # grep wrapper (even though it's called findhere) that does grep --include "..." --exclude "..." -Rnwi . -e "[pattern]" in an easy function of findhere [pattern] [exclude] [include]
