@@ -28,3 +28,6 @@ eog eog-plugins \
 krita \
 net-tools wget \
 htop iotop
+
+# deps for gitk and git gui
+sudo pacman -S --asdeps tk python2
