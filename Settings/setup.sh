@@ -31,6 +31,12 @@ fi
 if [ ! -d ~/.config/zathura ]; then
     mkdir ~/.config/zathura
 fi
+if [ ! -d ~/.config/nvim ]; then
+    mkdir ~/.config/nvim
+fi
+if [ ! -d ~/.config/nvim/colors ]; then
+    mkdir ~/.config/nvim/colors
+fi
 ### end .config section ###
 
 ### .local section ###
@@ -79,6 +85,10 @@ ln -sf "$PWD/config/Code/User/settings.json" ~/.config/Code/User/
 ln -sf "$PWD/config/QtProject/qtcreator/styles/monokai_tyler.xml" ~/.config/QtProject/qtcreator/styles/
 
 ln -sf "$PWD/config/zathura/zathurarc" ~/.config/zathura/
+
+ln -sf "$PWD/vim/colors/monokai.vim" ~/.config/nvim/colors
+ln -sf "$PWD/vim/vim-runtime/" ~/.config/nvim/vim-runtime
+ln -sf "$PWD/vim/vimrc" ~/.config/nvim/init.vim
 
 # link both chrome and chromium against flags, these might be an arch only things ?
 ln -sf "$PWD/config/chromium-flags.conf" ~/.config/chromium-flags.conf

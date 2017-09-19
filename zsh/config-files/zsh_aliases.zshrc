@@ -4,6 +4,12 @@ ALIASES_FILE_LOC="${(%):-%N}" # hacky workaround to replace bash's export
 
 COL_OPT="--color=always"
 
+# switch vi and vim to nvim if it exists
+if type nvim &> /dev/null ; then
+    alias vi="nvim"
+    alias vim="nvim"
+fi
+
 # switch ls to exa if it exists
 ls="ls"
 if type exa &> /dev/null ; then
