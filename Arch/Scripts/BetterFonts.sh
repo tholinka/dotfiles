@@ -1,13 +1,7 @@
 #!/bin/sh
-CYAN="\e[36m"
-GREEN="\e[32m"
-DEFAULT="\e[39m"
-BOLD="\e[1m"
 
-RESET="\e[0m"
+source includes/colordefines.sh
 
-CB="${CYAN}${BOLD}"
-GB="${GREEN}${BOLD}"
 # https://gist.github.com/cryzed/e002e7057435f02cc7894b9e748c5671
 # symlink settings
 echo -e "${CB}Symlinking settings (lcdfilter-default, sub-pixel-rgb, hinting-slight) ${RESET}"

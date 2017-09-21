@@ -1,6 +1,7 @@
 #!/bin/sh
-CYAN="\e[36m"
-DEFAULT="\e[39m"
+
+source includes/colordefines.sh
+
 # get pacaur if it's not installed
 if ! which pacaur &> /dev/null; then
 	# need cower

@@ -1,14 +1,6 @@
 #!/bin/sh
 
-CYAN="\e[36m"
-GREEN="\e[32m"
-DEFAULT="\e[39m"
-BOLD="\e[1m"
-
-RESET="\e[0m"
-
-CB="${CYAN}${BOLD}"
-GB="${GREEN}${BOLD}"
+source includes/colordefines.sh
 
 echo -e "${GB}Installing reflector and reflector-timer${RESET}"
 

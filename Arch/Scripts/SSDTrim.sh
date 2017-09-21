@@ -1,15 +1,7 @@
 #!/bin/sh
 # enable periodic trim timers, it's part of util-linux so it should be installed anyway
 
-CYAN="\e[36m"
-GREEN="\e[32m"
-DEFAULT="\e[39m"
-BOLD="\e[1m"
-
-RESET="\e[0m"
-
-CB="${CYAN}${BOLD}"
-GB="${GREEN}${BOLD}"
+source includes/colordefines.sh
 
 echo -e "${GB}Enabling & starting fstrim.timer${RESET}"
 sudo systemctl enable fstrim.timer
