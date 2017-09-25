@@ -6,8 +6,8 @@
 3) Add the ```wheel``` group to the sudoers file, run ```EDITOR=vim visudo``` and find the line that says ```Uncomment to allow members of group wheel to execute any command```, uncomment that line
 4) ```exit``` and login to your user account
 5) ```ping google.com```, if you don't have a connection, repeat process from step 1
-6) Time to install a bunch of packages ```pacman -Sy --needed --noconfirm xorg zsh git budgie-desktop gdm nemo chromium gnome-terminal guake vim gufw gnome gnome-backgrounds gnome-control-center gnome-screensaver gnome-keyring gnome-tweak-tool cpupower openssh networkmanager dhclient ccache```
-        * remove remove ```netctl``` (networkmanager replaces it)
+6) Time to install a bunch of packages ```pacman -Sy --needed --noconfirm xorg zsh git nemo chromium guake vim gufw plasma kde-applications cpupower openssh networkmanager dhclient ccache```
+    * remove remove ```netctl``` (networkmanager replaces it), and optionally remove ```konqueror``` and ```dolphin```.
 	* add ```crda``` if you have wifi
 	* add a different linux kernel, either ```linux-zen``` or ```linux-hardened```, also include the ```[kernelname]-headers``` package
 		* ```linux-zen``` is generally faster, ```linux-hardened``` is a bit more secure
@@ -20,7 +20,7 @@
 		  * Guests also add ```virtualbox-guest-dkms virtualbox-guest-utils gtkmm libxtst```
 		  * Hosts also add ```virtualbox-host-dkms```
 7) configure installed packages
-    1) enable gdm, ```systemctl enable gdm```
+    1) enable sddm, ```systemctl enable sddm```
     2) enable networkmanager, ```systemctl enable NetworkManager```, and disable netctl if needed, ```netctl disable <wifi-menu profile>```, ```systemctl disable netctl@<wifi-menu profile>```
     3) set crda regdom, edit ```/etc/conf.d/wireless-regdom``` and uncomment your country
     3) switch to performance cpu govener, edit ```/etc/default/cpupower``` and uncomment ```governor='``` and replace what is there with ```performance```, and then run ```systemctl enable cpupower```
@@ -35,7 +35,7 @@
 8) Reconfigure your boot options to be quieter / faster
 	* Add ```rw splash quiet loglevel=3 rd.systemd.show_status=auto rd.udev.log-priority=3``` to the end of the options line of ```/boot/loader/config```.  If you would like to enable hibernate, add ```resume=PARTUUID=[your swap partition]```.
 	* For a marginal boot speed increase, edit ```/etc/fstab``` and remove the ```rw``` line from your ```/``` partition, as systemd will now do that instead
-9) reboot again, you should reboot into a desktop.  From the gear icon next to the password, select ```gnome``` and then select ```budgie-desktop``` again.
+9) reboot again, you should reboot into a login menu.
 	* for wifi, open up Settings -> Network and use that menu now
 10) Set up pacman config, edit ```/etc/pacman.conf``` and:
 	* Enable multilib: find [multilib] and uncomment it and the line below it
