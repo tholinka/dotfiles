@@ -77,7 +77,9 @@ fi
 
 # switch to colormake if it's present
 if type "colormake" &> /dev/null ; then
-    alias make='colormake'
+    # also set j for ease of use
+    alias make='colormake -j$(nproc --all)'
+
     alias gcc='COLORMAKE_COMMAND=gcc colormake'
     alias clang='COLORMAKE_COMMAND=clang colormake'
 fi
