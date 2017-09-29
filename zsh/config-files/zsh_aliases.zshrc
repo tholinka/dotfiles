@@ -227,3 +227,12 @@ function reset-dhcpcd()
     sudo dhcpcd -k
     sudo dhcpcd &
 }
+
+# from https://stackoverflow.com/a/14728706
+function git-gc-all()
+{
+    git reflog expire --expire-unreachable=now --all
+
+    git -c gc.reflogExpire=0 -c gc.reflogExpireUnreachable=0 -c gc.rerereresolved=0 \
+    -c gc.rerereunresolved=0 -c gc.pruneExpire=now gc "$@"
+}
