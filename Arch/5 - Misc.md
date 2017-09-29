@@ -15,3 +15,6 @@
     * enroll fingerprint using ```fprintd-enroll```
     * add the following: ```auth      sufficient pam_fprintd.so``` to the top of the auth lines in the following files
         * ```/etc/pam.d/system-local-login```
+8) Misc kde settings:
+    * Look and Feel theme I use is "Breeze Dark", Desktop theme I use is "Ember", gtk theme is "Vertex Dark" (which is installed in one of the scripts)
+    * Moka as my icon theme, humanity is my cursor theme
