@@ -7,6 +7,6 @@
 [submodule "colorschemes/gedit-super-monokai-theme"]
 	path = colorschemes/gedit-super-monokai-theme
 	url = git@github.com:saahov/gedit-super-monokai-theme.git
-[submodule "zsh/config-files/oh-my-zsh"]
-	path = zsh/config-files/oh-my-zsh
-	url = git@github.com:robbyrussell/oh-my-zsh.git
+[submodule "zsh/config-files/zplug"]
+	path = zsh/config-files/zplug
+	url = https://github.com/zplug/zplug.git

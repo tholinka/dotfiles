@@ -1,3 +1,4 @@
+<<<<<<< HEAD:zsh/config-files/zsh_aliases.zshrc
 ALIASES_FILE_LOC="${(%):-%N}" # hacky workaround to replace bash's export
 
 # color stuff
@@ -73,6 +74,9 @@ alias gitupdatesubmodules="git submodule update --recursive --remote"
 if type "apt" &> /dev/null ; then
     alias aptupdateall="sudo apt update && sudo apt upgrade -y && sudo apt dist-upgrade -y"
 fi
+=======
+FUNCTIONS_FILE_LOC="${(%):-%N}" # hacky workaround to replace bash's export
+>>>>>>> Switch from oh-my-zsh to zplug:zsh/config-files/zsh-functions.zshrc
 
 # switch to colormake if it's present
 if type "colormake" &> /dev/null ; then
@@ -120,7 +124,7 @@ function gitall()
 {
     git_step . pull
     gitsubdirs |
-     xargs -P10 -I{} zsh -c "source $ALIASES_FILE_LOC ; git_step {} pull"; # hacky workaround to get around the fact that zsh doesn't have export -f
+     xargs -P10 -I{} zsh -c "source $FUNCTIONS_FILE_LOC ; git_step {} pull"; # hacky workaround to get around the fact that zsh doesn't have export -f
 }
 
 function gitcheckall()
@@ -133,7 +137,7 @@ function gitcheckall()
 
     git_step . checkout $branch
     gitsubdirs |
-     xargs -P10 -I{} zsh -c "source $ALIASES_FILE_LOC ; git_step {} checkout $branch"; # see gitall for hacky workaround reason
+     xargs -P10 -I{} zsh -c "source $FUNCTIONS_FILE_LOC ; git_step {} checkout $branch"; # see gitall for hacky workaround reason
 }
 
 # grep wrapper (even though it's called findhere) that does grep --include "..." --exclude "..." -Rnwi . -e "[pattern]" in an easy function of findhere [pattern] [exclude] [include]
