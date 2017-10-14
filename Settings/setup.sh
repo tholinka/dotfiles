@@ -1,7 +1,10 @@
 #!/bin/sh
-
 SCRIPTLOC=$(readlink -f "$0")
 FOLDERLOC=$(dirname "$SCRIPTLOC")
+
+# remove existing link
+rm ~/.vscode
+
 ### .config section ###
 if [ ! -d ~/.config ]; then
     mkdir ~/.config
@@ -50,16 +53,7 @@ fi
 
 # see if ~/.steam exists
 if [ ! -d ~/.steam ]; then
-    mkdir ~/.steam
-fi
-if [ ! -e ~/.steam/steam ]; then
-    ln -sf ~/.steam/steam ~/.local/share/Steam/
-fi
-if [ ! -d ~/.local/share/Steam ]; then
-    mkdir ~/.local/share/Steam
-fi
-if [ ! -d ~/.local/share/Steam/skins ]; then
-    mkdir ~/.local/share/Steam/skins
+    NO_STEAM=true
 fi
 ### end .local section ###
 
@@ -91,7 +85,9 @@ ln -sf "$FOLDERLOC/local/share/konsole/monokai.colorscheme" ~/.local/share/konso
 ln -sf "$FOLDERLOC/local/share/konsole/Shell.profile" ~/.local/share/konsole/Shell.profile
 
 ## have to copy, steam can't do symlinks for skins
-cp -r "$FOLDERLOC/local/share/Steam/skins/Metro 4.2.4" ~/.steam/steam/skins/
+if [ ! -z ${NO_STEAM+x} ]; then
+    cp -r "$FOLDERLOC/local/share/Steam/skins/Metro 4.2.4" ~/.steam/steam/skins/
+fi
 ### end of .local ###
 ### couple random folders ###
 ln -sf "$FOLDERLOC/vim" ~/.vim
