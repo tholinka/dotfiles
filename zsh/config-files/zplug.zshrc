@@ -20,7 +20,7 @@ zplug "themes/agnoster", from:oh-my-zsh
 
 # other plugins
 ## git prompt info
-zplug "tombh/zsh-git-prompt", as:plugin, use:zshrc.sh
+#zplug "tombh/zsh-git-prompt", as:plugin, use:zshrc.sh # my theme handles this
 ## don't run anything pasted until I manually hit enter key
 zplug "oz/safe-paste"
 ## automatically change terminal title based on location / task
