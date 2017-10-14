@@ -10,3 +10,6 @@
 [submodule "zsh/config-files/zplug"]
 	path = zsh/config-files/zplug
 	url = https://github.com/zplug/zplug.git
+[submodule "colorschemes/Gogh"]
+	path = colorschemes/Gogh
+	url = https://github.com/Mayccoll/Gogh.git
