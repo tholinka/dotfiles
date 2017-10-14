@@ -31,7 +31,6 @@ zplug "zsh-users/zsh-completions"
 zplug "zsh-users/zsh-history-substring-search"
 ## google search (kind of) command suggestions
 zplug "zsh-users/zsh-autosuggestions"
-export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=5"
 ## syntax highlighting, defer so it load's later
 zplug "zdharma/fast-syntax-highlighting", defer:3
 
@@ -42,6 +41,9 @@ fi
 
 # then load
 zplug load
+
+# set autosuggestions color
+export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=5"
 
 # Highlights the suggestions created by tab, eg; from `ls`
 zstyle ':completion:*' menu select
