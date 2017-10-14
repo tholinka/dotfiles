@@ -20,5 +20,4 @@ vi-vim-symlink \
 insync \
 betterdiscord ttf-symbola \
 systemd-boot-pacman-hook wd719x-firmware aic94xx-firmware \
-pepper-flash chromium-widevine \
-alacitty-git
+pepper-flash chromium-widevine
