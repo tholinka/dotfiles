@@ -1,5 +1,5 @@
 # make sure zprofile gets sourced, as for some reason it doesn't sometimes
-source $HOME/.zprofile
+source "$ZSH_CONFIG/zprofile.zshrc"
 
 # Path to config folder if not already set
 if [ -z ${ZSH_CONFIG+x} ]; then

@@ -1,5 +1,10 @@
-
 FUNCTIONS_FILE_LOC="${(%):-%N}" # hacky workaround to replace bash's export
+
+# Start tmux server and attach
+function tmux_start() {
+  tmux start-server
+  tmux attach
+}
 
 # switch to colormake if it's present
 if type "colormake" &> /dev/null ; then
