@@ -1,5 +1,10 @@
 # make sure zprofile gets sourced, as for some reason it doesn't sometimes
-source "$HOME/zprofile.zshrc"
+source "$HOME/.zprofile"
+
+# Path to config folder if not already set
+if [ -z ${ZSH_CONFIG+x} ]; then
+  export ZSH_CONFIG="$HOME/.zsh-config"
+fi
 
 # source zplug
 if [ -f $ZSH_CONFIG/zplug.zshrc  ]; then
