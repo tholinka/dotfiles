@@ -42,4 +42,4 @@
 	url = git@github.com:Sertion/vscode-gitblame.git
 [submodule "Settings/vscode/extensions/Monokai-Theme-VSCode"]
 	path = Settings/vscode/extensions/Monokai-Theme-VSCode
-	url = git@github.com:ink07/Monokai-Theme-VSCode.git
+	url = git@github.com:link07/Monokai-Theme-VSCode.git
