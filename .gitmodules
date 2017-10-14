@@ -9,37 +9,37 @@
 	url = git@github.com:saahov/gedit-super-monokai-theme.git
 [submodule "zsh/config-files/zplug"]
 	path = zsh/config-files/zplug
-	url = https://github.com/zplug/zplug.git
+	url = git@github.com:zplug/zplug.git
 [submodule "colorschemes/Gogh"]
 	path = colorschemes/Gogh
-	url = https://github.com/Mayccoll/Gogh.git
+	url = git@github.com:Mayccoll/Gogh.git
 [submodule "Settings/vscode/extensions/vscode-rust"]
 	path = Settings/vscode/extensions/vscode-rust
-	url = https://github.com/editor-rs/vscode-rust.git
+	url = git@github.com:editor-rs/vscode-rust.git
 [submodule "Settings/vscode/extensions/vscode-markdownlint"]
 	path = Settings/vscode/extensions/vscode-markdownlint
-	url = https://github.com/DavidAnson/vscode-markdownlint.git
+	url = git@github.com:DavidAnson/vscode-markdownlint.git
 [submodule "Settings/vscode/extensions/editorconfig-vscode"]
 	path = Settings/vscode/extensions/editorconfig-vscode
-	url = https://github.com/editorconfig/editorconfig-vscode.git
+	url = git@github.com:editorconfig/editorconfig-vscode.git
 [submodule "Settings/vscode/extensions/vscode-astyle"]
 	path = Settings/vscode/extensions/vscode-astyle
-	url = https://github.com/welkineins/vscode-astyle.git
+	url = git@github.com:welkineins/vscode-astyle.git
 [submodule "Settings/vscode/extensions/pythonVSCode"]
 	path = Settings/vscode/extensions/pythonVSCode
-	url = https://github.com/DonJayamanne/pythonVSCode.git
+	url = git@github.com:DonJayamanne/pythonVSCode.git
 [submodule "Settings/vscode/extensions/vscode-cpptools"]
 	path = Settings/vscode/extensions/vscode-cpptools
-	url = https://github.com/Microsoft/vscode-cpptools.git
+	url = git@github.com:Microsoft/vscode-cpptools.git
 [submodule "Settings/vscode/extensions/omnisharp-vscode"]
 	path = Settings/vscode/extensions/omnisharp-vscode
-	url = https://github.com/OmniSharp/omnisharp-vscode.git
+	url = git@github.com:OmniSharp/omnisharp-vscode.git
 [submodule "Settings/vscode/extensions/vscode-powershell"]
 	path = Settings/vscode/extensions/vscode-powershell
-	url = https://github.com/PowerShell/vscode-powershell.git
+	url = git@github.com:PowerShell/vscode-powershell.git
 [submodule "Settings/vscode/extensions/vscode-gitblame"]
 	path = Settings/vscode/extensions/vscode-gitblame
-	url = https://github.com/Sertion/vscode-gitblame.git
+	url = git@github.com:Sertion/vscode-gitblame.git
 [submodule "Settings/vscode/extensions/Monokai-Theme-VSCode"]
 	path = Settings/vscode/extensions/Monokai-Theme-VSCode
-	url = https://github.com/ink07/Monokai-Theme-VSCode.git
+	url = git@github.com:ink07/Monokai-Theme-VSCode.git
