@@ -1,13 +1,7 @@
-#/bin/sh
-
-echo "RUN THIS FROM THE FOLDER IT IS SITTING IN OR IT WILL BREAK, rerun it if you move this folder"
-
+SCRIPTLOC=$(readlink -f "$0")
+FOLDERLOC=$(dirname "$SCRIPTLOC")
 # create symblink to config-files and ~/.zsh-config
-if [ -e ~/.zsh-config ]; then
-    rm ~/.zsh-config # should be a symlink
-fi
-
-ln -s "$PWD/config-files" ~/.zsh-config
+ln -sf "$FOLDERLOC/config-files" ~/.zsh-config
 
 # replace ~/.zshrc with a pointer here
 echo "source ~/.zsh-config/zshrc.zshrc" > ~/.zshrc
@@ -15,20 +9,13 @@ echo "source ~/.zsh-config/zshrc.zshrc" > ~/.zshrc
 # replace ~/.zprofile with a pointer here
 echo "source ~/.zsh-config/zprofile.zshrc" > ~/.zprofile
 
-# clone in oh-my-zsh
-if [ ! -e ~/.zsh-config/oh-my-zsh/oh-my-zsh.sh ]; then
-    # not cloned ?
-    if [ -d ~/.zsh-config/oh-my-zsh ]; then
-        rm ~/.zsh-config/oh-my-zsh -r
+# if no pacman remind to install powerline fonts for theme
+if type pacman &>/dev/null; then
+    # otherwise see if pacman has them installed
+    if ! pacman -Q powerline-fonts &> /dev/null; then
+        echo "Need powerline fonts for theme!"
+        sudo pacman -S powerline-fonts
     fi
-
-    git clone https://github.com/robbyrussell/oh-my-zsh.git ~/.zsh-config/oh-my-zsh > /dev/null
 else
-    # just update it
-    git -C ~/.zsh-config/oh-my-zsh pull > /dev/null
-fi
-
-if ! pacman -Q powerline-fonts &> /dev/null; then
-    echo "Need powerline fonts for theme!"
-    sudo pacman -S powerline-fonts
+    echo "Remember to install powerline fonts for theme!"
 fi

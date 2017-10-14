@@ -8,3 +8,5 @@
     autocrlf = input
 [rebase]
     autoStash = true
+[color]
+    ui = auto
