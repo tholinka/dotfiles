@@ -1,7 +1,12 @@
 SCRIPTLOC=$(readlink -f "$0")
 FOLDERLOC=$(dirname "$SCRIPTLOC")
 # create symblink to config-files and ~/.zsh-config
-ln -sf "$FOLDERLOC/config-files" ~/.zsh-config
+## remove existing one so that a symlink isn't created at ~/.zsh-config/.zsh-config
+if [ -e ~/.zsh-config ]; then
+    rm ~/.zsh-config # should be a symlink
+fi
+
+ln -s "$FOLDERLOC/config-files" ~/.zsh-config
 
 # replace ~/.zshrc with a pointer here
 echo "source ~/.zsh-config/zshrc.zshrc" > ~/.zshrc
