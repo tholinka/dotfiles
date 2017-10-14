@@ -6,14 +6,18 @@
     //"editor.fontSize": 14,
     "editor.fontLigatures": true,
     "files.trimTrailingWhitespace": true,
+
     // disable wrap
     "editor.wordWrap": "off",
-    "editor.tabSize": 4,
-    "editor.insertSpaces": true,
+    "[markdown]": {
+        "editor.wordWrap": "off"
+    },
+
+    // hit alt+z to disable it again if you accidently enabled it
     "editor.detectIndentation": true,
     "editor.autoClosingBrackets": false,
     "astyle.astylerc": "/home/developer/.astylerc",
-    "workbench.colorTheme": "Monokai Dark Soda",
+    "workbench.colorTheme": "Monokai Normal Background",
     "rust.rustup": {
         "toolchain": "stable-x86_64-unknown-linux-gnu"
     },

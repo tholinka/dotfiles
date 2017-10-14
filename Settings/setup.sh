@@ -68,10 +68,6 @@ if [ -d ~/.vim ]; then
     rm ~/.vim
 fi
 
-if [ ! -d ~/.vscode ]; then
-    mkdir ~/.vscode
-fi
-
 
 ## symlinks
 ### .config section ###
@@ -104,7 +100,7 @@ echo "source ~/.vim/vimrc" > ~/.vimrc
 # pull in vim runtime link vim-runtime as it expects
 ln -sf "$FOLDERLOC/vim/vim-runtime" ~/.vim_runtime
 
-ln -sf "$FOLDERLOC/vscode/settings.json" ~/.vscode/
+ln -sf "$FOLDERLOC/vscode" ~/.vscode
 
 ln -sf "$FOLDERLOC/astylerc" ~/.astylerc
 

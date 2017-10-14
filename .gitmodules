@@ -13,3 +13,33 @@
 [submodule "colorschemes/Gogh"]
 	path = colorschemes/Gogh
 	url = https://github.com/Mayccoll/Gogh.git
+[submodule "Settings/vscode/extensions/vscode-rust"]
+	path = Settings/vscode/extensions/vscode-rust
+	url = https://github.com/editor-rs/vscode-rust.git
+[submodule "Settings/vscode/extensions/vscode-markdownlint"]
+	path = Settings/vscode/extensions/vscode-markdownlint
+	url = https://github.com/DavidAnson/vscode-markdownlint.git
+[submodule "Settings/vscode/extensions/editorconfig-vscode"]
+	path = Settings/vscode/extensions/editorconfig-vscode
+	url = https://github.com/editorconfig/editorconfig-vscode.git
+[submodule "Settings/vscode/extensions/vscode-astyle"]
+	path = Settings/vscode/extensions/vscode-astyle
+	url = https://github.com/welkineins/vscode-astyle.git
+[submodule "Settings/vscode/extensions/pythonVSCode"]
+	path = Settings/vscode/extensions/pythonVSCode
+	url = https://github.com/DonJayamanne/pythonVSCode.git
+[submodule "Settings/vscode/extensions/vscode-cpptools"]
+	path = Settings/vscode/extensions/vscode-cpptools
+	url = https://github.com/Microsoft/vscode-cpptools.git
+[submodule "Settings/vscode/extensions/omnisharp-vscode"]
+	path = Settings/vscode/extensions/omnisharp-vscode
+	url = https://github.com/OmniSharp/omnisharp-vscode.git
+[submodule "Settings/vscode/extensions/vscode-powershell"]
+	path = Settings/vscode/extensions/vscode-powershell
+	url = https://github.com/PowerShell/vscode-powershell.git
+[submodule "Settings/vscode/extensions/vscode-gitblame"]
+	path = Settings/vscode/extensions/vscode-gitblame
+	url = https://github.com/Sertion/vscode-gitblame.git
+[submodule "Settings/vscode/extensions/Monokai-Theme-VSCode"]
+	path = Settings/vscode/extensions/Monokai-Theme-VSCode
+	url = https://github.com/ink07/Monokai-Theme-VSCode.git
