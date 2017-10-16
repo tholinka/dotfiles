@@ -42,9 +42,6 @@ if [ -z ${KERNEL_SET+x} ]; then
     esac
 fi
 
-# also include headers
-KERNEL="${KERNEL} ${KERNEL}-headers"
-
 echo -e "$CB Which video card [Nvidia, AMD, Intel, VMware/Virtualbox]$RESET"
 
 echo -en "$C Nvidia $RESET"
@@ -54,6 +51,7 @@ case $yn in
     [Yy]* )
         VIDEO_CARD="nvidia-dkms nvidia-utils libva-vdpau-driver xorg-server-devel nvidia-settigns opencl-nvidia"
         VIDEO_CARD_SET="nvidia"
+        NEEDS_KERNEL_HEADERS=true
         ;;
 esac
 
@@ -65,6 +63,7 @@ if [ -z ${VIDEO_CARD_SET+x} ]; then
         [Yy]* )
             VIDEO_CARD="xf86-video-amdgpu mesa libva-mesa-driver mesa-vdpau"
             VIDEO_CARD_SET="amd"
+            # only needs headers for catalyst-dkms from the aur
             ;;
     esac
 fi
@@ -77,6 +76,7 @@ if [ -z ${VIDEO_CARD_SET+x} ]; then
         [Yy]* )
             VIDEO_CARD="xf86-video-intel mesa libva-intel-driver libvdpau-va-gl"
             VIDEO_CARD_SET="intel"
+            # should never need headers
             ;;
     esac
 fi
@@ -88,8 +88,14 @@ if [ -z ${VIDEO_CARD_SET+x} ]; then
         [Yy]* )
             VIDEO_CARD="open-vm-tools xf86-video-vmware xf86-input-vmmouse mesa-libgl libva-mesa-driver mesa-vdpau virtualbox-guest-dkms virtualbox-guest-utils gtkmm libxtst"
             VIDEO_CARD_SET="virtualbox"
+            NEEDS_KERNEL_HEADERS=true
             ;;
     esac
+fi
+
+# only include headers if needed
+if [ ! -z ${NEEDS_KERNEL_HEADERS+x} ]; then
+    KERNEL="${KERNEL} ${KERNEL}-headers"
 fi
 
 sudo pacman -Sy --needed --noconfirm $PACKAGES \
@@ -100,10 +106,10 @@ $VIDEO_CARD
 echo -e "$CYAN Installation done $RESET"
 
 if pacman -Q netctl &>/dev/null; then
-    $REMOVE_PACKAGES="$REMOVE_PACKAGES netctl"
+    REMOVE_PACKAGES="$REMOVE_PACKAGES netctl"
 fi
 
-echo -en "$C Remove konqueror and dolphin $RESET"
+echo -en "$C Remove konqueror, dolphin, and kate $RESET"
 read -p "$P" yn
 case $yn in
     [Yy]* )
@@ -115,6 +121,9 @@ case $yn in
         fi
         if pacman -Q dolphin-plugins &>/dev/null; then
             REMOVE_PACKAGES="$REMOVE_PACKAGES dolphin-plugins"
+        fi
+        if pacman -Q kate &> /dev/null; then
+            REMOVE_PACKAGES="$REMOVE_PACKAGES kate"
         fi
 esac
 
