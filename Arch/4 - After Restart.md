@@ -15,10 +15,12 @@
         * edit ```/boot/loader/loader.conf``` to default to linux-[kernel name], e.g. linux-zen
         * copy ```/boot/loader/config/arch.conf``` to arch-[kernel name].conf
         * add ```-kernelname``` to the vmlinuz and initramfs lines of the config
-1. Reconfigure your boot options to be quieter / faster
-    * Add ```rw splash quiet loglevel=3 rd.systemd.show_status=auto rd.udev.log-priority=3``` to the end of the options line of ```/boot/loader/config```.    If you would like to enable hibernate, add ```resume=PARTUUID=[your swap partition]```.
+1. Reconfigure boot options to enable hibernate, and be quieter and faster
+    * Add the following to the end of the ```options``` line in ```/boot/loader/[your config]```
+        * ```rw splash quiet loglevel=3 rd.systemd.show_status=auto rd.udev.log-priority=3``` to have startup / stop be show less information
+        * ```resume=PARTUUID=[your swap partition's partuuid]``` to enable hibernation
     * For a marginal boot speed increase, edit ```/etc/fstab``` and remove the ```rw``` line from your ```/``` partition, as systemd will now do that instead
-1. reboot again, you should reboot into a login menu.
+1. reboot again, you should reboot into a login menu. (it may be ugly until you manually change the them, then change it back to the default in the KDE settings)
     * for wifi, open up Settings -> Network and use that menu now
 1. Set up pacman config, edit ```/etc/pacman.conf``` and:
     * Enable multilib: find [multilib] and uncomment it and the line below it
