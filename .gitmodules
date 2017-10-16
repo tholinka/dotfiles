@@ -43,3 +43,6 @@
 [submodule "Settings/vscode/extensions/Monokai-Theme-VSCode"]
 	path = Settings/vscode/extensions/Monokai-Theme-VSCode
 	url = git@github.com:link07/Monokai-Theme-VSCode.git
+[submodule "Settings/vscode/extensions/vscode-bash-debug"]
+	path = Settings/vscode/extensions/vscode-bash-debug
+	url = git@github.com:rogalmic/vscode-bash-debug
