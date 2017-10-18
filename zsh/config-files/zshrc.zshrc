@@ -39,12 +39,12 @@ if ! type "nvm" &> /dev/null ; then
 	}
 fi
 
-if [ -f $ZSH_CONFIG/zsh-aliases.zshrc  ]; then
-  source $ZSH_CONFIG/zsh-aliases.zshrc
+if [ -f $ZSH_CONFIG/aliases.zshrc  ]; then
+  source $ZSH_CONFIG/aliases.zshrc
 fi
 
-if [ -f $ZSH_CONFIG/zsh-functions.zshrc  ]; then
-  source $ZSH_CONFIG/zsh-functions.zshrc
+if [ -f $ZSH_CONFIG/functions.zshrc  ]; then
+  source $ZSH_CONFIG/functions.zshrc
 fi
 
 if [ -f ~/.zsh_local.zshrc ]; then
