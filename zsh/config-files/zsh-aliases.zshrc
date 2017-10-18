@@ -95,3 +95,12 @@ alias gitupdatesubmodules="git submodule update --recursive --remote"
 if type "apt" &> /dev/null ; then
     alias aptupdateall="sudo apt update && sudo apt upgrade -y && sudo apt dist-upgrade -y"
 fi
+
+# switch to colormake if it's present
+if type "colormake" &> /dev/null ; then
+    # also set j for ease of use
+    alias make='colormake -j$(nproc --all)'
+
+    alias gcc='COLORMAKE_COMMAND=gcc colormake'
+    alias clang='COLORMAKE_COMMAND=clang colormake'
+fi
