@@ -15,5 +15,5 @@ PATH="$HOME/.rbenv/bin:$PATH"
 # export PATH
 export PATH
 
-# add local stuff to library path
-export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:$HOME/usr/lib:$HOME/lib:$HOME/.local/lib"
+# add local stuff to library path, might already be added
+export LD_LIBRARY_PATH="$LD_LIBRARY_PATH${LD_LIBRARY_PATH+:}$HOME/usr/lib:$HOME/lib:$HOME/.local/lib"
