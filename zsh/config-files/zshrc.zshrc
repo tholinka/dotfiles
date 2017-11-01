@@ -1,5 +1,8 @@
-# make sure zprofile gets sourced, as for some reason it doesn't sometimes
-source "$HOME/.zprofile"
+# make sure zprofile gets sourced, as for some reason it doesn't sometimes, but only do it once so that if ```source ~/.zshrc``` is called we don't add paths again
+if [ -z ${ZPROFILE_SOURCED+x} ]; then
+    source "$HOME/.zprofile"
+    export ZPROFILE_SOURCED=true
+fi
 
 # Path to config folder if not already set
 if [ -z ${ZSH_CONFIG+x} ]; then
@@ -30,13 +33,29 @@ export ARCHFLAGS="-arch x86_64"
 export USE_CCACHE=1
 export ANDROID_JACK_VM_ARGS="-Dfile.encoding=UTF-8 -XX:+TieredCompilation -Xmx4G"
 
-# only load nvm when we absolutly have to because it takes forever
-if ! type "nvm" &> /dev/null ; then
-	function nvm() {
-		source  ~/.nvm/nvm.sh
-		nvm use v4.5.0 1> /dev/null
-		nvm "$@"
-	}
+# get NVM location unless already set
+if [ ! -z ${NVM_LOCATION+x} ]; then
+    NVM_LOCATION="$HOME/.nvm"
+fi
+
+# set version of nvm to use, only if it's not set
+# because this is set, assuming that nvm is used nowhere in zshrc's, it can be redefined locally to switch the version (in ~/.zsh_local)
+# without having to affect the version saved in git
+if [ ! -z ${NVM_USE_VERSION+x} ]; then
+    NVM_USE_VERSION="4.5.0"
+fi
+
+# see if nvm is installed
+if [ -f "$NVM_LOCATION/nvm.sh" ]; then
+    # if it is, define a function to load it when needed, home do it when needed because it takes forever
+    if ! type "nvm" &> /dev/null ; then
+	    function nvm() {
+		    source  $NVM_LOCATION/nvm.sh
+
+            nvm use "v$NVM_USE_VERSION" 1> /dev/null
+		    nvm "$@"
+	    }
+    fi
 fi
 
 if [ -f $ZSH_CONFIG/aliases.zshrc  ]; then
