@@ -39,7 +39,10 @@ alias zipgrep="zipgrep $COL_OPT"
 
 alias dmesg="sudo dmesg $COL_OPT"
 alias fdisk="sudo fdisk $COL_OPT"
-alias diff="diff $COL_OPT"
+
+# we set options for diff later, so don't alias it
+diff="diff $COL_OPT"
+
 alias top="top -c"
 
 
