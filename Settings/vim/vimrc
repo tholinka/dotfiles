@@ -8,3 +8,5 @@ source ~/.vim/vim-runtime/vimrcs/extended.vim
 
 " custom settings
 color monokai
+
+au BufNewFile,BufRead *.s,*.S set filetype=arm " arm = armv6/7

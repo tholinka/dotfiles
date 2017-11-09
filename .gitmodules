@@ -46,3 +46,6 @@
 [submodule "Settings/vscode/extensions/vscode-bash-debug"]
 	path = Settings/vscode/extensions/vscode-bash-debug
 	url = git@github.com:rogalmic/vscode-bash-debug
+[submodule "Settings/vim/arm-syntax-vim"]
+	path = Settings/vim/arm-syntax-vim
+	url = git@github.com:ARM9/arm-syntax-vim.git
