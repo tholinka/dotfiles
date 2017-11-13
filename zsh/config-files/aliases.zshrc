@@ -1,7 +1,12 @@
 # switch vi and vim to nvim if it exists
-if type nvim &> /dev/null ; then
-    alias vi="nvim"
-    alias vim="nvim"
+#if type nvim &> /dev/null ; then
+#    alias vi="nvim"
+#    alias vim="nvim"
+#fi
+
+# switch vi to vim
+if type vim &> /dev/null ; then
+    alias vi="vim"
 fi
 
 # switch ls to exa if it exists, set it as a variable so that I can alias it with colors later
