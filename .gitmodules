@@ -49,3 +49,6 @@
 [submodule "Settings/vim/arm-syntax-vim"]
 	path = Settings/vim/arm-syntax-vim
 	url = git@github.com:ARM9/arm-syntax-vim.git
+[submodule "Settings/vscode/extensions/vscode-arm"]
+	path = Settings/vscode/extensions/vscode-arm
+	url = https://github.com/dan-c-underwood/vscode-arm.git
