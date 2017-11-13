@@ -154,6 +154,8 @@ sudo systemctl enable NetworkManager
 echo -e "$CYAN Enabling vmware vmblock fuse $RESET"
 echo -e "$CB If this isn't a VMware / virtualbox guest, ignore this error $RESET"
 sudo systemctl enable vmware-vmblock-fuse.service
+# also enable vmware (open-vm-tools) suid wrapper
+/usr/bin/vmware-user-suid-wrapper 2>/dev/null
 
 # link proc/version to arch-release, primarly for vmware
 sudo ln -sf /proc/version /etc/arch-release
