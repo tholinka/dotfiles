@@ -151,11 +151,17 @@ sudo systemctl enable sddm
 echo -e "$CYAN Enabling NetworkManager (please manually disable wifi menu profiles through systemctl disable netctl@<wifi-menu-profile>) $RESET"
 sudo systemctl enable NetworkManager
 
-echo -e "$CYAN Enabling vmware vmblock fuse $RESET"
-echo -e "$CB If this isn't a VMware / virtualbox guest, ignore this error $RESET"
-sudo systemctl enable vmware-vmblock-fuse.service
-# also enable vmware (open-vm-tools) suid wrapper
-/usr/bin/vmware-user-suid-wrapper 2>/dev/null
+if pacman -Q open-vm-tools &>/dev/null;  then
+    echo -e "$CYAN Enabling vmware vmblock fuse $RESET"
+    sudo systemctl enable vmware-vmblock-fuse.service
+
+    # also enable vmware (open-vm-tools) suid wrapper
+    echo -e "$CYAN Running user-suid wrapper $RESET"
+    /usr/bin/vmware-user-suid-wrapper
+
+    echo -e "$CYAN Inserting user-suid wrapper into ~/.xinitrc, remove extras if your rerunning this script! $RESET"
+    echo "/usr/bin/vmware-user-suid-wrapper" >> ~/.xinitrc
+fi
 
 # link proc/version to arch-release, primarly for vmware
 sudo ln -sf /proc/version /etc/arch-release
