@@ -154,7 +154,7 @@ fi
 function reset-dhcpcd()
 {
     sudo dhcpcd -k
-    sudo dhcpcd &
+    sudo dhcpcd
 }
 
 # from https://stackoverflow.com/a/14728706
