@@ -159,8 +159,18 @@ if pacman -Q open-vm-tools &>/dev/null;  then
     echo -e "$CYAN Running user-suid wrapper $RESET"
     /usr/bin/vmware-user-suid-wrapper
 
-    echo -e "$CYAN Inserting user-suid wrapper into ~/.xinitrc, remove extras if your rerunning this script! $RESET"
-    echo "/usr/bin/vmware-user-suid-wrapper" >> ~/.xinitrc
+    # set desktop file to autostart suid wrapper
+    echo "[Desktop Entry]
+Encoding=UTF-8
+Name=VMware User SUID Wrapper
+Comment=Enable VMware Communication (auto window resize, copy/paste, etc.) from within guest
+TryExec=vmware-user-suid-wrapper
+Exec=vmware-user-suid-wrapper
+Icon=vmware-user-suid-wrapper
+Type=Application
+Categories=System;Utility;
+StartupNotify=false
+X-Desktop-File-Install-Version=0.22" > ~/.config/autostart/vmware-user-suid-wrapper.desktop
 fi
 
 # link proc/version to arch-release, primarly for vmware
