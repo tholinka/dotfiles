@@ -27,7 +27,8 @@ gedit \
 eog eog-plugins \
 krita \
 net-tools wget \
-htop iotop
+htop iotop glances \
+alsa-utils
 
 # deps for gitk and git gui
 sudo pacman -S --asdeps tk python2
