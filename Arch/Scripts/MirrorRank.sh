@@ -54,3 +54,20 @@ sudo systemctl start reflector.timer
 echo -e "${GB}Manually running reflector since timer won't trigger for a week${RESET}"
 
 sudo reflector --country "${COUNTRY}" --age 12 --protocol https --protocol http --protocol ftp --protocol rsync --sort rate --save /etc/pacman.d/mirrorlist
+
+echo -e "${GB}Adding packman hook to update reflector after macman-mirrorlist gets updated${RESET}"
+
+if [ ! -d /etc/pacman.d/hooks ]; then
+    sudo mkdir /etc/pacman.d/hooks
+fi
+
+echo "[Trigger]
+Operation = Upgrade
+Type = Package
+Target = pacman-mirrorlist
+
+[Action]
+Description = Updating pacman-mirrorlist with reflector and removing pacnew...
+When = PostTransaction
+Depends = reflector
+Exec = /bin/sh -c \"reflector --country 'United States' --latest 200 --age 24 --sort rate --save /etc/pacman.d/mirrorlist;  rm -f /etc/pacman.d/mirrorlist.pacnew\"" | sudo tee /etc/pacman.d/hooks/mirrorupgrade.hook 1>/dev/null
