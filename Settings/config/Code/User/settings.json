@@ -21,5 +21,6 @@
     "rust.rustup": {
         "toolchain": "stable-x86_64-unknown-linux-gnu"
     },
-    "rust.mode": "legacy"
+    "rust.mode": "legacy",
+    "extensions.ignoreRecommendations": true
 }
