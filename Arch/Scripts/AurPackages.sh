@@ -22,4 +22,5 @@ insync \
 betterdiscord ttf-symbola \
 systemd-boot-pacman-hook wd719x-firmware aic94xx-firmware \
 pepper-flash chromium-widevine \
-colormake
+colormake \
+visual-studio-code-bin
