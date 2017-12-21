@@ -202,3 +202,33 @@ echo "export ZSH_CONFIG=\"$HOME/.zsh-config\"
 echo -e \"\e[36mHit \\\"y\\\" to accept the warning\e[39m\"
 source $HOME/.zsh-config/zshrc.zshrc" | sudo tee /root/.zshrc >/dev/null
 echo "source $HOME/.zprofile" | sudo tee /root/.zprofile >/dev/null
+
+echo -e "$CYAN Setting pacman hooks to clean paccache on upgrade and remove $RESET"
+
+# need /etc/pacman.d/hooks
+if [ ! -d /etc/pacman.d/hooks ]; then
+    sudo mkdir /etc/pacman.d/hooks
+fi
+
+## from https://www.reddit.com/r/archlinux/comments/7k4ke8/reminder_run_paccache_r_everynow_and_then/drbkqby/
+# cleans all but the two most recent versions of package on upgade
+echo "[Trigger]
+Operation = Upgrade
+Type = Package
+Target = *
+
+[Action]
+Description = Cleaning pacman cache (upgrade, removing all but two most recent versions)...
+When = PostTransaction
+Exec = /usr/bin/paccache -rk2" | sudo tee /etc/pacman.d/hooks/paccache-upgrade.hook > /dev/null
+
+# clears all cached versions of a package on removal
+echo "[Trigger]
+Operation = Remove
+Type = Package
+Target = *
+
+[Action]
+Description = Cleaning pacman cache (remove, removing all versions)...
+When = PostTransaction
+Exec = /usr/bin/paccache -ruk0" | sudo tee /etc/pacman.d/hooks/paccache-remove.hook > /dev/null
