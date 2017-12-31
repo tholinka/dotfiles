@@ -152,7 +152,7 @@ echo "--- lightdm.conf.orig  2017-12-30 23:35:34.621600509 -0700
 +++ lightdm.conf        2017-12-30 23:28:44.163553765 -0700
 @@ -108 +108 @@
 -#greeter-session=example-gtk-gnome
-+greeter-session=lightdm-webkit2-greeter" | sudo patch lightdm.conf.orig
++greeter-session=lightdm-webkit2-greeter" | sudo patch /etc/lightdm/lightdm.conf
 
 
 # configure packages
