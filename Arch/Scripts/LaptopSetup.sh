@@ -2,14 +2,14 @@
 
 source includes/colordefines.sh
 
-if ! type pacaur &>/dev/null; then
-    echo -e "${GB}NO PACAUR, use \"AurSetup\" script first! ${RESET}"
+if ! type trizen &>/dev/null; then
+    echo -e "${GB}NO trizen, use \"AurSetup\" script first! ${RESET}"
     return;
 fi
 
 echo -e "${GB}Installing laptop-mode-tools + optional deps ${RESET}"
 
-pacaur -S --needed --noconfirm laptop-mode-tools
+trizen -S --needed --noconfirm laptop-mode-tools
 sudo pacman -S --asdeps --needed --noconfirm acpid bluez-utils hdparm sdparm ethtool wireless_tools xorg-xset python2-pyside
 
 echo -e "${GB}Enabling laptop mode service in systemctl ${RESET}"

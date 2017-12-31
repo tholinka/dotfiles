@@ -31,5 +31,5 @@
     * Enable parrellel make: Uncomment ```MAKEFLAGS``` and set equal to ```-j$(nproc)```
     * Enable ccache: change ```BUILDENV``` to ```fakeroot !distcc color ccache check !sign```
 1. run ```pacman -Sy``` to grab the multilib stuff
-1. run AurSetup.sh to install pacaur
+1. run AurSetup.sh to install trizen (pacaur's replacement)
 1. Continue to Part 5, misc setup

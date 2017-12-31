@@ -23,7 +23,7 @@ if ! pacman -Q reflector-timer &> /dev/null; then
 fi
 
 if [ ! -z "$packages" ]; then
-    pacaur -S --needed --noedit $packages
+    trizen -S --needed --noedit $packages
 fi
 
 # echo -e "${GREEN}To change which country is put in /etc/conf.d/reflector.conf, ${BOLD}env COUNTRY=\"YOUR COUNTRY\"${RESET}${GREEN} before hand${RESET}"

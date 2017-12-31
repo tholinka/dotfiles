@@ -14,7 +14,7 @@ gpg --recv-keys 11E521D646982372EB577A1F8F0871F202119294
 # install chromium extras
 # colorize make output (needs alias's in ~/.zsh-config/aliases.zshrc)
 
-pacaur -S --needed --noedit --noconfirm \
+trizen -S --needed --noconfirm \
 spotify zenity ffmpeg0.10 \
 skypeforlinux-bin \
 vi-vim-symlink \
