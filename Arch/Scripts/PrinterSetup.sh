@@ -2,8 +2,8 @@
 
 source includes/colordefines.sh
 
-packages="cups gtk3-print-backends cups-pdf foomatic-d-engine gutenprint ghostscript gsfonts hplip splix"
-packagesDEPS="foomatic-db foomatic-db-ppds foomatic-db-nonfree-ppds foomatic-db-gutenprint-ppds libusb"
+packages="cups gtk3-print-backends cups-pdf foomatic-d-engine gutenprint ghostscript gsfonts hplip splix foomatic-db-nonfree-ppds"
+packagesDEPS="foomatic-db foomatic-db-ppds foomatic-db-gutenprint-ppds libusb"
 echo -e "$CYAN Getting cups, foomatic, hp, and (older(?)) samsung drivers from normal repositories $RESET"
 sudo pacman -S $packages --needed --noconfirm
 echo -e "$CYAN Getting optional deps $RESET"
