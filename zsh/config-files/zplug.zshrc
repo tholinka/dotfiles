@@ -11,9 +11,9 @@ zplug "plugins/colorize", from:oh-my-zsh
 zplug "plugins/git", from:oh-my-zsh
 
 ## arch plugin if we're using arch
-if type pacman &>/dev/null; then
-  zplug "plugins/archlinux", from:oh-my-zsh
-fi
+#if type pacman &>/dev/null; then
+ # zplug "plugins/archlinux", from:oh-my-zsh # disabled as it doesn't handle trizen, important stuff moved to arch-settings.zshrc
+#fi
 
 # oh-my-zsh theme
 zplug "themes/agnoster", from:oh-my-zsh

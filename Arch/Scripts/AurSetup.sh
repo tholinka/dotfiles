@@ -2,32 +2,26 @@
 
 source includes/colordefines.sh
 
-# get pacaur if it's not installed
-if ! which pacaur &> /dev/null; then
-	# need cower
-	if ! which cower &> /dev/null; then
-		echo -e "${CYAN}Installing cower, pacaur needs it${DEFAULT}"
-		git clone https://aur.archlinux.org/cower.git
-		cd cower
-		# need the keys or the build will fail, though this server is down sometimes, as such we'll just work either way, but we'll try to use keys
-		echo "Getting build keys..."
-		if ! gpg --recv-keys --keyserver hkp://pgp.mit.edu 1EB2638FF56C0C53; then
-			skipkey="--skippgpcheck"
-		fi
-		makepkg -si $skipkey
-		cd -
-		rm cower -rf
-	fi
+# get trizen if it's not installed
+if ! which trizen &> /dev/null; then
+	echo -e "${CYAN}Cloning Trizen's AUR repo${DEFAULT}"
 
-	if which cower &>/dev/null; then
-		echo -e "${CYAN}Install pacaur${DEFAULT}"
-		git clone https://aur.archlinux.org/pacaur.git
-		cd pacaur
-		makepkg -si
-		cd -
-		rm pacaur -rf
+	git clone https://aur.archlinux.org/trizen.git
+	cd trizen
 
-	else
-		echo "Failed to install cower"
-	fi
+	echo
+	echo -e "${CYAN}Making Trizen${DEFAULT}"
+	echo
+
+	makepkg -si
+	cd - 1>/dev/null
+	rm trizen -rf
+
+	echo -e "${CYAN}Installing Trizen optional deps${DEFAULT}"
+	sudo pacman -S --asdeps perl-json-xs perl-term-readline-gnu
+
+	echo
+	echo -e "${CYAN}Trizen is installed${DEFAULT}"
+else
+	echo -e "${CYAN}Trizen is already installed!${DEFAULT}"
 fi

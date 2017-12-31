@@ -66,6 +66,10 @@ if [ -f $ZSH_CONFIG/functions.zshrc  ]; then
   source $ZSH_CONFIG/functions.zshrc
 fi
 
+if [ -f $ZSH_CONFIG/arch-settings.zshrc ]; then
+  source $ZSH_CONFIG/arch-settings.zshrc
+fi
+
 if [ -f ~/.zsh_local.zshrc ]; then
   source ~/.zsh_local.zshrc
 fi

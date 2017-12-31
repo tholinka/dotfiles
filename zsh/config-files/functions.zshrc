@@ -1,18 +1,5 @@
 FUNCTIONS_FILE_LOC="${(%):-%N}" # hacky workaround to replace bash's export
 
-# some pacman helpers
-if type pacman &>/dev/null ; then
-    # these are expanding at loading time if not done as functions
-    function pacrmorphans()
-    {
-        sudo pacman -Rnsc $(pacman -Qdtq)
-    }
-    function paclistsize()
-    {
-        expac -H M "%011m\t%-20n\t%10d" $(comm -23 <(pacman -Qqe | sort) <(pacman -Qqg base base-devel | sort)) | sort -n
-    }
-fi
-
 # following ~4 functions attempt to let you do a git command on multiple subdirs - easy enough, but then it also tries to color errors, which is a bit harder
 function color_err()
 {
