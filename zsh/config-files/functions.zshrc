@@ -54,18 +54,18 @@ function findhere()
     if [ -z "$2" ]; then
         exclude=""
     else
-        exclude="--exclude=$2 "
+        exclude="--exclude=\"$2\ "
     fi
 
     if [ -z "$3" ]; then
         include=""
     else
-        include="--include=$3 "
+        include="--include=$3"
     fi
 
     echo "searching for \"$1\" with include of \"$2\" and exclude of \"$3\""
 
-    grep "$include" "$exclude" -Rnwi . -e \""$1"\" || echo "nothing found"
+    grep $include $exclude -Rnwi . -e $1 || echo "nothing found"
 }
 
 # wrap a few youtube-dl commands, e.g. youtube-mp3 [video] and vimeo-password [video] [password]
