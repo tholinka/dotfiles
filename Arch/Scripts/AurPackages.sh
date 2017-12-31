@@ -6,7 +6,7 @@ gpg --recv-keys 11E521D646982372EB577A1F8F0871F202119294
 
 # install a bunch of packages
 # in order of each line:
-# spotify + deps for local play
+# spotify
 # skype + other instant messages client
 # replace vi with vim
 # google drive sync
@@ -16,15 +16,21 @@ gpg --recv-keys 11E521D646982372EB577A1F8F0871F202119294
 # colorize make output (needs alias's in ~/.zsh-config/aliases.zshrc)
 
 trizen -S --needed --noconfirm \
-spotify zenity ffmpeg0.10 \
+spotify-stable \
 rambox \
 vi-vim-symlink \
 insync \
-betterdiscord ttf-symbola \
+discord \
 systemd-boot-pacman-hook wd719x-firmware aic94xx-firmware \
 pepper-flash chromium-widevine \
 colormake \
 visual-studio-code-bin
+
+# spotify deps
+# discord deps
+trizen -S --needed --noconfirm --asdeps \
+ffmpeg0.10 libnotify zenity
+ttf-symbola
 
 # remove desktop file electron adds -.-
 rm "$HOME/.config/autostart/electron.desktop"
