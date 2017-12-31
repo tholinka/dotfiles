@@ -9,7 +9,8 @@
 1. ```exit``` and login to your user account
 1. ```ping google.com```, if you don't have a connection, repeat process from step 1
 1. Clone this repository into something like .settings-git, ```git clone --recursive git@github.com:link07/Linux-Settings-and-Setup.git .settings-git
-1. Run FirstSetup.sh in Arch/Scripts
+1. Run AurSetup.sh in Arch/Scripts to install trizen
+1. Run FirstSetup.sh in Arch/Scripts to install other packages
 1. configure installed packages
     1. switch to new kernel (if installed)
         * edit ```/boot/loader/loader.conf``` to default to linux-[kernel name], e.g. linux-zen

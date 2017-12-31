@@ -144,10 +144,20 @@ fi
 
 sudo pacman -Rns --noconfirm $REMOVE_PACKAGES
 
+echo -e "$CYAN Installing lightdm-webkit2-theme-material2 $RESET"
+trizen -S --noprompt lightdm-webkit2-theme-material2
+
+echo -e "$CYAN Applying patch to lightdm.conf $RESET"
+echo "--- lightdm.conf.orig  2017-12-30 23:35:34.621600509 -0700
++++ lightdm.conf        2017-12-30 23:28:44.163553765 -0700
+@@ -108 +108 @@
+-#greeter-session=example-gtk-gnome
++greeter-session=lightdm-webkit2-greeter" | sudo patch lightdm.conf.orig
+
 
 # configure packages
-echo -e "$CYAN Enabling sddm $RESET"
-sudo systemctl enable sddm
+echo -e "$CYAN Enabling lightdm $RESET"
+sudo systemctl enable lightdm
 echo -e "$CYAN Enabling NetworkManager (please manually disable wifi menu profiles through systemctl disable netctl@<wifi-menu-profile>) $RESET"
 sudo systemctl enable NetworkManager
 
