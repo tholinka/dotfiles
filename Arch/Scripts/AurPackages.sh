@@ -4,6 +4,9 @@
 # libc++ and therefor discord requires an import of a key
 gpg --recv-keys 11E521D646982372EB577A1F8F0871F202119294
 
+# for spotify-stable
+gpg --keyserver hkps://pgp.mit.edu --recv-keys 0DF731E45CE24F27EEEB1450EFDC8610341D9410
+
 # install a bunch of packages
 # in order of each line:
 # spotify
