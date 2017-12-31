@@ -70,6 +70,6 @@ if [ -f $ZSH_CONFIG/arch-settings.zshrc ]; then
   source $ZSH_CONFIG/arch-settings.zshrc
 fi
 
-if [ -f ~/.zsh_local.zshrc ]; then
-  source ~/.zsh_local.zshrc
+if [ -f ~/.zsh-local.zshrc ]; then
+  source ~/.zsh-local.zshrc
 fi
