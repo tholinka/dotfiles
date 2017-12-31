@@ -21,4 +21,4 @@ echo "--- auto-hibernate.conf.orig	2017-12-31 02:11:40.268500485 -0700
 +++ auto-hibernate.conf	2017-10-18 09:07:46.935191764 -0600
 @@ -36 +36 @@
 -ENABLE_AUTO_HIBERNATION=0
-+ENABLE_AUTO_HIBERNATION=1" | sudo patch /etc/laptop-mode/conf.d/auto-hibernate.conf
++ENABLE_AUTO_HIBERNATION=1" | sudo patch -p0 -N /etc/laptop-mode/conf.d/auto-hibernate.conf

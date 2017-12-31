@@ -8,7 +8,7 @@
 1. If you have an intel cpu: install intel-ucode: ```pacman -Sy intel-ucode```, you may always want to install ```vim``` at the same time
 1. Uncomment ```en_US.UTF-8 UTF-8``` (or your locale, you can uncomment multiple) in ```/etc/locale.gen``` and then run ```locale-gen``` and then run ```echo LANG=en_US.UTF-8 > /etc/locale.conf``` (replace en_US.UTF-8 with your locale).
     * if you set your keyboard earlier (to anything non-us), make those changes perminent in by editing ```/etc/vconsole.conf``` to include ```KEYMAP=[keymap setting]``` and, after a newline ```FONT=[font setting]```
-1. Select a timezone, ```tzselect``` to find the timezone to us, and then ```ln -s /usr/share/zoneinfo/[zone]/[subzone] /etc/localtime```, you may need to ```rm /etc/localtime``` first
+1. Select a timezone, ```tzselect``` to find the timezone to use, and then ```ln -s /usr/share/zoneinfo/[zone]/[subzone] /etc/localtime```, you may need to use ```ln -sf``` instead.
 1. Set your hardware clock, ```hwclock --systohc --utc```, this will "break" windows time if you are dual booting, see [this](https://wiki.archlinux.org/index.php/Time#UTC_in_Windows) to "fix" it
 1. IF you used LVM in step 2
     * If you are using systemd (all new Arch installs are), replace ``udev`` with ```systemd``` and add ```sd-lvm2``` before ```filesystems``` on the HOOKS= line of ```/etc/mkinitcpio.conf```

@@ -152,7 +152,7 @@ echo "--- lightdm.conf.orig  2017-12-30 23:35:34.621600509 -0700
 +++ lightdm.conf        2017-12-30 23:28:44.163553765 -0700
 @@ -108 +108 @@
 -#greeter-session=example-gtk-gnome
-+greeter-session=lightdm-webkit2-greeter" | sudo patch /etc/lightdm/lightdm.conf
++greeter-session=lightdm-webkit2-greeter" | sudo patch -p0 -N /etc/lightdm/lightdm.conf
 
 
 # configure packages
@@ -202,6 +202,17 @@ echo -e "$CYAN Setting CPUPOWER governer to Performance $RESET"
 
 echo "governer='performance'" | sudo tee /etc/default/cpupower > /dev/null
 
+echo -e "$CYAN Patching pacman.conf $RESET"
+echo "@@ -34 +34 @@
+-#Color
++Color
+@@ -93,2 +93,2 @@
+-#[multilib]
+-#Include = /etc/pacman.d/mirrorlist
++[multilib]
++Include = /etc/pacman.d/mirrorlist" | sudo patch -p0 -N /etc/pacman.conf
+
+
 echo -e "$CYAN Changing shell to zsh $RESET"
 chsh -s /usr/bin/zsh
 # change roots as well
@@ -242,3 +253,6 @@ Target = *
 Description = Cleaning pacman cache (remove, removing all versions)...
 When = PostTransaction
 Exec = /usr/bin/paccache -ruk0" | sudo tee /etc/pacman.d/hooks/paccache-remove.hook > /dev/null
+
+echo -e "$CYAN Running pacman update (pacman -Syu) to grab multilib and update system $RESET"
+sudo pacman -Syu
