@@ -72,7 +72,8 @@
 [url "git@github.com:"]
 	insteadOf = "gh:"
 	pushInsteadOf = "github:"
-	pushInsteadOf = "git://github.com/"
+	pushInsteadOf = "gh:"
+    pushInsteadOf = "git://github.com/"
 [url "git://github.com/"]
 	insteadOf = "github:"
 [url "git@gist.github.com:"]
@@ -81,3 +82,7 @@
 	pushInsteadOf = "git://gist.github.com/"
 [url "git://gist.github.com/"]
 	insteadOf = "gist:"
+[url "https://aur.archlinux.org/"]
+    insteadOf = "aur:"
+[url "ssh+git://aur4.archlinux.org/"]
+    pushInsteadOf = "aur:"
