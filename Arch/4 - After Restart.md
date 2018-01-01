@@ -24,9 +24,4 @@
     * For a marginal boot speed increase, edit ```/etc/fstab``` and remove the ```rw``` line from your ```/``` partition, as systemd will now do that instead
 1. reboot again, you should reboot into a login menu.
     * for wifi, open up Settings -> Network and use that menu now
-1. customize makepkg: edit ```/etc/makepkg.conf```
-    * Replace the following contents of ```CFLAGS```: ```-march=x86-64 -mtune=generic -O2``` with ```-march=native -mtune=native -O3```
-    * Replace the contents of ```CXXFLAGS``` with ```${CFLAGS}```
-    * Enable parrellel make: Uncomment ```MAKEFLAGS``` and set equal to ```-j$(nproc)```
-    * Enable ccache: change ```BUILDENV``` to ```fakeroot !distcc color ccache check !sign```
 1. Continue to Part 5, misc setup

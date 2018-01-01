@@ -6,8 +6,6 @@
 1. set up firewall
     * run ```gufw```, turn ```status``` to on, and that's good enough
 1. enable color in pacman: uncomment ```Color``` in ```/etc/pacman.conf```
-1. enable syslog forwarding to journalctl: install ```syslog-ng```, and enable it through ```systemctl enable syslog-ng```
-    * start it as well, if not restarting
 1. enable fingerprint unlocking.  Install ```fprint```
     * enroll fingerprint using ```fprintd-enroll```
     * add the following: ```auth      sufficient pam_fprintd.so``` to the top of the auth lines in the following files

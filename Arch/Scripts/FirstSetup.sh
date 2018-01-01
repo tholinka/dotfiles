@@ -4,7 +4,7 @@ source includes/colordefines.sh
 echo -e "$CYAN Updating pacman (pacman -Syu) to make sure package lists are up to day $RESET"
 sudo pacman -Syu
 
-PACKAGES="xorg zsh git nemo chromium guake vim gufw plasma-desktop kde-applications cpupower openssh networkmanager ccache fakeroot colorgcc"
+PACKAGES="xorg zsh git nemo chromium guake vim gufw plasma-desktop kde-applications cpupower openssh networkmanager ccache fakeroot colorgcc syslog-ng"
 PACKAGESdeps="dhclient blueman libproxy modem-manager-gui packagekit"
 echo -e "$CB Enter "y" if the case applies to you $RESET"
 
@@ -253,6 +253,9 @@ echo "@@ -39,5 +39,8 @@
 +f77:/usr/bin/g77
 +gcj:/usr/bin/gcj" | sudo patch -p0 -N /etc/colorgcc/colorgccrc
 
+echo -e "$CYAN Setting up syslog-ng $RESET"
+sudo systemctl enable syslog-ng
+sudo systemctl start systlog-ng
 echo -e "$CYAN Changing shell to zsh $RESET"
 chsh -s /usr/bin/zsh
 # change roots as well
