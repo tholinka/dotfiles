@@ -1,10 +1,15 @@
-# Linux-Settings
-My general linux setup / shell scripts to setup
+# dotfiles
+My general settings / dotfiles
 
-Arch contains install guide + scripts to install basic packages
-colorschemes include submodules with a few color themes in them (vertex isn't needed in arch, it's installed through a script)
-Settings includes my basic settings, and a symlink to link them
-and zsh includes my basic zsh setup, and a script to link that
+# Contents
+colorschemes include submodules with a few color themes in them (vertex isn't needed in arch, it's installed through a script in Arch-Setup)
 
-Clone this repository into something like ```.settings``` so it can sit there forever. Also clone with ```git clone --recursive``` to get the submodules.
-Warning: a couple scripts use ```$PWD```, so they break if they're called from a folder they're not in
+Settings includes my basic settings, and a script to symlink them
+
+zsh includes my basic zsh setup, and a script to symlink them
+
+# Install
+Clone this repository with a name, using recursive, so that the submodules are pulled. e.g. ```git clone [url] $HOME/.dotfiles --recursive
+
+# Warning
+A couple of the scripts were originally written using $PWD, so run them from the directory they're sitting in.  I've been trying to remove them as I re-touch that part of the file.
