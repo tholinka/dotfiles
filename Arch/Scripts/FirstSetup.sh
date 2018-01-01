@@ -1,8 +1,11 @@
 #!/bin/sh
 source includes/colordefines.sh
 
-PACKAGES="xorg zsh git nemo chromium guake vim gufw plasma kde-applications cpupower openssh networkmanager dhclient ccache"
+echo -e "$CYAN Updating pacman (pacman -Syu) to make sure package lists are up to day $RESET"
+sudo pacman -Syu
 
+PACKAGES="xorg zsh git nemo chromium guake vim gufw plasma-desktop kde-applications cpupower openssh networkmanager ccache fakeroot colorgcc"
+PACKAGESdeps="dhclient blueman libproxy modem-manager-gui packagekit"
 echo -e "$CB Enter "y" if the case applies to you $RESET"
 
 C="$GREEN"
@@ -98,10 +101,13 @@ if [ ! -z ${NEEDS_KERNEL_HEADERS+x} ]; then
     KERNEL="${KERNEL} ${KERNEL}-headers"
 fi
 
-sudo pacman -Sy --needed --noconfirm $PACKAGES \
+sudo pacman -S --needed --noconfirm $PACKAGES \
 $KERNEL \
 $WIFI \
 $VIDEO_CARD
+
+echo -e "$CYAN Installing optional deps $RESET"
+sudo pacman -S --needed --noconfirm $PACKAGESdeps
 
 echo -e "$CYAN Installation done $RESET"
 
@@ -109,7 +115,7 @@ if pacman -Q netctl &>/dev/null; then
     REMOVE_PACKAGES="$REMOVE_PACKAGES netctl"
 fi
 
-echo -en "$C Remove konqueror, dolphin, and kate $RESET"
+echo -en "$C Remove konqueror, dolphin, sddm, and kate $RESET"
 read -p "$P" yn
 case $yn in
     [Yy]* )
@@ -121,6 +127,12 @@ case $yn in
         fi
         if pacman -Q dolphin-plugins &>/dev/null; then
             REMOVE_PACKAGES="$REMOVE_PACKAGES dolphin-plugins"
+        fi
+        if pacman -Q sdd-kcm &>/dev/null; then
+            REMOVE_PACKAGES="$REMOVE_PACKAGES sddm-kcm"
+        fi
+        if pacman -Q sddm &>/dev/null; then
+            REMOVE_PACKAGES="$REMOVE_PACKAGES sddm"
         fi
         if pacman -Q kate &> /dev/null; then
             REMOVE_PACKAGES="$REMOVE_PACKAGES kate"
@@ -212,6 +224,34 @@ echo "@@ -34 +34 @@
 +[multilib]
 +Include = /etc/pacman.d/mirrorlist" | sudo patch -p0 -N /etc/pacman.conf
 
+echo -e "$CYAN Patching makepkg.conf $RESET"
+echo "@@ -40,2 +40,2 @@
+-CFLAGS=\"-march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong -fno-plt\"
+-CXXFLAGS=\"-march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong -fno-plt\"
++CFLAGS=\"-march=native -mtune=native -O3 -pipe -fstack-protector-strong -fno-plt\"
++CXXFLAGS=\"-march=native -mtune=native -O3 -pipe -fstack-protector-strong -fno-plt\"
+@@ -44 +44 @@
+-#MAKEFLAGS=\"-j2\"
++MAKEFLAGS=\"-j$(nproc)\"
+@@ -62 +62 @@
+-BUILDENV=(\!distcc color \!ccache check \!sign)
++BUILDENV=(fakeroot \!distcc color ccache check \!sign)" | sudo patch -p0 -N /etc/makepkg.conf
+
+echo -e "$CYAN Patching colorgcc to use ccache $RESET"
+echo "@@ -39,5 +39,8 @@
+-# Uncomment this if you want set up default path to gcc
+-#g++: /usr/bin/g++
+-#gcc: /usr/bin/gcc
+-#c++: /usr/bin/c++
+-#cc:  /usr/bin/cc
++# Use ccache, from https://wiki.archlinux.org/index.php/ccache#Enable_with_colorgcc
++g++: /usr/lib/ccache/bin/g++
++gcc: /usr/lib/ccache/bin/gcc
++c++: /usr/lib/ccache/bin/g++
++cc: /usr/lib/ccache/bin/cc
++g77:/usr/bin/g77
++f77:/usr/bin/g77
++gcj:/usr/bin/gcj" | sudo patch -p0 -N /etc/colorgcc/colorgccrc
 
 echo -e "$CYAN Changing shell to zsh $RESET"
 chsh -s /usr/bin/zsh

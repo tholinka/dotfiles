@@ -17,3 +17,9 @@ export PATH
 
 # add local stuff to library path, might already be added
 export LD_LIBRARY_PATH="$LD_LIBRARY_PATH${LD_LIBRARY_PATH+:}$HOME/usr/lib:$HOME/lib:$HOME/.local/lib"
+
+# add colorgcc
+export PATH="/usr/lib/colorgcc/bin/:$PATH"
+
+# add ccache
+export CCACHE_PATH="/usr/bin"
