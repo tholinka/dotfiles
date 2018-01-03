@@ -29,9 +29,15 @@ export SUDO_EDITOR="$EDITOR"
 export VISUAL="$EDITOR"
 
 # Compilation flags
-export ARCHFLAGS="-arch x86_64"
+export ARCHFLAGS="-arch $(uname --machine)"
 export USE_CCACHE=1
 export ANDROID_JACK_VM_ARGS="-Dfile.encoding=UTF-8 -XX:+TieredCompilation -Xmx4G"
+
+# set up default user for theme, done in two sed steps to also work for root (home is /root on arch)
+if [ ! -z ${DEFAULT_USER_SETUP+x} ]; then
+  DEFAULT_USER="$(whoami)"
+  DEFAULT_USER_SETUP=yes
+fi
 
 # get NVM location unless already set
 if [ ! -z ${NVM_LOCATION+x} ]; then
