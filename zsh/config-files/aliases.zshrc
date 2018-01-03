@@ -99,6 +99,36 @@ alias gitk="gitk &>/dev/null & "
 alias gitgui="git gui &>/dev/null &"
 alias gitupdatesubmodules="git submodule update --recursive --remote"
 
+# random fortune, outputed using cowsay and rainbow if present
+if which fortune &>/dev/null; then
+    FORTCOMMAND="fortune"
+
+    # is cowsay installed?
+    if which cowsay &>/dev/null; then
+        # what directory are cows in?
+        COWSAYCOWS="/usr/share/cowsay/cows"
+        if [ ! -d "$COWSAYCOWS" ]; then
+            # arch has it setup this way
+            COWSAYCOWS="/usr/share/cows"
+        fi
+
+        # did we find the cows directory?
+        if [ -d "$COWSAYCOWS" ]; then
+            # \$ls so that it doesn't resolve at source time, but at run time
+            FORTCOMMAND="$FORTCOMMAND | cowsay -f \$(ls $COWSAYCOWS | shuf -n1)"
+        else
+            FORTCOMMAND="$FORTCOMMAND | cowsay"
+        fi
+    fi
+
+    # is lolcat installed?
+    if which lolcat &>/dev/null; then
+        FORTCOMMAND="$FORTCOMMAND | lolcat"
+    fi
+
+    alias fortune="$FORTCOMMAND"
+fi
+
 # semi-useful upgrade function for debian based distros
 if type "apt" &> /dev/null ; then
     alias aptupdateall="sudo apt update && sudo apt upgrade -y && sudo apt dist-upgrade -y"
