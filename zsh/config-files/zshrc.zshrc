@@ -34,20 +34,20 @@ export USE_CCACHE=1
 export ANDROID_JACK_VM_ARGS="-Dfile.encoding=UTF-8 -XX:+TieredCompilation -Xmx4G"
 
 # set up default user for theme, done in two sed steps to also work for root (home is /root on arch)
-if [ ! -z ${DEFAULT_USER_SETUP+x} ]; then
+if [ -z ${DEFAULT_USER_SETUP+x} ]; then
   DEFAULT_USER="$(whoami)"
   DEFAULT_USER_SETUP=yes
 fi
 
 # get NVM location unless already set
-if [ ! -z ${NVM_LOCATION+x} ]; then
+if [ -z ${NVM_LOCATION+x} ]; then
     NVM_LOCATION="$HOME/.nvm"
 fi
 
 # set version of nvm to use, only if it's not set
 # because this is set, assuming that nvm is used nowhere in zshrc's, it can be redefined locally to switch the version (in ~/.zsh_local)
 # without having to affect the version saved in git
-if [ ! -z ${NVM_USE_VERSION+x} ]; then
+if [ -z ${NVM_USE_VERSION+x} ]; then
     NVM_USE_VERSION="4.5.0"
 fi
 
