@@ -1,3 +1,4 @@
+#!/bin/bash
 SCRIPTLOC=$(readlink -f "$0")
 FOLDERLOC=$(dirname "$SCRIPTLOC")
 # create symblink to config-files and ~/.zsh-config
