@@ -17,6 +17,8 @@ zplug "plugins/git", from:oh-my-zsh
 
 # oh-my-zsh theme
 zplug "themes/agnoster", from:oh-my-zsh
+## get it from the official repo
+#zplug "agnoster/agnoster-zsh-theme"
 
 # other plugins
 ## git prompt info
