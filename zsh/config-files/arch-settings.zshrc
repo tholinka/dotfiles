@@ -1,6 +1,5 @@
 # some pacman helpers
 if type pacman &>/dev/null ; then
-    # these are expanding at loading time if not done as functions
     function pacrmorphans()
     {
         sudo pacman -Rnsc $(pacman -Qdtq)
@@ -31,9 +30,12 @@ if type pacman &>/dev/null ; then
     alias pacfileupg='sudo pacman -Fy'
     alias pacfiles='pacman tFs'
 fi
-## pacaur is unmaintaned, but trizen is more or less a drop in replacement, so just alias pacaur to trizen for now
+## pacaur is unmaintaned, but yay and trizen are more or less a drop in replacement, so just alias pacaur to one of them (yay preferred)
+# if pacaur is not installed, but yay is installed
+if ! tpye pacaur &>/dev/null && type yay &>/dev/null; then
+    alias pacaur="yay"
 # if pacaur is not installed, but trizen is installed
-if ! type pacaur &>/dev/null && type trizen &>/dev/null; then
+elif ! type pacaur &>/dev/null && type trizen &>/dev/null; then
     alias pacaur="trizen"
 fi
 
@@ -71,6 +73,24 @@ if type trizen &>/dev/null; then
     alias trorph='trizen -Qtd'
     alias trinsd='trizen -S --asdeps'
     alias trmir='trizen -Syy'
+fi
+
+## yay aliases
+if type yay &>/dev/null; then
+    alias yaupg='yay -Syu'
+    alias yasu='yay -Syu --noconfirm'
+    alias yain='yay -S'
+    alias yains='yay -U'
+    alias yare='yay -R'
+    alias yarem='yay -Rns'
+    alias yarep='yay -Si'
+    alias yareps='yay -Ss'
+    alias yaloc='yay -Qi'
+    alias yalocs='yay -Qs'
+    alias yalst='yay -Qe'
+    alias yaorph='yay -Qtd'
+    alias yainsd='yay -S --asdeps'
+    alias yamir='yay -Syy'
 fi
 
 paclist() {
