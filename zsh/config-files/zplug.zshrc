@@ -31,10 +31,12 @@ zplug "jreese/zsh-titles"
 zplug "zsh-users/zsh-completions"
 ## substring history search (type partial history and arrow key up/down to search history)
 zplug "zsh-users/zsh-history-substring-search"
-## google search (kind of) command suggestions
+## command suggestions
 zplug "zsh-users/zsh-autosuggestions"
 ## syntax highlighting, defer so it load's later
 zplug "zdharma/fast-syntax-highlighting", defer:3
+## docker autocmplete
+zplug "plugins/docker", from:oh-my-zsh
 
 # install plugins if there are any to install
 if ! zplug check --verbose; then
