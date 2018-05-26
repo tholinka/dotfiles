@@ -1,63 +1,98 @@
 [Background]
-Color=39,40,34
+Color=40,40,40
+MaxRandomHue=0
+MaxRandomSaturation=0
+MaxRandomValue=0
+
+[BackgroundFaint]
+Color=40,40,40
 
 [BackgroundIntense]
-Color=104,104,104
+Color=40,40,40
 
 [Color0]
-Color=39,40,34
+Color=73,72,62
+
+[Color0Faint]
+Color=73,72,62
 
 [Color0Intense]
-Color=104,104,104
+Color=73,72,62
 
 [Color1]
-Color=229,34,34
+Color=249,38,114
+
+[Color1Faint]
+Color=249,38,114
 
 [Color1Intense]
-Color=229,24,24
+Color=249,38,114
 
 [Color2]
-Color=166,227,45
+Color=166,226,46
+
+[Color2Faint]
+Color=166,226,46
 
 [Color2Intense]
-Color=177,227,50
+Color=166,226,46
 
 [Color3]
-Color=252,149,30
+Color=230,219,116
+
+[Color3Faint]
+Color=230,219,116
 
 [Color3Intense]
-Color=252,82,9
+Color=230,219,116
 
 [Color4]
-Color=118,76,255
+Color=102,217,239
+
+[Color4Faint]
+Color=102,217,239
 
 [Color4Intense]
-Color=72,102,255
+Color=102,217,239
 
 [Color5]
-Color=250,37,115
+Color=249,38,114
+
+[Color5Faint]
+Color=249,38,114
 
 [Color5Intense]
-Color=250,63,127
+Color=249,38,114
 
 [Color6]
-Color=103,217,240
+Color=174,129,255
+
+[Color6Faint]
+Color=174,129,255
 
 [Color6Intense]
-Color=28,219,240
+Color=174,129,255
 
 [Color7]
-Color=225,225,218
+Color=253,151,31
+
+[Color7Faint]
+Color=253,151,31
 
 [Color7Intense]
-Color=255,255,255
+Color=253,151,31
 
 [Foreground]
-Color=225,225,218
+Color=248,248,242
+
+[ForegroundFaint]
+Color=248,248,242
 
 [ForegroundIntense]
-Color=255,255,255
+Color=248,248,242
 
 [General]
+Blur=false
 Description=Monokai
 Opacity=1
+Wallpaper=
