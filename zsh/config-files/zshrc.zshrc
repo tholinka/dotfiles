@@ -67,6 +67,16 @@ fi
 # set up gpg
 export GPG_TTY=$(tty)
 
+# set up devkitpro location if not already set
+if [ -z ${DEVKITPRO+x} ]; then
+    export DEVKITPRO="/opt/devkitpro"
+fi
+
+# set up devkitARCH variables
+export DEVKITARM="$DEVKITPRO/devkitARM"
+export DEVKITPPC="$DEVKITPPC/devkitPPC"
+export DEVKITA64="$DEVKITPRO/devkitA64"
+
 if [ -f $ZSH_CONFIG/aliases.zshrc  ]; then
   source $ZSH_CONFIG/aliases.zshrc
 fi
