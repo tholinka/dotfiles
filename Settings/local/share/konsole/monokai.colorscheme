@@ -20,13 +20,13 @@ Color=73,72,62
 Color=73,72,62
 
 [Color1]
-Color=249,38,114
+Color=191,64,64
 
 [Color1Faint]
-Color=249,38,114
+Color=191,64,64
 
 [Color1Intense]
-Color=249,38,114
+Color=191,64,64
 
 [Color2]
 Color=166,226,46
@@ -56,31 +56,31 @@ Color=102,217,239
 Color=102,217,239
 
 [Color5]
-Color=249,38,114
+Color=105,90,187
 
 [Color5Faint]
-Color=249,38,114
+Color=105,90,187
 
 [Color5Intense]
-Color=249,38,114
+Color=105,90,187
 
 [Color6]
-Color=174,129,255
+Color=213,56,100
 
 [Color6Faint]
-Color=174,129,255
+Color=213,56,100
 
 [Color6Intense]
-Color=174,129,255
+Color=213,56,100
 
 [Color7]
-Color=253,151,31
+Color=255,255,255
 
 [Color7Faint]
-Color=253,151,31
+Color=255,255,255
 
 [Color7Intense]
-Color=253,151,31
+Color=255,255,255
 
 [Foreground]
 Color=248,248,242
@@ -94,5 +94,5 @@ Color=248,248,242
 [General]
 Blur=false
 Description=Monokai
-Opacity=1
+Opacity=0.95
 Wallpaper=
