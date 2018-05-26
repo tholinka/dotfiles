@@ -64,6 +64,9 @@ if [ -f "$NVM_LOCATION/nvm.sh" ]; then
     fi
 fi
 
+# set up gpg
+export GPG_TTY=$(tty)
+
 if [ -f $ZSH_CONFIG/aliases.zshrc  ]; then
   source $ZSH_CONFIG/aliases.zshrc
 fi
