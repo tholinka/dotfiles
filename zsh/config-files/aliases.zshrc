@@ -1,23 +1,37 @@
-# switch vi and vim to nvim if it exists
-#if type nvim &> /dev/null ; then
-#    alias vi="nvim"
-#    alias vim="nvim"
-#fi
+# switch vi and vim to neovim if it exists
+if type nvim &> /dev/null ; then
+    alias vi="nvim"
+    alias vim="nvim"
 
-# switch vi to vim
-if type vim &> /dev/null ; then
+    # also switch various other utilities
+    alias edit="nvim"
+    alias vedit="nvim"
+    alias ex="nvim -E"
+    alias view="nvim -R"
+# switch vi and other utilities to vim if neovim doesn't exist
+elif type vim &> /dev/null ; then
     alias vi="vim"
+    alias edit="vim"
+    alias vedit="vim"
+    alias ex="vim -E"
+    alias view="nvim -R"
+    
+    alias rvim="vim -Z"
+    alias evim="vim -y"
 fi
 
 # switch ls to exa if it exists, set it as a variable so that I can alias it with colors later
-ls="ls"
 if type exa &> /dev/null ; then
     ls="exa"
+else
+    ls="ls"
 fi
-alias ls="$LS"
+
+alias ls="$ls"
 
 # set colors
 COL_OPT="--color=always"
+
 ## dircolors
 if [ -x dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
