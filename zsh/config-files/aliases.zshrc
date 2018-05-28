@@ -111,7 +111,7 @@ alias c="clear"
 alias get="git"
 alias gitk="gitk &>/dev/null & "
 alias gitgui="git gui &>/dev/null &"
-alias gitupdatesubmodules="git submodule update --jobs 4 --recursive --remote"
+alias gitupdatesubmodules="git submodule update --jobs $(nproc --all) --recursive --remote"
 
 # random fortune, outputed using cowsay and rainbow if present
 if which fortune &>/dev/null; then
