@@ -1,47 +1,51 @@
 # originally based off of https://github.com/tombh/dotfiles/blob/master/.zshrc
 
 # init zplug
-source $ZSH_CONFIG/zplug/init.zsh
+source "$ZSH_CONFIG/zplug/init.zsh"
 
 # base
 zplug "zplug/zplug"
 
 # oh-my-zsh plugins
 zplug "plugins/colorize", from:oh-my-zsh
-zplug "plugins/git", from:oh-my-zsh
-
-## arch plugin if we're using arch
-#if type pacman &>/dev/null; then
- # zplug "plugins/archlinux", from:oh-my-zsh # disabled as it doesn't handle trizen, important stuff moved to arch-settings.zshrc
-#fi
-
-# oh-my-zsh theme
+## oh-my-zsh theme
 zplug "themes/agnoster", from:oh-my-zsh
 ## get it from the official repo
 #zplug "agnoster/agnoster-zsh-theme"
 
-# other plugins
+# other plugins (defer as much as possible to hopefully improve load times)
 ## git prompt info
 #zplug "tombh/zsh-git-prompt", as:plugin, use:zshrc.sh # my theme handles this
 ## don't run anything pasted until I manually hit enter key
 zplug "oz/safe-paste"
 ## automatically change terminal title based on location / task
-zplug "jreese/zsh-titles"
+zplug "jreese/zsh-titles", defer:3
 ## additional zsh completions
-zplug "zsh-users/zsh-completions"
+zplug "zsh-users/zsh-completions", defer:3
 ## substring history search (type partial history and arrow key up/down to search history)
-zplug "zsh-users/zsh-history-substring-search"
+zplug "zsh-users/zsh-history-substring-search", defer:3
 ## command suggestions
-zplug "zsh-users/zsh-autosuggestions"
-## syntax highlighting, defer so it load's later
+zplug "zsh-users/zsh-autosuggestions", defer:3
+## syntax highlighting
 zplug "zdharma/fast-syntax-highlighting", defer:3
+
+# Only load these if the relevent program is installed
 ## docker autocmplete
-zplug "plugins/docker", from:oh-my-zsh
+zplug "plugins/docker", from:oh-my-zsh, if:"(( $+commands[docker] ))"
+## git
+zplug "plugins/git", from:oh-my-zsh, if:"(( $+commands[git] ))"
+## pacman/pacaur plugin
+# disabled as it doesn't handle trizen/yay, important stuff moved to arch-settings.zshrc
+#zplug "plugins/archlinux", from:oh-my-zsh, if:"(( $+commands[pacman] ))
 
 # install plugins if there are any to install
-if ! zplug check --verbose; then
+if ! zplug check; then
   zplug install
 fi
+
+# need to figure out a way to run these automatically if needed
+# zplug update
+# zplug clean
 
 # then load
 zplug load
