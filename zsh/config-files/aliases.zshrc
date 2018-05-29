@@ -15,7 +15,7 @@ elif type vim &> /dev/null ; then
     alias vedit="vim"
     alias ex="vim -E"
     alias view="nvim -R"
-    
+
     alias rvim="vim -Z"
     alias evim="vim -y"
 fi
@@ -114,11 +114,11 @@ alias gitgui="git gui &>/dev/null &"
 alias gitupdatesubmodules="git submodule update --jobs $(nproc --all) --recursive --remote"
 
 # random fortune, outputed using cowsay and rainbow if present
-if which fortune &>/dev/null; then
+if type fortune &>/dev/null; then
     FORTCOMMAND="fortune"
 
     # is cowsay installed?
-    if which cowsay &>/dev/null; then
+    if type cowsay &>/dev/null; then
         # what directory are cows in?
         COWSAYCOWS="/usr/share/cowsay/cows"
         if [ ! -d "$COWSAYCOWS" ]; then
@@ -136,7 +136,7 @@ if which fortune &>/dev/null; then
     fi
 
     # is lolcat installed?
-    if which lolcat &>/dev/null; then
+    if type lolcat &>/dev/null; then
         FORTCOMMAND="$FORTCOMMAND | lolcat"
     fi
 

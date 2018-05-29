@@ -22,9 +22,7 @@ function git_step()
 
 function gitsubdirs()
 {
-    unalias ls 2> /dev/null
-    ls=`which ls`
-    "ls" -R --directory --color=never */.git | sed 's/\/.git//'
+    command ls -R --directory --color=never */.git | sed 's/\/.git//'
 }
 
 function gitall()
@@ -98,7 +96,7 @@ function vimeo-password()
     youtube-dl "$1" --video-password "$2" "$YOUTUBE_DL_OUTPUT" "${@:3}" || echo "Usage: vimeo-password VIDEO-URL PASSWORD"
 )
 
-if which wine &> /dev/null ; then
+if type wine &> /dev/null ; then
     # probably want to install some lib32 libs: lib32-cairo lib32-libcups lib32-gnutls lib32-gtk3 lib32-v4l-utils lib32-libva lib32-libxcomposite lib32-libxinerama lib32-libxslt lib32-libxml2 lib32-mpg123 lib32-lcms2 lib32-giflib lib32-libpng lib32-gnutls
     # and lib32-libva-vdpau-driver if on nvidia, lib32-libva-intel-driver if using intel graphics
     # also winecfg -> staging -> Enable CSMT, Enable VAAPI, Enable GTK3
