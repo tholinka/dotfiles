@@ -57,11 +57,16 @@ if [ ! -d ~/.steam ]; then
 fi
 ### end .local section ###
 
-### couple random folders ###
+### see if gnupg exists
+if [ ! -d ~/.gnupg ]; then
+    mkdir ~/.gnupg
+fi
+### end gnupg
+
+### remove ~/.vim if it exists ###
 if [ -d ~/.vim ]; then
     rm ~/.vim
 fi
-
 
 ## symlinks
 ### .config section ###
@@ -89,7 +94,12 @@ if [ ! -z ${NO_STEAM+x} ]; then
     cp -r "$FOLDERLOC/local/share/Steam/skins/Metro 4.2.4" ~/.steam/steam/skins/
 fi
 ### end of .local ###
-### couple random folders ###
+
+### .gnupg ###
+ln -sf "$FOLDERLOC/gnupg/gpg-agent.conf" ~/.gnupg/gpg-agent.conf
+### end .gnupg
+
+### link vim's folder ###
 ln -sf "$FOLDERLOC/vim" ~/.vim
 # replace ~/.vimrc with a link to ~/.vim
 echo "source ~/.vim/vimrc" > ~/.vimrc
@@ -101,6 +111,7 @@ ln -sf "$FOLDERLOC/vscode" ~/.vscode
 ln -sf "$FOLDERLOC/astylerc" ~/.astylerc
 
 ln -sf "$FOLDERLOC/gitgeneralconfig" ~/.gitgeneralconfig
+
 
 # copy editorconfig, gitattributes, and gitignore
 cp $FOLDERLOC/editorconfig ~/.editorconfig
