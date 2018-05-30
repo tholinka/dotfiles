@@ -9,4 +9,7 @@ source ~/.vim/vim-runtime/vimrcs/extended.vim
 " custom settings
 color monokai
 
+" don't switch to visual mode on mouseclick
+set mouse-=a
+
 au BufNewFile,BufRead *.s,*.S set filetype=arm " arm = armv6/7
