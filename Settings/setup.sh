@@ -122,4 +122,7 @@ echo "[include]
     path = ~/.gitgeneralconfig" >> ~/.gitconfig
 echo "Included link to .gitgeneralconfig in ~/.gitconfig, make sure there aren't to many links of that in there"
 
+echo;
+
 echo "Also tell git about your gpg key: \"gpg --list-secret-keys --keyid-format LONG\" to get the key and \"git config --global user.signingkey [key from previous command]\" to have git use it"
+echo "You may also need to restart the agent (probably not, but maybe): \"gpg--connect-agent reloadagent /bye\""
