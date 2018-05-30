@@ -121,3 +121,5 @@ cp $FOLDERLOC/gitignore ~/.gitignore
 echo "[include]
     path = ~/.gitgeneralconfig" >> ~/.gitconfig
 echo "Included link to .gitgeneralconfig in ~/.gitconfig, make sure there aren't to many links of that in there"
+
+echo "Also tell git about your gpg key: \"gpg --list-secret-keys --keyid-format LONG\" to get the key and \"git config --global user.signingkey [key from previous command]\" to have git use it"
