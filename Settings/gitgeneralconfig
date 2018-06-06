@@ -1,3 +1,7 @@
+[user]
+	email = 1685504+tholinka@users.noreply.github.com
+	name = Tyler Holinka
+	signingkey = link07@users.noreply.github.com
 # partially based off of https://github.com/mathiasbynens/dotfiles/blob/master/.gitconfig
 [aliases]
     aliases = config --get-regexp alias
