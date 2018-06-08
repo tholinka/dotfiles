@@ -59,11 +59,21 @@ alias zipgrep="zipgrep $COL_OPT"
 alias dmesg="sudo dmesg $COL_OPT"
 alias fdisk="sudo fdisk $COL_OPT"
 
-# we set options for diff later, so don't alias it
-diff="diff $COL_OPT"
+# not all versions of diff accept colors, so figure out if this one does
+if ! diff "$COL_OPT" &>/dev/null; then
+    # doesn't support COL_OPT, see if colordiff is installed
+    if type colordiff &>/dev/null; then
+        diff="colordiff"
+    else
+        # no colordiff, fall back to uncolored diff
+        diff="diff"
+    fi
+else
+    # supports color opt, use it
+    diff="diff $COL_OPT"
+fi
 
 alias top="top -c"
-
 
 # color man through "hacking" less
 man() {
