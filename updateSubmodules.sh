@@ -6,12 +6,15 @@ SettingsLoc="$FOLDERLOC/Settings"
 
 cd "$FOLDERLOC"
 
+echo "Pulling newest of this repo ($FOLDERLOC)"
 git pull
 
 # reset all submodules
 submodules=$(echo "$SettingsLoc/vscode/extensions/"*)
 submodules+=" $SettingsLoc/vim/vim-runtime"
 submodules+=" $FOLDERLOC/zsh/config-files/zplug"
+
+echo "Hard reseting submodules back to checkout point"
 
 if [ ${#submodules[@]} -ne 0 ]; then
     for i in $submodules; do
@@ -29,6 +32,8 @@ if [ $(printf "$(git --version | sed "s/git version //")\n2.9.0" | sort -V | hea
     # 2.9.0 is a newer string than git --version, so it should have it
     GIT_JOBS="--jobs $(nproc --all)"
 fi
+
+echo "Running git submodule update"
 
 # this is aliased to gitupdatesubmodules in my zsh settings
 # don't quote GIT_JOBS, we want to to split on the space
