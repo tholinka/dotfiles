@@ -60,7 +60,9 @@ alias dmesg="sudo dmesg $COL_OPT"
 alias fdisk="sudo fdisk $COL_OPT"
 
 # not all versions of diff accept colors, so figure out if this one does
-if ! diff "$COL_OPT" &>/dev/null; then
+# do this by specifing the color, and then request the version
+# ubuntu (subsystem for windows)'s diff will return false saying unrecognized option, but arch just returns the version
+if ! diff "$COL_OPT" -v &>/dev/null; then
     # doesn't support COL_OPT, see if colordiff is installed
     if type colordiff &>/dev/null; then
         diff="colordiff"
