@@ -1,18 +1,25 @@
-#!/bin/sh
+#!/bin/bash
 SCRIPTLOC=$(readlink -f "$0")
 FOLDERLOC=$(dirname "$SCRIPTLOC")
+
+SettingsLoc="$FOLDERLOC/Settings"
 
 cd "$FOLDERLOC"
 
 git pull
 
-# remove package.json from vscode extensions, as it blocks pulling updates
-files=$(find "Settings/vscode/extensions/"*/package.json 2>/dev/null)
+# reset all submodules
+submodules=$(echo "$SettingsLoc/vscode/extensions/"*)
+submodules+=" $SettingsLoc/vim/vim-runtime"
+submodules+=" $FOLDERLOC/zsh/config-files/zplug"
 
-if [ ${#files[@]} -ne 0 ]; then
-    for i in $files; do
-        echo "Removing $i"
-        rm "$i"
+if [ ${#submodules[@]} -ne 0 ]; then
+    for i in $submodules; do
+        echo -n "Hard resetting $(echo $i | sed "s|$FOLDERLOC/||"): "
+
+        cd "$i"
+        git reset --hard
+        cd - 1>/dev/null
     done
 fi
 
