@@ -125,6 +125,8 @@ alias gitk="gitk &>/dev/null & "
 alias gitgui="git gui &>/dev/null &"
 alias gitupdatesubmodules="git submodule update --jobs $(nproc --all) --recursive --remote"
 
+alias perm="stat -c \"%a %n\""
+
 # random fortune, outputed using cowsay and rainbow if present
 if type fortune &>/dev/null; then
     FORTCOMMAND="fortune"
