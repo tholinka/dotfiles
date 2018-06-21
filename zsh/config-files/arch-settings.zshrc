@@ -77,6 +77,9 @@ fi
 
 ## yay aliases
 if type yay &>/dev/null; then
+    # set up yay to only use the aur
+    alias yay='yay --aur'
+
     alias yaupg='yay -Syu'
     alias yasu='yay -Syu --noconfirm'
     alias yain='yay -S'
