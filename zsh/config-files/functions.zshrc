@@ -102,19 +102,34 @@ if type wine &> /dev/null ; then
     # also winecfg -> staging -> Enable CSMT, Enable VAAPI, Enable GTK3
     # set up some wine stuff
     export WINEDEBUG=-all
+    export WINEARCH=win32
+
+    # set wineprefix if not already set
+    if [ -z ${WINEPREFIX+x} ]; then
+        export WINEPREFIX="$HOME/.wine"
+    fi
 
     # run this at some point, really don't need to be done on every shell tho
     # it sets up a paged pool size for wine, source games require it
     # wine reg add "HKLM\\System\\CurrentControlSet\\Control\\Session Manager\\Memory Management\\" /v PagedPoolSize /t REG_DWORD /d 402653184 /f
     # also link system fonts:  cd ${WINEPREFIX:-~/.wine}/drive_c/windows/Fonts && for i in /usr/share/fonts/**/*.{ttf,otf}; do ln -s "$i" ; done
 
-    # see if steam is installed, assumes 64bit wine
-    if [ -d ~/.wine/drive_c/Program\ Files\ \(x86\)/Steam ]; then
+    WINEPROGRAMFILES="$WINEPREFIX"/drive_c/"Program Files"
+    WINEPROGRAMFILES_ESCAPED="$WINEPREFIX"/drive_c/"Program\ Files"
+
+    WINESTEAM="$WINEPROGRAMFILES"/Steam
+    WINESTEAM_ESCAPED="$WINEPROGRAMFILES_ESCAPED"/Steam
+
+    # see if steam is installed, assumes 32bit wine
+    if [ -d $WINESTEAM ]; then
         # run wine reg.exe ADD "HKEY_CURRENT_USER\Software\Wine\AppDefaults\Steam.exe" /v "Version" /t "REG_SZ" /d "winxp" /f to run steam under xp mode
-        alias steam-wine="env WINEPREFIX=\"/home/tyler/.wine\" wine ~/.wine/drive_c/Program\ Files\ \(x86\)/Steam/Steam.exe -no-cef-sandbox &>/dev/null & disown"
+        alias steam-wine="wine $WINESTEAM_ESCAPED/Steam.exe -no-cef-sandbox &>/dev/null & disown"
+
+        WINESTEAMAPPS="$WINEPROGRAMFILES"/Steam/steamapps/common
+        WINESTEAMAPPS_ESCAPED="$WINEPROGRAMFILES_ESCAPED"/Steam/steamapps/common
 
         # see if path of exile is installed
-        if [ -d  ~/.wine/drive_c/Program\ Files\ \(x86\)/Steam/steamapps/common/Path\ of\ Exile ]; then
+        if [ -d  "$WINESTEAMAPPS/Path of Exile" ]; then
             # need some 32 bit libs:
             # lib32-libldap lib32-alsa-plugins lib32-libpulse lib32-openal
             # https://appdb.winehq.org/objectManager.php?sClass=version&iId=25078&iTestingId=95811
@@ -130,7 +145,26 @@ if type wine &> /dev/null ; then
             # antialias_mode=0
             # screen_shake=false
             # texture_quality=1
-            alias path-of-exile="env WINEPREFIX=\"/home/tyler/.wine\" WINEDEBUG=fixme-all wine ~/.wine/drive_c/Program\ Files\ \(x86\)/Steam/steamapps/common/Path\ of\ Exile/PathOfExileSteam.exe -gc 100 &>/dev/null & disown"
+            alias path-of-exile="env WINEDEBUG=\"fixme-all \$WINEDEBUG\" wine $WINESTEAMAPPS_ESCAPED/Path\ of\ Exile/PathOfExileSteam.exe -gc 100 &>/dev/null & disown"
+        fi
+
+        # see if victoria 2 is installed`
+        if [ -d "$WINESTEAMAPPS/Victoria 2" ]; then
+            # https://appdb.winehq.org/objectManager.php?sClass=version&iId=28071&iTestingId=78680
+            # https://www.reddit.com/r/paradoxplaza/comments/29f9ft/it_took_four_hours_but_i_finally_got_victoria_ii/
+            # https://forum.paradoxplaza.com/forum/index.php?threads/victoria-2-demo-on-linux.490827/page-2#post-11668980
+            # https://steamcommunity.com/app/42960/discussions/0/133261907142956557/
+            # winetricks d3dx9d3dx9_36 d3dx9_41  d3dcompiler_43 devenum directmusic dotnet30sp1 quartz vcrun2005 vcrun2008 vcrun2010 vcrun2012 wmp9
+            # delete %steam%/steamapps/common/Victoria 2/map/cache/*
+            # set fullscreen=no in settings.txt
+            # disable winegstreamer library in winecfg
+            # wine reg.exe ADD "HKEY_CURRENT_USER\Software\Wine\AppDefaults\v2game.exe" /v "Version" /t "REG_SZ" /d "winxp" /f
+            function victoria-2()
+            (
+                # launcher crashes unless started from directory it's in
+                cd "$WINESTEAMAPPS/Victoria 2"
+                wine victoria2.exe &>/dev/null & disown
+            )
         fi
     fi
 fi
