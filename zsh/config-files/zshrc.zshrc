@@ -93,6 +93,14 @@ if [ -f $ZSH_CONFIG/debian-settings.zshrc ]; then
     source $ZSH_CONFIG/debian-settings.zshrc
 fi
 
+if [ -f $ZSH_CONFIG/wine.zshrc ] && type wine &>/dev/null; then
+  source $ZSH_CONFIG/wine.zshrc
+fi
+
+if [ -f $ZSH_CONFIG/youtube-dl.zshrc ] && type youtube-dl &>/dev/null; then
+  source $ZSH_CONFIG/youtube-dl.zshrc
+fi
+
 if [ -f ~/.zsh-local.zshrc ]; then
   source ~/.zsh-local.zshrc
 fi
