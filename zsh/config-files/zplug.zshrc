@@ -50,6 +50,9 @@ fi
 # then load
 zplug load
 
+# then update in background
+zplug update &>/dev/null & disown
+
 # set autosuggestions color
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=5"
 
@@ -126,6 +129,7 @@ expand-or-complete-with-dots() {
   zle expand-or-complete
   zle redisplay
 }
+
 zle -N expand-or-complete-with-dots
 bindkey "^I" expand-or-complete-with-dots
 
