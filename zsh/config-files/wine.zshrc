@@ -46,7 +46,7 @@ if [ -d $WINESTEAM ]; then
         # antialias_mode=0
         # screen_shake=false
         # texture_quality=1
-        alias path-of-exile="env WINEDEBUG=\"fixme-all \$WINEDEBUG\" wine $WINESTEAMAPPS_ESCAPED/Path\ of\ Exile/PathOfExileSteam.exe -gc 100 &>/dev/null & disown"
+        alias path-of-exile="env WINEDEBUG=\"fixme-all \$WINEDEBUG\" nohup wine $WINESTEAMAPPS_ESCAPED/Path\ of\ Exile/PathOfExileSteam.exe -gc 100 1>/tmp/path-of-exile.std.nohup 2>/tmp/path-of-exile.error.nohup & disown"
     fi
 
     # see if victoria 2 is installed`
@@ -64,7 +64,7 @@ if [ -d $WINESTEAM ]; then
         (
             # launcher crashes unless started from directory it's in
             cd "$WINESTEAMAPPS/Victoria 2"
-            wine victoria2.exe &>/dev/null & disown
+            nohup wine victoria2.exe 1>/tmp/victoria-2.std.nohup 2>/tmp/victoria-2.error.nohup & disown
         )
     fi
 fi
