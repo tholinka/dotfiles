@@ -1,19 +1,11 @@
 # wrap a few youtube-dl commands, e.g. youtube-mp3 [video] and vimeo-password [video] [password]
-if [ -z ${YOUTUBE_DL_OUTPUT_FOLDER+x} ]; then
-    YOUTUBE_DL_OUTPUT_FOLDER="$HOME/Downloads/youtube-dl"
-fi
-if [ -z ${YOUTUBE_DL_OUTPUT_FILE+x} ]; then
-    YOUTUBE_DL_OUTPUT_FILE="%(title)s.%(ext)s"
-fi
-if [ -z ${YOUTUBE_DL_OUTPUT+x} ]; then
-    YOUTUBE_DL_OUTPUT="-o$YOUTUBE_DL_OUTPUT_FILE"
-fi
+[[ -v YOUTUBE_DL_OUTPUT_FOLDER ]] ||  YOUTUBE_DL_OUTPUT_FOLDER="$HOME/Downloads/youtube-dl"
+[[ -v YOUTUBE_DL_OUTPUT_FILE ]] || YOUTUBE_DL_OUTPUT_FILE="%(title)s.%(ext)s"
+[[ -v ${YOUTUBE_DL_OUTPUT+x} ]] || YOUTUBE_DL_OUTPUT="-o$YOUTUBE_DL_OUTPUT_FILE"
 
 function check-youtube-dl-loc()
 {
-    if [ ! -d "$YOUTUBE_DL_OUTPUT_FOLDER" ]; then
-        mkdir "$YOUTUBE_DL_OUTPUT_FOLDER"
-    fi
+    [[ ! -d "$YOUTUBE_DL_OUTPUT_FOLDER" ]] && mkdir "$YOUTUBE_DL_OUTPUT_FOLDER"
 }
 
 function youtube-mp3()

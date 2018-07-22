@@ -155,15 +155,31 @@ setopt always_to_end
 unsetopt menu_complete   # do not autoselect the first completion entry
 unsetopt flowcontrol
 
-# bindkey
-## Ensure Home/End do what their meant to
-bindkey "${terminfo[khome]}" beginning-of-line
-bindkey "${terminfo[kend]}" end-of-line
+autoload zkbd
+ZKBD_FILE="${ZDOTDIR:-$HOME}/.zkbd/$TERM-${${DISPLAY:t}:-$VENDOR-$OSTYPE}"
+[[ ! -f "$ZKBD_FILE" ]] && zkbd
+source "$ZKBD_FILE"
+unset ZKBD_FILE
+
+# bindkey, partially from tombh, and partially from several different posts in https://bbs.archlinux.org/viewtopic.php?id=26110
+## Set home/end to go through history
+[[ -n ${key[Home]} ]] && bindkey "${key[Home]}" beginning-of-history
+[[ -n ${key[End]} ]] && bindkey "${key[End]}" end-of-history
 ## CTRL+ARROW to move by words
 bindkey "^[[1;5C" forward-word
 bindkey "^[[1;5D" backward-word
 ## CTRL+BACKSPACE deletes whole word
 bindkey "^H" backward-delete-word
 ## Bind UP/DOWN to search through history
-bindkey "^[[A" history-substring-search-up
-bindkey "^[[B" history-substring-search-down
+[[ -n ${key[Up]} ]] && bindkey "${key[Up]}" up-line-or-search
+[[ -n ${key[Down]} ]] && bindkey "${key[Down]}" down-line-or-search
+## Page UP/DOWN to go through line
+[[ -n ${key[PageUp]} ]] && bindkey "${key[PageUp]}" beginning-of-line
+[[ -n ${key[PageDown]} ]] && bindkey "${key[PageDown]}" end-of-line
+
+# rest of the keys
+[[ -n ${key[Backspace]} ]] && bindkey "${key[Backspace]}" backward-delete-char
+[[ -n ${key[Insert]} ]] && bindkey "${key[Insert]}" overwrite-mode
+[[ -n ${key[Delete]} ]] && bindkey "${key[Delete]}" delete-char
+[[ -n ${key[Left]} ]] && bindkey "${key[Left]}" backward-char
+[[ -n ${key[Right]} ]] && bindkey "${key[Right]}" forward-char

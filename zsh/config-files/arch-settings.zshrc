@@ -1,16 +1,3 @@
-# some pacman helpers
-if type pacman &>/dev/null ; then
-    function pacrmorphans()
-    {
-        sudo pacman -Rnsc $(pacman -Qdtq)
-    }
-    function paclistsize()
-    {
-        expac -H M "%011m\t%-20n\t%10d" $(comm -23 <(pacman -Qqe | sort) <(pacman -Qqg base base-devel | sort)) | sort -n
-    }
-fi
-
-
 ### originally from oh-my-zsh at https://github.com/robbyrussell/oh-my-zsh/blob/master/plugins/archlinux/archlinux.plugin.zsh
 ## Pacman - https://wiki.archlinux.org/index.php/Pacman_Tips
 if type pacman &>/dev/null ; then
@@ -26,18 +13,25 @@ if type pacman &>/dev/null ; then
     alias pacinsd='sudo pacman -S --asdeps'
     alias pacmir='sudo pacman -Syy'
     alias paclsorphans='sudo pacman -Qdt'
-    alias pacrmorphans='sudo pacman -Rs $(pacman -Qtdq)'
+    alias pacrmorphans='sudo pacman -Rnsc $(pacman -Qdtq)'
     alias pacfileupg='sudo pacman -Fy'
     alias pacfiles='pacman tFs'
+
+    function paclistsize()
+    {
+        expac -H M "%011m\t%-20n\t%10d" $(comm -23 <(pacman -Qqe | sort) <(pacman -Qqg base base-devel | sort)) | sort -n
+    }
+
+    paclist() {
+        # Source: https://bbs.archlinux.org/viewtopic.php?id=93683
+        LC_ALL=C pacman -Qei $(pacman -Qu | cut -d " " -f 1) | \
+        awk 'BEGIN {FS=":"} /^Name/{printf("\033[1;36m%s\033[1;37m", $2)} /^Description/{print $2}'
+    }
 fi
-## pacaur is unmaintaned, but yay and trizen are more or less a drop in replacement, so just alias pacaur to one of them (yay preferred)
+
+## pacaur is unmaintaned, but yay is more or less a drop in replacement, so just alias pacaur to yay
 # if pacaur is not installed, but yay is installed
-if ! tpye pacaur &>/dev/null && type yay &>/dev/null; then
-    alias pacaur="yay"
-# if pacaur is not installed, but trizen is installed
-elif ! type pacaur &>/dev/null && type trizen &>/dev/null; then
-    alias pacaur="trizen"
-fi
+! type pacaur &>/dev/null && type yay &>/dev/null && alias pacaur="yay"
 
 ## pacaur aliases, since pacaur is umaintaned, these should get removed at some point, but they're more ingrained in memory
 if type pacaur &>/dev/null; then
@@ -55,24 +49,6 @@ if type pacaur &>/dev/null; then
     alias paorph='pacaur -Qtd'
     alias painsd='pacaur -S --asdeps'
     alias pamir='pacaur -Syy'
-fi
-
-## trizen aliases
-if type trizen &>/dev/null; then
-    alias trupg='trizen -Syu'
-    alias trsu='trizen -Syu --noconfirm'
-    alias trin='trizen -S'
-    alias trins='trizen -U'
-    alias trre='trizen -R'
-    alias trrem='trizen -Rns'
-    alias trrep='trizen -Si'
-    alias trreps='trizen -Ss'
-    alias trloc='trizen -Qi'
-    alias trlocs='trizen -Qs'
-    alias trlst='trizen -Qe'
-    alias trorph='trizen -Qtd'
-    alias trinsd='trizen -S --asdeps'
-    alias trmir='trizen -Syy'
 fi
 
 ## yay aliases
@@ -95,26 +71,3 @@ if type yay &>/dev/null; then
     alias yainsd='yay -S --asdeps'
     alias yamir='yay -Syy'
 fi
-
-paclist() {
-  # Source: https://bbs.archlinux.org/viewtopic.php?id=93683
-  LC_ALL=C pacman -Qei $(pacman -Qu | cut -d " " -f 1) | \
-    awk 'BEGIN {FS=":"} /^Name/{printf("\033[1;36m%s\033[1;37m", $2)} /^Description/{print $2}'
-}
-
-pacmanallkeys() {
-  emulate -L zsh
-  curl -s https://www.archlinux.org/people/{developers,trustedusers}/ | \
-    awk -F\" '(/pgp.mit.edu/) { sub(/.*search=0x/,""); print $1}' | \
-    xargs sudo pacman-key --recv-keys
-}
-
-pacmansignkeys() {
-  emulate -L zsh
-  for key in $*; do
-    sudo pacman-key --recv-keys $key
-    sudo pacman-key --lsign-key $key
-    printf 'trust\n3\n' | sudo gpg --homedir /etc/pacman.d/gnupg \
-      --no-permission-warning --command-fd 0 --edit-key $key
-  done
-}

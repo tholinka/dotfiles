@@ -1,14 +1,10 @@
 # probably want to install some lib32 libs: lib32-cairo lib32-libcups lib32-gnutls lib32-gtk3 lib32-v4l-utils lib32-libva lib32-libxcomposite lib32-libxinerama lib32-libxslt lib32-libxml2 lib32-mpg123 lib32-lcms2 lib32-giflib lib32-libpng lib32-gnutls
 # and lib32-libva-vdpau-driver if on nvidia, lib32-libva-intel-driver if using intel graphics
 # also winecfg -> staging -> Enable CSMT, Enable VAAPI, Enable GTK3
-# set up some wine stuff
-export WINEDEBUG=-all
-export WINEARCH=win32
-
-# set wineprefix if not already set
-if [ -z ${WINEPREFIX+x} ]; then
-    export WINEPREFIX="$HOME/.wine"
-fi
+# set some wine variables if not set
+[[ -v WINEDEBUG ]] || export WINEDEBUG="-all"
+[[ -v WINEARCH ]] || export WINEARCH="win32"
+[[ -v WINEPREFIX ]] || export WINEPREFIX="$HOME/.wine"
 
 # run this at some point, really don't need to be done on every shell tho
 # it sets up a paged pool size for wine, source games require it
@@ -16,18 +12,20 @@ fi
 # also link system fonts:  cd ${WINEPREFIX:-~/.wine}/drive_c/windows/Fonts && for i in /usr/share/fonts/**/*.{ttf,otf}; do ln -s "$i" ; done
 
 WINEPROGRAMFILES="$WINEPREFIX"/drive_c/"Program Files"
-WINEPROGRAMFILES_ESCAPED="$WINEPREFIX"/drive_c/"Program\ Files"
 
 WINESTEAM="$WINEPROGRAMFILES"/Steam
-WINESTEAM_ESCAPED="$WINEPROGRAMFILES_ESCAPED"/Steam
 
 # see if steam is installed, assumes 32bit wine
 if [ -d $WINESTEAM ]; then
     # run wine reg.exe ADD "HKEY_CURRENT_USER\Software\Wine\AppDefaults\Steam.exe" /v "Version" /t "REG_SZ" /d "winxp" /f to run steam under xp mode
-    alias steam-wine="wine $WINESTEAM_ESCAPED/Steam.exe -no-cef-sandbox &>/dev/null & disown"
+    function steam-wine()
+    (
+        cd "$WINESTEAM"
+        execname "Steam"
+        nohup wine "$execname".exe -no-cef-sandbox 1>/tmp/"$execname".std.nohup 2>/tmp/"$execname".error.nohup &
+    )
 
     WINESTEAMAPPS="$WINEPROGRAMFILES"/Steam/steamapps/common
-    WINESTEAMAPPS_ESCAPED="$WINEPROGRAMFILES_ESCAPED"/Steam/steamapps/common
 
     # see if path of exile is installed
     if [ -d  "$WINESTEAMAPPS/Path of Exile" ]; then
@@ -46,7 +44,12 @@ if [ -d $WINESTEAM ]; then
         # antialias_mode=0
         # screen_shake=false
         # texture_quality=1
-        alias path-of-exile="env WINEDEBUG=\"fixme-all \$WINEDEBUG\" nohup wine $WINESTEAMAPPS_ESCAPED/Path\ of\ Exile/PathOfExileSteam.exe -gc 100 1>/tmp/path-of-exile.std.nohup 2>/tmp/path-of-exile.error.nohup & disown"
+        function path-of-exile()
+        (
+            cd "$WINESTEAMAPPS/Path of Exile"
+            execname="PathOfExileSteam"
+            nohup wine "$execname".exe -gc 100 1>/tmp/"$execname".std.nohup 2>/tmp/"$execname".error.nohup &
+        )
     fi
 
     # see if victoria 2 is installed`
@@ -64,7 +67,8 @@ if [ -d $WINESTEAM ]; then
         (
             # launcher crashes unless started from directory it's in
             cd "$WINESTEAMAPPS/Victoria 2"
-            nohup wine victoria2.exe 1>/tmp/victoria-2.std.nohup 2>/tmp/victoria-2.error.nohup & disown
+            execname="victoria2"
+            nohup wine "$execname".exe 1>/tmp/"$execname".std.nohup 2>/tmp/"$execname".error.nohup &
         )
     fi
 fi

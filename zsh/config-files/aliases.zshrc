@@ -30,40 +30,36 @@ fi
 alias ls="$ls"
 
 # set colors
-COL_OPT="--color=always"
-
-## dircolors
-if [ -x dircolors ]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-fi
+COLOR_OPT="--color=always"
 
 ## ls options that are the same for ls and exa, set to always use color
-alias ls="$ls $COL_OPT --group-directories-first"
+alias ls="$ls $COLOR_OPT --group-directories-first"
 
 ## add color support to a bunch of commands
-alias dir="dir $COL_OPT"
-alias vdir="vdir $COL_OPT"
+alias dir="dir $COLOR_OPT"
+alias vdir="vdir $COLOR_OPT"
 
 ## there are to many different greps
-alias bzgrep="bzgrep $COL_OPT"
-alias egrep="egrep $COL_OPT"
-alias fgrep="fgrep $COL_OPT"
-alias grep="grep $COL_OPT"
-#alias pgrep="pgrep $COL_OPT"
-alias xzgrep="xzgrep $COL_OPT"
-alias zegrep="zegrep $COL_OPT"
-alias zfgrep="zfgrep $COL_OPT"
-alias zgrep="zgrep $COL_OPT"
-alias zipgrep="zipgrep $COL_OPT"
+alias bzgrep="bzgrep $COLOR_OPT"
+alias egrep="egrep $COLOR_OPT"
+alias fgrep="fgrep $COLOR_OPT"
+alias grep="grep $COLOR_OPT"
+#alias pgrep="pgrep $COLOR_OPT"
+alias xzgrep="xzgrep $COLOR_OPT"
+alias zegrep="zegrep $COLOR_OPT"
+alias zfgrep="zfgrep $COLOR_OPT"
+alias zgrep="zgrep $COLOR_OPT"
+alias zipgrep="zipgrep $COLOR_OPT"
 
-alias dmesg="sudo dmesg $COL_OPT"
-alias fdisk="sudo fdisk $COL_OPT"
+alias dmesg="sudo dmesg $COLOR_OPT"
+alias fdisk="sudo fdisk $COLOR_OPT"
 
 # not all versions of diff accept colors, so figure out if this one does
 # do this by specifing the color, and then request the version
 # ubuntu (subsystem for windows)'s diff will return false saying unrecognized option, but arch just returns the version
-if ! diff "$COL_OPT" -v &>/dev/null; then
-    # doesn't support COL_OPT, see if colordiff is installed
+# similiar to ls, set diff as a variable as it will be alias'ed later
+if ! diff "$COLOR_OPT" -v &>/dev/null; then
+    # doesn't support COLOR_OPT, see if colordiff is installed
     if type colordiff &>/dev/null; then
         diff="colordiff"
     else
@@ -72,21 +68,10 @@ if ! diff "$COL_OPT" -v &>/dev/null; then
     fi
 else
     # supports color opt, use it
-    diff="diff $COL_OPT"
+    diff="diff $COLOR_OPT"
 fi
 
 alias top="top -c"
-
-# color man through "hacking" less
-man() {
-    LESS_TERMCAP_md=$'\e[01;31m' \
-    LESS_TERMCAP_me=$'\e[0m' \
-    LESS_TERMCAP_se=$'\e[0m' \
-    LESS_TERMCAP_so=$'\e[01;44;33m' \
-    LESS_TERMCAP_ue=$'\e[0m' \
-    LESS_TERMCAP_us=$'\e[01;32m' \
-    command man "$@"
-}
 
 # color less
 export LESS='-R'
@@ -121,7 +106,7 @@ alias diff="$diff --unified=0"
 
 alias c="clear"
 alias get="git"
-alias gitk="gitk &>/dev/null & "
+alias gitk="gitk &>/dev/null &"
 alias gitgui="git gui &>/dev/null &"
 alias gitupdatesubmodules="git submodule update --jobs $(nproc --all) --recursive --remote"
 
@@ -135,13 +120,13 @@ if type fortune &>/dev/null; then
     if type cowsay &>/dev/null; then
         # what directory are cows in?
         COWSAYCOWS="/usr/share/cowsay/cows"
-        if [ ! -d "$COWSAYCOWS" ]; then
+        if [[ ! -d $COWSAYCOWS ]]; then
             # arch has it setup this way
             COWSAYCOWS="/usr/share/cows"
         fi
 
         # did we find the cows directory?
-        if [ -d "$COWSAYCOWS" ]; then
+        if [[ -d $COWSAYCOWS ]]; then
             # \$ls so that it doesn't resolve at source time, but at run time
             FORTCOMMAND="$FORTCOMMAND | cowsay -f \$(ls $COWSAYCOWS | shuf -n1)"
         else
@@ -155,9 +140,4 @@ if type fortune &>/dev/null; then
     fi
 
     alias fortune="$FORTCOMMAND"
-fi
-
-# semi-useful upgrade function for debian based distros
-if type "apt" &> /dev/null ; then
-    alias aptupdateall="sudo apt update && sudo apt upgrade -y && sudo apt dist-upgrade -y"
 fi

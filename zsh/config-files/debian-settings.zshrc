@@ -1,6 +1,6 @@
 # settings for debian and derivates (ubuntu)
 
-# if apt is installed prefer apt as it has colors and shit
+# if apt is installed prefer apt as it has colors and stuff
 if type apt &>/dev/null ; then
     alias apt="apt"
 # fall back to apt-get
