@@ -15,14 +15,19 @@ WINEPROGRAMFILES="$WINEPREFIX"/drive_c/"Program Files"
 
 WINESTEAM="$WINEPROGRAMFILES"/Steam
 
+function WINE-LAUNCHER()
+{
+    # split $2 into arguments
+    nohup wine "$1".exe $2 1>/tmp/"$1".std.nohup 2>/tmp/"$1".error.nohup & disown 2>/dev/null
+}
+
 # see if steam is installed, assumes 32bit wine
 if [ -d $WINESTEAM ]; then
     # run wine reg.exe ADD "HKEY_CURRENT_USER\Software\Wine\AppDefaults\Steam.exe" /v "Version" /t "REG_SZ" /d "winxp" /f to run steam under xp mode
     function steam-wine()
     (
         cd "$WINESTEAM"
-        execname "Steam"
-        nohup wine "$execname".exe -no-cef-sandbox 1>/tmp/"$execname".std.nohup 2>/tmp/"$execname".error.nohup &
+        WINE-LAUNCHER "Steam" "-no-cef-sandbox"
     )
 
     WINESTEAMAPPS="$WINEPROGRAMFILES"/Steam/steamapps/common
@@ -47,8 +52,7 @@ if [ -d $WINESTEAM ]; then
         function path-of-exile()
         (
             cd "$WINESTEAMAPPS/Path of Exile"
-            execname="PathOfExileSteam"
-            nohup wine "$execname".exe -gc 100 1>/tmp/"$execname".std.nohup 2>/tmp/"$execname".error.nohup &
+            WINE-LAUNCHER "PathOfExileSteam" "-gc 100"
         )
     fi
 
@@ -63,12 +67,11 @@ if [ -d $WINESTEAM ]; then
         # set fullscreen=no in settings.txt
         # disable winegstreamer library in winecfg
         # wine reg.exe ADD "HKEY_CURRENT_USER\Software\Wine\AppDefaults\v2game.exe" /v "Version" /t "REG_SZ" /d "winxp" /f
-        function victoria-2()
+        function victoria2()
         (
             # launcher crashes unless started from directory it's in
             cd "$WINESTEAMAPPS/Victoria 2"
-            execname="victoria2"
-            nohup wine "$execname".exe 1>/tmp/"$execname".std.nohup 2>/tmp/"$execname".error.nohup &
+            WINE-LAUNCHER "victoria2"
         )
     fi
 fi
