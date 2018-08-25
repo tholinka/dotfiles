@@ -53,8 +53,8 @@ fi
 
 ## yay aliases
 if type yay &>/dev/null; then
-    # set up yay to only use the aur
-    alias yay='yay --aur'
+    # set up yay to only use the aur and to always show diffs
+    alias yay='yay --aur --difmenu --answerdiff All'
 
     alias yaupg='yay -Syu'
     alias yasu='yay -Syu --noconfirm'
