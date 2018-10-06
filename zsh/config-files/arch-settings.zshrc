@@ -13,7 +13,15 @@ if type pacman &>/dev/null ; then
     alias pacinsd='sudo pacman -S --asdeps'
     alias pacmir='sudo pacman -Syy'
     alias paclsorphans='sudo pacman -Qdt'
-    alias pacrmorphans='sudo pacman -Rnsc $(pacman -Qdtq)'
+    function pacrmorphans()
+    {
+        packages="$(pacman -Qdtq)"
+        if [ -z "$packages" ]; then
+            echo "No packages to remove."
+        else
+            sudo pacman -Rnsc $packages
+        fi
+    }
     alias pacfileupg='sudo pacman -Fy'
     alias pacfiles='pacman tFs'
 
