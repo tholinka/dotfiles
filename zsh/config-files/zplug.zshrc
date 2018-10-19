@@ -1,5 +1,10 @@
 # originally based off of https://github.com/tombh/dotfiles/blob/master/.zshrc
 
+# don't nice background processes on windows subsystem for linux, as it doesn't work
+if [ "$(uname -r | sed 's/^.*-//')" = "Microsoft" ]; then
+    unsetopt BG_NICE
+fi
+
 # init zplug
 source "$ZSH_CONFIG/zplug/init.zsh"
 
