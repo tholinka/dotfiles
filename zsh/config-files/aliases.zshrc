@@ -112,6 +112,8 @@ alias gitupdatesubmodules="git submodule update --jobs $(nproc --all) --recursiv
 
 alias perm="stat -c \"%a %n\""
 
+# default to quiet screen
+alias screen="screen -q || echo 'screen failed'"
 # random fortune, outputed using cowsay and rainbow if present
 if type fortune &>/dev/null; then
     FORTCOMMAND="fortune"
