@@ -74,3 +74,20 @@ function git-gc-all()
     git -c gc.reflogExpire=0 -c gc.reflogExpireUnreachable=0 -c gc.rerereresolved=0 \
     -c gc.rerereunresolved=0 -c gc.pruneExpire=now gc "$@"
 }
+
+function screen()
+{
+    # see if there are any arguments
+    if [ -z "$@" ]; then
+        # no arguments, quiet screen
+        command screen -q
+    else
+        # treat as a normal screen
+        command screen $@
+    fi
+
+    # if screen exited badly display notification (e.g. it does on ubuntu subsystem for windows)
+    if ((?)); then
+        echo "Screen Failed"
+    fi
+}
