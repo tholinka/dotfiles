@@ -3,7 +3,7 @@ indent=spaces=4
 #indent=force-tab=4
 #-A2
 style=allman
-#indent=tab
+indent=tab
 #indent-modifiers
 indent-namespaces
 indent-preprocessor
