@@ -26,22 +26,28 @@ zplug "oz/safe-paste"
 ## automatically change terminal title based on location / task
 zplug "jreese/zsh-titles", defer:3
 ## additional zsh completions
-zplug "zsh-users/zsh-completions", defer:3
+zplug "zsh-users/zsh-completions", defer:2
 ## substring history search (type partial history and arrow key up/down to search history)
-zplug "zsh-users/zsh-history-substring-search", defer:3
+zplug "zsh-users/zsh-history-substring-search", defer:2
 ## command suggestions
-zplug "zsh-users/zsh-autosuggestions", defer:3
+zplug "zsh-users/zsh-autosuggestions", defer:2
 ## syntax highlighting
-zplug "zdharma/fast-syntax-highlighting", defer:3
+zplug "zdharma/fast-syntax-highlighting", defer:2
+## 256color
+#ZSH_256COLOR_DEBUG=true
+zplug "chrissicool/zsh-256color", defer:3
+## adds clipboard helper functions so you can pipe into/out of clipboard
+# requires xclip
+zplug "zpm-zsh/clipboard", defer:2
 
 # Only load these if the relevent program is installed
 ## docker autocmplete
-zplug "plugins/docker", from:oh-my-zsh, if:"(( $+commands[docker] ))"
+zplug "plugins/docker", from:oh-my-zsh, if:"(( $+commands[docker] ))", defer:3
 ## git
-zplug "plugins/git", from:oh-my-zsh, if:"(( $+commands[git] ))"
+zplug "plugins/git", from:oh-my-zsh, if:"(( $+commands[git] ))", defer:3
 ## pacman/pacaur plugin
 # disabled as it doesn't handle trizen/yay, important stuff moved to arch-settings.zshrc
-#zplug "plugins/archlinux", from:oh-my-zsh, if:"(( $+commands[pacman] ))
+#zplug "plugins/archlinux", from:oh-my-zsh, if:"(( $+commands[pacman] )), defer:4
 
 # install plugins if there are any to install
 if ! zplug check; then
