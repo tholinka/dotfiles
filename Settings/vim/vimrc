@@ -1,3 +1,6 @@
+" ubuntu has an old neovim version, don't notify about it
+let g:go_version_warning = 0
+
 set runtimepath+=~/.vim_runtime
 source ~/.vim/vim-runtime/autoload/pathogen.vim
 
