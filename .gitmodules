@@ -1,9 +1,6 @@
 [submodule "colorschemes/vertex-theme"]
 	path = colorschemes/vertex-theme
 	url = git@github.com:horst3180/vertex-theme.git
-[submodule "Settings/vim/vim-runtime"]
-	path = Settings/vim/vim-runtime
-	url = git@github.com:amix/vimrc.git
 [submodule "colorschemes/gedit-super-monokai-theme"]
 	path = colorschemes/gedit-super-monokai-theme
 	url = git@github.com:saahov/gedit-super-monokai-theme.git
