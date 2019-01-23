@@ -5,6 +5,12 @@ if [ "$(uname -r | sed 's/^.*-//')" = "Microsoft" ]; then
     unsetopt BG_NICE
 fi
 
+# set up some zplug environmental variables
+ZPLUG_THREADS="$(nproc --all 2>/dev/null || echo 8)"
+ZPLUG_PROTOCOL="HTTPS"
+ZPLUG_LOG_LOAD_SUCCESS="false"
+ZPLUG_LOG_LOAD_FAILURE="true"
+
 # init zplug
 source "$ZSH_CONFIG/zplug/init.zsh"
 
@@ -47,7 +53,7 @@ zplug "plugins/docker", from:oh-my-zsh, if:"(( $+commands[docker] ))", defer:3
 zplug "plugins/git", from:oh-my-zsh, if:"(( $+commands[git] ))", defer:3
 ## pacman/pacaur plugin
 # disabled as it doesn't handle trizen/yay, important stuff moved to arch-settings.zshrc
-#zplug "plugins/archlinux", from:oh-my-zsh, if:"(( $+commands[pacman] )), defer:4
+#zplug "plugins/archlinux", from:oh-my-zsh, if:"(( $+commands[pacman] )), defer:3
 
 # install plugins if there are any to install
 if ! zplug check; then
