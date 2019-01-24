@@ -11,7 +11,7 @@ git pull
 
 # reset all submodules
 submodules=$(echo "$SettingsLoc/vscode/extensions/"*)
-submodules+=" $SettingsLoc/vim/vim-runtime"
+submodules+=" $SettingsLoc/vim/vim-plug"
 submodules+=" $FOLDERLOC/zsh/config-files/zplug"
 
 echo "Hard reseting submodules back to checkout point"

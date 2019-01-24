@@ -36,6 +36,7 @@ fi
 if [ ! -d ~/.config/nvim/colors ]; then
     mkdir ~/.config/nvim/colors
 fi
+
 ### end .config section ###
 
 ### .local section ###
@@ -77,9 +78,8 @@ ln -sf "$FOLDERLOC/config/QtProject/qtcreator/styles/monokai_tyler.xml" ~/.confi
 
 ln -sf "$FOLDERLOC/config/zathura/zathurarc" ~/.config/zathura/
 
-ln -sf "$FOLDERLOC/vim/colors/monokai.vim" ~/.config/nvim/colors
-ln -sf "$FOLDERLOC/vim/vim-runtime/" ~/.config/nvim/vim-runtime
-ln -sf "$FOLDERLOC/vim/vimrc" ~/.config/nvim/init.vim
+ln -sf "$FOLDERLOC/vim/autoload/" ~/.config/nvim/autoload
+ln -sf "$FOLDERLOC/vim/nvim.vimrc" ~/.config/nvim/init.vim
 
 # link both chrome and chromium against flags, these might be an arch only things ?
 ln -sf "$FOLDERLOC/config/chromium-flags.conf" ~/.config/chromium-flags.conf
@@ -102,9 +102,7 @@ ln -sf "$FOLDERLOC/gnupg/gpg-agent.conf" ~/.gnupg/gpg-agent.conf
 ### link vim's folder ###
 ln -sf "$FOLDERLOC/vim" ~/.vim
 # replace ~/.vimrc with a link to ~/.vim
-echo "source ~/.vim/vimrc" > ~/.vimrc
-# pull in vim runtime link vim-runtime as it expects
-ln -sf "$FOLDERLOC/vim/vim-runtime" ~/.vim_runtime
+echo "source ~/.vim/vim.vimrc" > ~/.vimrc
 
 ln -sf "$FOLDERLOC/vscode" ~/.vscode
 

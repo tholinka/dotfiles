@@ -1,6 +1,9 @@
 # ignore non-submodule vscode extensions
 Settings/vscode/extensions/**
 
+# ignore vim plugged directory, as that's handled per-machine
+Settings/vim/plugged
+
 # Created by https://www.gitignore.io/api/vim,linux
 
 ### Linux ###
