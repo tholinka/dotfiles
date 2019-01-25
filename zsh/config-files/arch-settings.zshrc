@@ -1,33 +1,31 @@
 ### originally from oh-my-zsh at https://github.com/robbyrussell/oh-my-zsh/blob/master/plugins/archlinux/archlinux.plugin.zsh
 ## Pacman - https://wiki.archlinux.org/index.php/Pacman_Tips
-if type pacman &>/dev/null ; then
-    alias pacupg='sudo pacman -Syu'
-    alias pacin='sudo pacman -S'
-    alias pacins='sudo pacman -U'
-    alias pacre='sudo pacman -R'
-    alias pacrem='sudo pacman -Rns'
-    alias pacrep='pacman -Si'
-    alias pacreps='pacman -Ss'
-    alias pacloc='pacman -Qi'
-    alias paclocs='pacman -Qs'
-    alias pacinsd='sudo pacman -S --asdeps'
-    alias pacmir='sudo pacman -Syy'
-    alias paclsorphans='sudo pacman -Qdt'
-    alias pacrmorphans="sudo pacman -Rns $(pacman -Qtdq) $@"
-    alias pacfileupg='sudo pacman -Fy'
-    alias pacfiles='pacman tFs'
+alias pacupg='sudo pacman -Syu'
+alias pacin='sudo pacman -S'
+alias pacins='sudo pacman -U'
+alias pacre='sudo pacman -R'
+alias pacrem='sudo pacman -Rns'
+alias pacrep='pacman -Si'
+alias pacreps='pacman -Ss'
+alias pacloc='pacman -Qi'
+alias paclocs='pacman -Qs'
+alias pacinsd='sudo pacman -S --asdeps'
+alias pacmir='sudo pacman -Syy'
+alias paclsorphans='sudo pacman -Qdt'
+alias pacrmorphans="sudo pacman -Rns $(pacman -Qtdq) $@"
+alias pacfileupg='sudo pacman -Fy'
+alias pacfiles='pacman tFs'
 
-    function paclistsize()
-    {
-        expac -H M "%011m\t%-20n\t%10d" $(comm -23 <(pacman -Qqe | sort) <(pacman -Qqg base base-devel | sort)) | sort -n
-    }
+function paclistsize()
+{
+	expac -H M "%011m\t%-20n\t%10d" $(comm -23 <(pacman -Qqe | sort) <(pacman -Qqg base base-devel | sort)) | sort -n
+}
 
-    paclist() {
-        # Source: https://bbs.archlinux.org/viewtopic.php?id=93683
-        LC_ALL=C pacman -Qei $(pacman -Qu | cut -d " " -f 1) | \
-        awk 'BEGIN {FS=":"} /^Name/{printf("\033[1;36m%s\033[1;37m", $2)} /^Description/{print $2}'
-    }
-fi
+paclist() {
+	# Source: https://bbs.archlinux.org/viewtopic.php?id=93683
+    LC_ALL=C pacman -Qei $(pacman -Qu | cut -d " " -f 1) | \
+    awk 'BEGIN {FS=":"} /^Name/{printf("\033[1;36m%s\033[1;37m", $2)} /^Description/{print $2}'
+}
 
 ## pacaur is unmaintaned, but yay is more or less a drop in replacement, so just alias pacaur to yay
 # if pacaur is not installed, but yay is installed

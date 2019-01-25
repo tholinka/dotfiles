@@ -15,11 +15,6 @@ HIST_STAMPS="yyyy-mm-dd"
 # colored GCC warnings and errors
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
-# set editor to vim for git / etc
-export EDITOR=vim
-export SUDO_EDITOR="$EDITOR"
-export VISUAL="$EDITOR"
-
 # Compilation flags
 export ARCHFLAGS="-arch $(uname --machine)"
 export USE_CCACHE=1
@@ -41,7 +36,7 @@ export ANDROID_JACK_VM_ARGS="-Dfile.encoding=UTF-8 -XX:+TieredCompilation -Xmx4G
 
 # see if nvm is installed
 if [[ -r $NVM_LOCATION/nvm.sh ]]; then
-    # if it is, define a function to load it when needed, home do it when needed because it takes forever
+    # if it is, define a function to load it when needed, only do it when needed because it takes forever
     if ! type nvm &> /dev/null ; then
 	    function nvm() {
             source  "$NVM_LOCATION/nvm.sh"
@@ -64,13 +59,15 @@ export DEVKITARM="$DEVKITPRO/devkitARM"
 export DEVKITPPC="$DEVKITPPC/devkitPPC"
 export DEVKITA64="$DEVKITPRO/devkitA64"
 
-[[ -r $ZSH_CONFIG/aliases.zshrc  ]] && source $ZSH_CONFIG/aliases.zshrc
-
+# source subfiles
+# functions needs to be sourced first, as aliases depends on it
 [[ -r $ZSH_CONFIG/functions.zshrc  ]] && source $ZSH_CONFIG/functions.zshrc
 
-[[ -r $ZSH_CONFIG/arch-settings.zshrc ]] && source $ZSH_CONFIG/arch-settings.zshrc
+[[ -r $ZSH_CONFIG/aliases.zshrc  ]] && source $ZSH_CONFIG/aliases.zshrc
 
-[[ -r $ZSH_CONFIG/debian-settings.zshrc ]] && source $ZSH_CONFIG/debian-settings.zshrc
+[[ -r $ZSH_CONFIG/arch-settings.zshrc ]] && type pacman &>/dev/null && source $ZSH_CONFIG/arch-settings.zshrc
+
+[[ -r $ZSH_CONFIG/debian-settings.zshrc ]] && type apt-get &>/dev/null && source $ZSH_CONFIG/debian-settings.zshrc
 
 [[ -r $ZSH_CONFIG/wine.zshrc ]] && type wine &>/dev/null && source $ZSH_CONFIG/wine.zshrc
 

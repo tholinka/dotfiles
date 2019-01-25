@@ -1,6 +1,20 @@
-# switch vi and vim to neovim if it exists
+# assume we're not using nvim
+USE_NVIM="false"
+# see if nvim is installed, if it is, make sure it's new enough, or fallback to it if vim is to old
 if type nvim &> /dev/null ; then
-    alias vi="nvim"
+	version="$( nvim --version | head -n1 | sed 's/NVIM v//' )"
+	# 0.3.0 <= $version && use nvim || use vim
+	verlte 0.3.0 "$version" && USE_NVIM="true" || USE_NVIM="false"
+
+	if [ "USE_NVIM" = "false" ]; then
+		# but only use that if regular vim is greater than v8
+		version="$( vim --version | head -n1 | sed 's/VIM - Vi IMproved //' | sed -r 's/ \(.+//' )"
+		verlte 8.0 "$version" && USE_NVIM="false" || USE_NVIM="true"
+	fi
+fi
+
+if [ "$USE_NVIM" = "true" ]; then
+	alias vi="nvim"
     alias vim="nvim"
 
     # also switch various other utilities
@@ -8,17 +22,27 @@ if type nvim &> /dev/null ; then
     alias vedit="nvim"
     alias ex="nvim -E"
     alias view="nvim -R"
+	# switch $EDITOR
+	EDITOR="nvim"
 # switch vi and other utilities to vim if neovim doesn't exist
-elif type vim &> /dev/null ; then
+elif [ "$USE_NVIM" = "false" ] && type vim &> /dev/null ; then
     alias vi="vim"
     alias edit="vim"
     alias vedit="vim"
     alias ex="vim -E"
-    alias view="nvim -R"
-
-    alias rvim="vim -Z"
-    alias evim="vim -y"
+	# switch $EDITOR to vim
+	EDITOR="vim"
+elif type vi &> /dev/null; then
+	# make sure editor gets setup
+	EDITOR="vi"
 fi
+
+unset USE_NVIM
+
+# switch the other editor variables
+SUDO_EDITOR="$EDITOR"
+VISUAL="$EDITOR"
+GIT_EDITOR="$EDITOR"
 
 # switch ls to exa if it exists, set it as a variable so that I can alias it with colors later
 if type exa &> /dev/null ; then

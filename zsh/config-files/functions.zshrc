@@ -91,3 +91,13 @@ function screen()
         echo "Screen Failed"
     fi
 }
+
+# some helper functions to figure out version numbers
+# from https://stackoverflow.com/a/4024263
+verlte() {
+    [  "$1" = "`echo -e "$1\n$2" | sort -V | head -n1`" ]
+}
+
+verlt() {
+    [ "$1" = "$2" ] && return 1 || verlte $1 $2
+}
