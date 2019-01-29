@@ -10,6 +10,6 @@
 [submodule "colorschemes/Gogh"]
 	path = colorschemes/Gogh
 	url = git@github.com:Mayccoll/Gogh.git
-[submodule "Settings/vim/vim-plug"]
-	path = Settings/vim/vim-plug
+[submodule "settings/vim/vim-plug"]
+	path = settings/vim/vim-plug
 	url = git@github.com:junegunn/vim-plug.git
