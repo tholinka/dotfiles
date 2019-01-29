@@ -10,42 +10,6 @@
 [submodule "colorschemes/Gogh"]
 	path = colorschemes/Gogh
 	url = git@github.com:Mayccoll/Gogh.git
-[submodule "Settings/vscode/extensions/vscode-rust"]
-	path = Settings/vscode/extensions/vscode-rust
-	url = git@github.com:editor-rs/vscode-rust.git
-[submodule "Settings/vscode/extensions/vscode-markdownlint"]
-	path = Settings/vscode/extensions/vscode-markdownlint
-	url = git@github.com:DavidAnson/vscode-markdownlint.git
-[submodule "Settings/vscode/extensions/editorconfig-vscode"]
-	path = Settings/vscode/extensions/editorconfig-vscode
-	url = git@github.com:editorconfig/editorconfig-vscode.git
-[submodule "Settings/vscode/extensions/vscode-astyle"]
-	path = Settings/vscode/extensions/vscode-astyle
-	url = git@github.com:welkineins/vscode-astyle.git
-[submodule "Settings/vscode/extensions/pythonVSCode"]
-	path = Settings/vscode/extensions/pythonVSCode
-	url = git@github.com:DonJayamanne/pythonVSCode.git
-[submodule "Settings/vscode/extensions/vscode-cpptools"]
-	path = Settings/vscode/extensions/vscode-cpptools
-	url = git@github.com:Microsoft/vscode-cpptools.git
-[submodule "Settings/vscode/extensions/omnisharp-vscode"]
-	path = Settings/vscode/extensions/omnisharp-vscode
-	url = git@github.com:OmniSharp/omnisharp-vscode.git
-[submodule "Settings/vscode/extensions/vscode-powershell"]
-	path = Settings/vscode/extensions/vscode-powershell
-	url = git@github.com:PowerShell/vscode-powershell.git
-[submodule "Settings/vscode/extensions/vscode-gitblame"]
-	path = Settings/vscode/extensions/vscode-gitblame
-	url = git@github.com:Sertion/vscode-gitblame.git
-[submodule "Settings/vscode/extensions/Monokai-Theme-VSCode"]
-	path = Settings/vscode/extensions/Monokai-Theme-VSCode
-	url = git@github.com:link07/Monokai-Theme-VSCode.git
-[submodule "Settings/vscode/extensions/vscode-bash-debug"]
-	path = Settings/vscode/extensions/vscode-bash-debug
-	url = git@github.com:rogalmic/vscode-bash-debug
-[submodule "Settings/vscode/extensions/vscode-arm"]
-	path = Settings/vscode/extensions/vscode-arm
-	url = https://github.com/dan-c-underwood/vscode-arm.git
 [submodule "Settings/vim/vim-plug"]
 	path = Settings/vim/vim-plug
 	url = git@github.com:junegunn/vim-plug.git
