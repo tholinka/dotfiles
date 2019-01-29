@@ -47,10 +47,13 @@ zplug "chrissicool/zsh-256color", defer:3
 zplug "zpm-zsh/clipboard", defer:2
 
 # Only load these if the relevent program is installed
+
 ## docker autocmplete
 zplug "plugins/docker", from:oh-my-zsh, if:"(( $+commands[docker] ))", defer:3
 ## git
 zplug "plugins/git", from:oh-my-zsh, if:"(( $+commands[git] ))", defer:3
+## git flow
+zplug "petervanderdoes/git-flow-completion", if:"git flow version &>/dev/null", defer:3
 ## pacman/pacaur plugin
 # disabled as it doesn't handle trizen/yay, important stuff moved to arch-settings.zshrc
 #zplug "plugins/archlinux", from:oh-my-zsh, if:"(( $+commands[pacman] )), defer:3
