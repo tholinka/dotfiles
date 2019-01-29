@@ -2,7 +2,8 @@
 SCRIPTLOC=$(readlink -f "$0")
 FOLDERLOC=$(dirname "$SCRIPTLOC")
 
-SettingsLoc="$FOLDERLOC/Settings"
+SettingsLoc="$FOLDERLOC/settings"
+ColorLoc="$FOLDERLOC/colorschemes"
 
 cd "$FOLDERLOC"
 
@@ -10,9 +11,11 @@ echo "Pulling newest of this repo ($FOLDERLOC)"
 git pull
 
 # reset all submodules
-submodules=$(echo "$SettingsLoc/vscode/extensions/"*)
-submodules+=" $SettingsLoc/vim/vim-plug"
+submodules="$SettingsLoc/vim/vim-plug"
 submodules+=" $FOLDERLOC/zsh/config-files/zplug"
+submodules+=" $ColorLoc/vertex-theme"
+submodules+=" $ColorLoc/gedit-super-monokai-theme"
+submodules+=" $ColorLoc/Gogh"
 
 echo "Hard reseting submodules back to checkout point"
 
