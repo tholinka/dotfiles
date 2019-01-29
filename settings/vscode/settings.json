@@ -1,5 +1,39 @@
 {
-	"files.associations": {
-		"unordered_map": "cpp"
-	}
+    "editor.fontFamily": "Verdana",
+    "editor.fontSize": 14,
+    "editor.fontLigatures": true,
+    "files.trimTrailingWhitespace": true,
+    // disable wrap
+    "editor.wordWrap": "off",
+    "[markdown]": {
+        "editor.wordWrap": "off"
+    },
+    // hit alt+z to disable it again if you accidently enabled it
+    "editor.detectIndentation": true,
+    "editor.autoClosingBrackets": "never",
+    "astyle.astylerc": "~/.astylerc",
+    "workbench.colorTheme": "Monokai Dimmed",
+    "rust.rustup": {
+        "toolchain": "stable-x86_64-unknown-linux-gnu"
+    },
+    "rust.mode": "legacy",
+    "extensions.ignoreRecommendations": true,
+    "php.validate.executablePath": "/bin/php",
+    "window.zoomLevel": 0,
+    "explorer.confirmDragAndDrop": false,
+    "terminal.integrated.shell.windows": "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+    "files.autoSave": "onFocusChange",
+    "editor.renderWhitespace": "boundary",
+    "editor.renderControlCharacters": true,
+    "editor.formatOnPaste": true,
+    "editor.formatOnSave": true,
+    "files.exclude": {
+        "**/*.gcda": true,
+        "**/*.gcno": true,
+        "**/*.o": true
+    },
+    "files.trimFinalNewlines": true,
+    "search.smartCase": true,
+    "search.showLineNumbers": true,
+    "telemetry.enableTelemetry": false
 }
