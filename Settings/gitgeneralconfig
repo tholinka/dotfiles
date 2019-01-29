@@ -92,3 +92,14 @@
     insteadOf = "aur:"
 [url "ssh+git://aur4.archlinux.org/"]
     pushInsteadOf = "aur:"
+# git flow settings
+[gitflow "branch"]
+    master = master
+    develop = develop
+[gitflow "prefix"]
+    feature = feature/
+    bugfix = bugfix/
+    release = release/
+    hotfix = hotfix/
+    support = support/
+    versiontag = v
