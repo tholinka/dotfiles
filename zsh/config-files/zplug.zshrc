@@ -20,9 +20,9 @@ zplug "zplug/zplug"
 # oh-my-zsh plugins
 zplug "plugins/colorize", from:oh-my-zsh
 ## oh-my-zsh theme
-zplug "themes/agnoster", from:oh-my-zsh
-## get it from the official repo
-#zplug "agnoster/agnoster-zsh-theme"
+#zplug "themes/agnoster", from:oh-my-zsh
+## Get theme from official repository instead
+zplug "agnoster/agnoster-zsh-theme", as:theme
 
 # other plugins (defer as much as possible to hopefully improve load times)
 ## git prompt info
@@ -54,9 +54,6 @@ zplug "plugins/docker", from:oh-my-zsh, if:"(( $+commands[docker] ))", defer:3
 zplug "plugins/git", from:oh-my-zsh, if:"(( $+commands[git] ))", defer:3
 ## git flow
 zplug "petervanderdoes/git-flow-completion", if:"git flow version &>/dev/null", defer:3
-## pacman/pacaur plugin
-# disabled as it doesn't handle trizen/yay, important stuff moved to arch-settings.zshrc
-#zplug "plugins/archlinux", from:oh-my-zsh, if:"(( $+commands[pacman] )), defer:3
 
 # install plugins if there are any to install
 if ! zplug check; then
