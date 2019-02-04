@@ -118,7 +118,7 @@ alias l='ls -F'
 alias fdiskl="fdisk -l"
 
 # make iotop easier to use
-if type ioptop &>/dev/null; then
+if type iotop &>/dev/null; then
 	alias iotop="sudo iotop -Pao"
 fi
 
