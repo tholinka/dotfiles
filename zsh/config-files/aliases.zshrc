@@ -141,6 +141,9 @@ alias gitupdatesubmodules="git submodule update --jobs $(nproc --all) --recursiv
 
 alias perm="stat -c \"%a %n\""
 
+# follow output of journalctl unit
+alias journalctl-follow="journalctl -feu"
+
 # random fortune, outputed using cowsay and rainbow if present
 if type fortune &>/dev/null; then
     FORTCOMMAND="fortune"
