@@ -12,10 +12,14 @@ alias paclocs='pacman -Qs'
 alias pacinsd='sudo pacman -S --asdeps'
 alias pacmir='sudo pacman -Syy'
 alias paclsorphans='sudo pacman -Qdt'
-alias pacrmorphans="sudo pacman -Rns $(pacman -Qtdq) $@"
+#alias pacrmorphans="sudo pacman -Rns $(pacman -Qtdq) $@"
 alias pacfileupg='sudo pacman -Fy'
 alias pacfiles='pacman tFs'
 
+function pacrmorphans()
+{
+	sudo pacman -Rns $(pacman -Qtdq)
+}
 function paclistsize()
 {
 	expac -H M "%011m\t%-20n\t%10d" $(comm -23 <(pacman -Qqe | sort) <(pacman -Qqg base base-devel | sort)) | sort -n
