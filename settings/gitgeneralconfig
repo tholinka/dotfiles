@@ -16,8 +16,8 @@
     enabled = true
 [core]
     # use comstom .gitignore and .gitattributes
-    excludesfile = ~/.settings-git/Settings/gitignore
-    attributesfile = ~/.settings-git/Settings/gitattributes
+    excludesfile = ~/.gitignore
+    attributesfile = ~/.gitattributes
 
 	# [on by default] blank-at-eol: looks for spaces at end of line
     # [on by default] blank-at-eof: looks for blank line at end of file
