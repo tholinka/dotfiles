@@ -264,4 +264,4 @@ autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 " source filetype info
-source ~/.vim/filetypes.vim
+source ~/.vim/filetypes.vimrc
