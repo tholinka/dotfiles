@@ -22,7 +22,9 @@ zplug "plugins/colorize", from:oh-my-zsh
 ## oh-my-zsh theme
 #zplug "themes/agnoster", from:oh-my-zsh
 ## Get theme from official repository instead
-zplug "agnoster/agnoster-zsh-theme", as:theme
+#zplug "agnoster/agnoster-zsh-theme", as:theme
+## Get theme from my fork
+zplug "tholinka/agnoster-zsh-theme", as:theme
 
 # other plugins (defer as much as possible to hopefully improve load times)
 ## git prompt info
