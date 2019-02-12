@@ -1,5 +1,9 @@
 #!/bin/bash
 tmp="$(tempfile)"
+router_down=""
+dns_down=""
+modem_down=""
+
 one_down=""
 nine_down=""
 
@@ -26,10 +30,10 @@ function ping_test()
 
 function do_ping()
 {
-    ping_test 192.168.1.1
-    ping_test 192.168.1.25
+    ping_test 192.168.1.1 router_down
+    ping_test 192.168.1.25 dns_down
     #ping_test "d1.dns.local"
-    ping_test 192.168.100.1
+    ping_test 192.168.100.1 modem_down
 
     echo;
 
