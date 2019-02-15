@@ -6,6 +6,16 @@ modem_down=""
 
 one_down=""
 nine_down=""
+interval=10
+
+if [ -n "$1" ]; then
+	interval="$1"
+fi
+
+# put in file, but also show on screen
+echo "Using sleep interval of $interval" | tee "$tmp"
+# sleep for a bit so user can read the above before the watch starts
+sleep 0.5
 
 trap cleanup SIGINT SIGTERM
 
@@ -58,5 +68,5 @@ while true; do
 
     do_ping >> "$tmp"
 
-    sleep 10
+    sleep "$interval"
 done
