@@ -54,6 +54,11 @@ zplug "plugins/docker", from:oh-my-zsh, if:"(( $+commands[docker] ))", defer:3
 zplug "plugins/git", from:oh-my-zsh, if:"(( $+commands[git] ))", defer:3
 ## git flow
 zplug "petervanderdoes/git-flow-completion", if:"git flow version &>/dev/null", defer:3
+## fuzzy search
+### executable
+#zplug "junegunn/fzf-bin", from:gh-r, as:command, rename-to:fzf, use:"fzf*linux_amd64*"
+### zsh support
+#zplug "junegunn/fzf", use:"shell/*.zsh", defer:2 #, if:"(( $+commands[fzf] ))", defer:3
 
 # install plugins if there are any to install
 if ! zplug check; then
