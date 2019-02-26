@@ -27,8 +27,8 @@ function paclistsize()
 
 paclist() {
 	# Source: https://bbs.archlinux.org/viewtopic.php?id=93683
-    LC_ALL=C pacman -Qei $(pacman -Qu | cut -d " " -f 1) | \
-    awk 'BEGIN {FS=":"} /^Name/{printf("\033[1;36m%s\033[1;37m", $2)} /^Description/{print $2}'
+	LC_ALL=C pacman -Qei $(pacman -Qu | cut -d " " -f 1) | \
+	awk 'BEGIN {FS=":"} /^Name/{printf("\033[1;36m%s\033[1;37m", $2)} /^Description/{print $2}'
 }
 
 ## pacaur is unmaintaned, but yay is more or less a drop in replacement, so just alias pacaur to yay
@@ -37,39 +37,39 @@ paclist() {
 
 ## pacaur aliases, since pacaur is umaintaned, these should get removed at some point, but they're more ingrained in memory
 if type pacaur &>/dev/null; then
-    alias paupg='pacaur -Syu'
-    alias pasu='pacaur -Syu --noconfirm'
-    alias pain='pacaur -S'
-    alias pains='pacaur -U'
-    alias pare='pacaur -R'
-    alias parem='pacaur -Rns'
-    alias parep='pacaur -Si'
-    alias pareps='pacaur -Ss'
-    alias paloc='pacaur -Qi'
-    alias palocs='pacaur -Qs'
-    alias palst='pacaur -Qe'
-    alias paorph='pacaur -Qtd'
-    alias painsd='pacaur -S --asdeps'
-    alias pamir='pacaur -Syy'
+	alias paupg='pacaur -Syu'
+	alias pasu='pacaur -Syu --noconfirm'
+	alias pain='pacaur -S'
+	alias pains='pacaur -U'
+	alias pare='pacaur -R'
+	alias parem='pacaur -Rns'
+	alias parep='pacaur -Si'
+	alias pareps='pacaur -Ss'
+	alias paloc='pacaur -Qi'
+	alias palocs='pacaur -Qs'
+	alias palst='pacaur -Qe'
+	alias paorph='pacaur -Qtd'
+	alias painsd='pacaur -S --asdeps'
+	alias pamir='pacaur -Syy'
 fi
 
 ## yay aliases
 if type yay &>/dev/null; then
-    # set up yay to only use the aur and to always show diffs
-    alias yay='yay --aur --diffmenu --answerdiff All'
+	# set up yay to only use the aur and to always show diffs
+	alias yay='yay --aur --diffmenu --answerdiff All'
 
-    alias yaupg='yay -Syu'
-    alias yasu='yay -Syu --noconfirm'
-    alias yain='yay -S'
-    alias yains='yay -U'
-    alias yare='yay -R'
-    alias yarem='yay -Rns'
-    alias yarep='yay -Si'
-    alias yareps='yay -Ss'
-    alias yaloc='yay -Qi'
-    alias yalocs='yay -Qs'
-    alias yalst='yay -Qe'
-    alias yaorph='yay -Qtd'
-    alias yainsd='yay -S --asdeps'
-    alias yamir='yay -Syy'
+	alias yaupg='yay -Syu'
+	alias yasu='yay -Syu --noconfirm'
+	alias yain='yay -S'
+	alias yains='yay -U'
+	alias yare='yay -R'
+	alias yarem='yay -Rns'
+	alias yarep='yay -Si'
+	alias yareps='yay -Ss'
+	alias yaloc='yay -Qi'
+	alias yalocs='yay -Qs'
+	alias yalst='yay -Qe'
+	alias yaorph='yay -Qtd'
+	alias yainsd='yay -S --asdeps'
+	alias yamir='yay -Syy'
 fi

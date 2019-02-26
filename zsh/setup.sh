@@ -22,11 +22,11 @@ echo "source ~/.zsh-config/zprofile.zshrc" > ~/.zprofile
 
 # if no pacman remind to install powerline fonts for theme
 if type pacman &>/dev/null; then
-    # otherwise see if pacman has them installed
-    if ! pacman -Q powerline-fonts &> /dev/null; then
-        echo "Need powerline fonts for theme!"
-        sudo pacman -S powerline-fonts
-    fi
+	# otherwise see if pacman has them installed
+	if ! pacman -Q powerline-fonts &> /dev/null; then
+		echo "Need powerline fonts for theme!"
+		sudo pacman -S powerline-fonts
+	fi
 else
-    echo "Remember to install powerline fonts for theme!"
+	echo "Remember to install powerline fonts for theme!"
 fi

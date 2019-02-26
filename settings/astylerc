@@ -1,9 +1,11 @@
---indent=spaces=4
 --style=allman
---indent=tab
+--indent=tab=4
 --indent-namespaces
 --indent-preprocessor
 --indent-col1-comments
+--indent-modifiers
+--indent-switches
+--indent-namespaces
 --min-conditional-indent=1
 --break-blocks
 --pad-oper

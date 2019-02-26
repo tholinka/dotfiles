@@ -37,14 +37,14 @@ au FileType javascript inoremap <buffer> $r return
 au FileType javascript inoremap <buffer> $f // --- PH<esc>FP2xi
 
 function! JavaScriptFold()
-    setl foldmethod=syntax
-    setl foldlevelstart=1
-    syn region foldBraces start=/{/ end=/}/ transparent fold keepend extend
+	setl foldmethod=syntax
+	setl foldlevelstart=1
+	syn region foldBraces start=/{/ end=/}/ transparent fold keepend extend
 
-    function! FoldText()
-        return substitute(getline(v:foldstart), '{.*', '{...}', '')
-    endfunction
-    setl foldtext=FoldText()
+	function! FoldText()
+		return substitute(getline(v:foldstart), '{.*', '{...}', '')
+	endfunction
+	setl foldtext=FoldText()
 endfunction
 
 " json
@@ -65,8 +65,8 @@ augroup END
 " => CoffeeScript section
 """""""""""""""""""""""""""""""
 function! CoffeeScriptFold()
-    setl foldmethod=indent
-    setl foldlevelstart=1
+	setl foldmethod=indent
+	setl foldlevelstart=1
 endfunction
 au FileType coffee call CoffeeScriptFold()
 
@@ -77,11 +77,11 @@ au FileType gitcommit call setpos('.', [0, 1, 1, 0])
 " => Shell section
 """"""""""""""""""""""""""""""
 if exists('$TMUX')
-    if has('nvim')
-        set termguicolors
-    else
-        set term=screen-256color
-    endif
+	if has('nvim')
+		set termguicolors
+	else
+		set term=screen-256color
+	endif
 endif
 
 " zsh, zshrc

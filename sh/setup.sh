@@ -4,8 +4,8 @@ FOLDERLOC=$(dirname "$SCRIPTLOC")
 # create symblink to config-files and ~/.sh-config
 ## remove existing one so that a symlink isn't created at ~/.sh-config/.sh-config
 if [ -e ~/.sh-config ]; then
-   echo "Removing ~/.sh-config symlink"
-   rm ~/.sh-config # should be a symlink
+	echo "Removing ~/.sh-config symlink"
+	rm ~/.sh-config # should be a symlink
 fi
 
 echo "Creating ~/.sh-config symlink"

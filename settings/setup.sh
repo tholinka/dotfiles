@@ -7,66 +7,66 @@ rm ~/.vscode
 
 ### .config section ###
 if [ ! -d ~/.config ]; then
-    mkdir ~/.config
+	mkdir ~/.config
 fi
 
 if [ ! -d ~/.config/Code ]; then
-    mkdir ~/.config/Code
+	mkdir ~/.config/Code
 fi
 if [ ! -d ~/.config/Code/User ]; then
-    mkdir ~/.config/Code/User
+	mkdir ~/.config/Code/User
 fi
 
 if [ ! -d ~/.config/QtProject ]; then
-    mkdir ~/.config/QtProject
+	mkdir ~/.config/QtProject
 fi
 if [ ! -d ~/.config/QtProject/qtcreator ]; then
-    mkdir ~/.config/QtProject/qtcreator
+	mkdir ~/.config/QtProject/qtcreator
 fi
 if [ ! -d ~/.config/QtProject/qtcreator/styles ]; then
-    mkdir ~/.config/QtProject/qtcreator/styles
+	mkdir ~/.config/QtProject/qtcreator/styles
 fi
 
 if [ ! -d ~/.config/zathura ]; then
-    mkdir ~/.config/zathura
+	mkdir ~/.config/zathura
 fi
 if [ ! -d ~/.config/nvim ]; then
-    mkdir ~/.config/nvim
+	mkdir ~/.config/nvim
 fi
 if [ ! -d ~/.config/nvim/colors ]; then
-    mkdir ~/.config/nvim/colors
+	mkdir ~/.config/nvim/colors
 fi
 
 ### end .config section ###
 
 ### .local section ###
 if [ ! -d ~/.local ]; then
-    mkdir ~/.local
+	mkdir ~/.local
 fi
 
 if [ ! -d ~/.local/share ]; then
-    mkdir ~/.local/share
+	mkdir ~/.local/share
 fi
 
 if [ ! -d ~/.local/share/konsole ]; then
-    mkdir ~/.local/share/konsole
+	mkdir ~/.local/share/konsole
 fi
 
 # see if ~/.steam exists
 if [ ! -d ~/.steam ]; then
-    NO_STEAM=true
+	NO_STEAM=true
 fi
 ### end .local section ###
 
 ### see if gnupg exists
 if [ ! -d ~/.gnupg ]; then
-    mkdir ~/.gnupg
+	mkdir ~/.gnupg
 fi
 ### end gnupg
 
 ### remove ~/.vim if it exists ###
 if [ -d ~/.vim ]; then
-    rm ~/.vim
+	rm ~/.vim
 fi
 
 ## symlinks
@@ -91,7 +91,7 @@ ln -sf "$FOLDERLOC/local/share/konsole/Shell.profile" ~/.local/share/konsole/She
 
 ## have to copy, steam can't do symlinks for skins
 if [ ! -z ${NO_STEAM+x} ]; then
-    cp -r "$FOLDERLOC/local/share/Steam/skins/Metro 4.2.4" ~/.steam/steam/skins/
+	cp -r "$FOLDERLOC/local/share/Steam/skins/Metro 4.2.4" ~/.steam/steam/skins/
 fi
 ### end of .local ###
 
@@ -117,7 +117,7 @@ cp $FOLDERLOC/gitattributes ~/.gitattributes
 cp $FOLDERLOC/gitignore ~/.gitignore
 
 echo "[include]
-    path = ~/.gitgeneralconfig" >> ~/.gitconfig
+	path = ~/.gitgeneralconfig" >> ~/.gitconfig
 echo "Included link to .gitgeneralconfig in ~/.gitconfig, make sure there aren't to many links of that in there"
 
 echo;

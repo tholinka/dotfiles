@@ -15,21 +15,21 @@ fi
 
 if [ "$USE_NVIM" = "true" ]; then
 	alias vi="nvim"
-    alias vim="nvim"
+	alias vim="nvim"
 
-    # also switch various other utilities
-    alias edit="nvim"
-    alias vedit="nvim"
-    alias ex="nvim -E"
-    alias view="nvim -R"
+	# also switch various other utilities
+	alias edit="nvim"
+	alias vedit="nvim"
+	alias ex="nvim -E"
+	alias view="nvim -R"
 	# switch $EDITOR
 	EDITOR="nvim"
 # switch vi and other utilities to vim if neovim doesn't exist
 elif [ "$USE_NVIM" = "false" ] && type vim &> /dev/null ; then
-    alias vi="vim"
-    alias edit="vim"
-    alias vedit="vim"
-    alias ex="vim -E"
+	alias vi="vim"
+	alias edit="vim"
+	alias vedit="vim"
+	alias ex="vim -E"
 	# switch $EDITOR to vim
 	EDITOR="vim"
 elif type vi &> /dev/null; then
@@ -46,9 +46,9 @@ GIT_EDITOR="$EDITOR"
 
 # switch ls to exa if it exists, set it as a variable so that I can alias it with colors later
 if type exa &> /dev/null ; then
-    ls="exa"
+	ls="exa"
 else
-    ls="ls"
+	ls="ls"
 fi
 
 alias ls="$ls"
@@ -83,16 +83,16 @@ alias fdisk="sudo fdisk $COLOR_OPT"
 # ubuntu (subsystem for windows)'s diff will return false saying unrecognized option, but arch just returns the version
 # similiar to ls, set diff as a variable as it will be alias'ed later
 if ! diff "$COLOR_OPT" -v &>/dev/null; then
-    # doesn't support COLOR_OPT, see if colordiff is installed
-    if type colordiff &>/dev/null; then
-        diff="colordiff"
-    else
-        # no colordiff, fall back to uncolored diff
-        diff="diff"
-    fi
+	# doesn't support COLOR_OPT, see if colordiff is installed
+	if type colordiff &>/dev/null; then
+		diff="colordiff"
+	else
+		# no colordiff, fall back to uncolored diff
+		diff="diff"
+	fi
 else
-    # supports color opt, use it
-    diff="diff $COLOR_OPT"
+	# supports color opt, use it
+	diff="diff $COLOR_OPT"
 fi
 
 alias top="top -c"
@@ -146,30 +146,30 @@ alias journalctl-follow="journalctl -feu"
 
 # random fortune, outputed using cowsay and rainbow if present
 if type fortune &>/dev/null; then
-    FORTCOMMAND="fortune"
+	FORTCOMMAND="fortune"
 
-    # is cowsay installed?
-    if type cowsay &>/dev/null; then
-        # what directory are cows in?
-        COWSAYCOWS="/usr/share/cowsay/cows"
-        if [[ ! -d $COWSAYCOWS ]]; then
-            # arch has it setup this way
-            COWSAYCOWS="/usr/share/cows"
-        fi
+	# is cowsay installed?
+	if type cowsay &>/dev/null; then
+		# what directory are cows in?
+		COWSAYCOWS="/usr/share/cowsay/cows"
+		if [[ ! -d $COWSAYCOWS ]]; then
+			# arch has it setup this way
+			COWSAYCOWS="/usr/share/cows"
+		fi
 
-        # did we find the cows directory?
-        if [[ -d $COWSAYCOWS ]]; then
-            # \$ls so that it doesn't resolve at source time, but at run time
-            FORTCOMMAND="$FORTCOMMAND | cowsay -f \$(ls $COWSAYCOWS | shuf -n1)"
-        else
-            FORTCOMMAND="$FORTCOMMAND | cowsay"
-        fi
-    fi
+		# did we find the cows directory?
+		if [[ -d $COWSAYCOWS ]]; then
+			# \$ls so that it doesn't resolve at source time, but at run time
+			FORTCOMMAND="$FORTCOMMAND | cowsay -f \$(ls $COWSAYCOWS | shuf -n1)"
+		else
+			FORTCOMMAND="$FORTCOMMAND | cowsay"
+		fi
+	fi
 
-    # is lolcat installed?
-    if type lolcat &>/dev/null; then
-        FORTCOMMAND="$FORTCOMMAND | lolcat"
-    fi
+	# is lolcat installed?
+	if type lolcat &>/dev/null; then
+		FORTCOMMAND="$FORTCOMMAND | lolcat"
+	fi
 
-    alias fortune="$FORTCOMMAND"
+	alias fortune="$FORTCOMMAND"
 fi

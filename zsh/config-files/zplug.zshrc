@@ -2,7 +2,7 @@
 
 # don't nice background processes on windows subsystem for linux, as it doesn't work
 if [ "$(uname -r | sed 's/^.*-//')" = "Microsoft" ]; then
-    unsetopt BG_NICE
+	unsetopt BG_NICE
 fi
 
 # set up some zplug environmental variables
@@ -57,7 +57,7 @@ zplug "petervanderdoes/git-flow-completion", if:"git flow version &>/dev/null", 
 
 # install plugins if there are any to install
 if ! zplug check; then
-  zplug install
+	zplug install
 fi
 
 # do this in a function, as zplug status takes a while (~a few seconds at least)
@@ -122,9 +122,9 @@ zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#) ([0-9a-z-
 
 ## add ps completion
 if [[ "$OSTYPE" = solaris* ]]; then
-  zstyle ':completion:*:*:*:*:processes' command "ps -u $USER -o pid,user,comm"
+	zstyle ':completion:*:*:*:*:processes' command "ps -u $USER -o pid,user,comm"
 else
-  zstyle ':completion:*:*:*:*:processes' command "ps -u $USER -o pid,user,comm -w -w"
+	zstyle ':completion:*:*:*:*:processes' command "ps -u $USER -o pid,user,comm -w -w"
 fi
 
 ## disable named-directories autocompletion
@@ -136,27 +136,27 @@ zstyle ':completion::complete:*' cache-path $ZSH_CACHE_DIR
 
 ## Don't complete uninteresting users
 zstyle ':completion:*:*:*:users' ignored-patterns \
-        adm amanda apache at avahi avahi-autoipd beaglidx bin cacti canna \
-        clamav daemon dbus distcache dnsmasq dovecot fax ftp games gdm \
-        gkrellmd gopher hacluster haldaemon halt hsqldb ident junkbust kdm \
-        ldap lp mail mailman mailnull man messagebus  mldonkey mysql nagios \
-        named netdump news nfsnobody nobody nscd ntp nut nx obsrun openvpn \
-        operator pcap polkitd postfix postgres privoxy pulse pvm quagga radvd \
-        rpc rpcuser rpm rtkit scard shutdown squid sshd statd svn sync tftp \
-        usbmux uucp vcsa wwwrun xfs '_*'
+	adm amanda apache at avahi avahi-autoipd beaglidx bin cacti canna \
+	clamav daemon dbus distcache dnsmasq dovecot fax ftp games gdm \
+	gkrellmd gopher hacluster haldaemon halt hsqldb ident junkbust kdm \
+	ldap lp mail mailman mailnull man messagebus  mldonkey mysql nagios \
+	named netdump news nfsnobody nobody nscd ntp nut nx obsrun openvpn \
+	operator pcap polkitd postfix postgres privoxy pulse pvm quagga radvd \
+	rpc rpcuser rpm rtkit scard shutdown squid sshd statd svn sync tftp \
+	usbmux uucp vcsa wwwrun xfs '_*'
 
 ## ... unless we really want to.
 zstyle '*' single-ignored show
 
 ## have waiting dots for completion
 expand-or-complete-with-dots() {
-  # toggle line-wrapping off and back on again
-  [[ -n "$terminfo[rmam]" && -n "$terminfo[smam]" ]] && echoti rmam
-  print -Pn "%{%F{red}......%f%}"
-  [[ -n "$terminfo[rmam]" && -n "$terminfo[smam]" ]] && echoti smam
+	# toggle line-wrapping off and back on again
+	[[ -n "$terminfo[rmam]" && -n "$terminfo[smam]" ]] && echoti rmam
+	print -Pn "%{%F{red}......%f%}"
+	[[ -n "$terminfo[rmam]" && -n "$terminfo[smam]" ]] && echoti smam
 
-  zle expand-or-complete
-  zle redisplay
+	zle expand-or-complete
+	zle redisplay
 }
 
 zle -N expand-or-complete-with-dots

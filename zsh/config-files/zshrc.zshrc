@@ -36,14 +36,14 @@ export ANDROID_JACK_VM_ARGS="-Dfile.encoding=UTF-8 -XX:+TieredCompilation -Xmx4G
 
 # see if nvm is installed
 if [[ -r $NVM_LOCATION/nvm.sh ]]; then
-    # if it is, define a function to load it when needed, only do it when needed because it takes forever
-    if ! type nvm &> /dev/null ; then
-	    function nvm() {
-            source  "$NVM_LOCATION/nvm.sh"
-            [[ -v NVM_USE_VERSION ]] && nvm use "v$NVM_USE_VERSION" 1> /dev/null
-		    nvm "$@"
-	    }
-    fi
+	# if it is, define a function to load it when needed, only do it when needed because it takes forever
+	if ! type nvm &> /dev/null ; then
+		function nvm() {
+			source  "$NVM_LOCATION/nvm.sh"
+			[[ -v NVM_USE_VERSION ]] && nvm use "v$NVM_USE_VERSION" 1> /dev/null
+			nvm "$@"
+		}
+	fi
 fi
 
 # set up gpg
@@ -51,7 +51,7 @@ export GPG_TTY=$(tty)
 
 # set up devkitpro location if not already set
 if [ -z ${DEVKITPRO+x} ]; then
-    export DEVKITPRO="/opt/devkitpro"
+	export DEVKITPRO="/opt/devkitpro"
 fi
 
 # set up devkitARCH variables

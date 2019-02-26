@@ -4,46 +4,46 @@
 	signingkey = link07@users.noreply.github.com
 # partially based off of https://github.com/mathiasbynens/dotfiles/blob/master/.gitconfig
 [aliases]
-    aliases = config --get-regexp alias
+	aliases = config --get-regexp alias
 [pull]
 	rebase = true
 [push]
-    default = simple
+	default = simple
 
-    # Make `git push` push relevant annotated tags when pushing branches out.
+	# Make `git push` push relevant annotated tags when pushing branches out.
 	followTags = true
 [rerere]
-    enabled = true
+	enabled = true
 [core]
-    # use comstom .gitignore and .gitattributes
-    excludesfile = ~/.gitignore
-    attributesfile = ~/.gitattributes
+	# use comstom .gitignore and .gitattributes
+	excludesfile = ~/.gitignore
+	attributesfile = ~/.gitattributes
 
 	# [on by default] blank-at-eol: looks for spaces at end of line
-    # [on by default] blank-at-eof: looks for blank line at end of file
-    # [on by default] spaces-before-tab: looks for spaces before tabs at beginning of line
-    # [off by default] indent-with-non-tab: looks for lines that begin with spaces instead of tabs (controlled by tabwidth option)
-    # [off by default] tab-in-indent: watches for tabs in the indentation portion of a line
-    # [off by default] cr-at-eol: tells git carriage returns at eol are ok
-    # a - before means "disable"
-    whitespace = blank-at-eol,blank-at-eof,tab-in-indent,-cr-at-eol,-spaces-before-tab,-indent-with-non-tab
+	# [on by default] blank-at-eof: looks for blank line at end of file
+	# [on by default] spaces-before-tab: looks for spaces before tabs at beginning of line
+	# [off by default] indent-with-non-tab: looks for lines that begin with spaces instead of tabs (controlled by tabwidth option)
+	# [off by default] tab-in-indent: watches for tabs in the indentation portion of a line
+	# [off by default] cr-at-eol: tells git carriage returns at eol are ok
+	# a - before means "disable"
+	whitespace = blank-at-eol,blank-at-eof,tab-in-indent,-cr-at-eol,-spaces-before-tab,-indent-with-non-tab
 
-    # set git-diff tabsize
-    page = 'less -x4'
+	# set git-diff tabsize
+	page = 'less -x4'
 
 	# Speed up commands involving untracked files such as `git status`.
 	# https://git-scm.com/docs/git-update-index#_untracked_cache
 	untrackedCache = true
 
-    autocrlf = input
+	autocrlf = input
 [apply]
-    whitespace = fix
+	whitespace = fix
 [rebase]
-    autoStash = true
+	autoStash = true
 [color]
 	# Use colors in Git commands that are capable of colored output when
 	# outputting to the terminal. (This is the default setting in Git ≥ 1.8.4.)
-    ui = auto
+	ui = auto
 [color "branch"]
 	current = yellow reverse
 	local = yellow
@@ -79,7 +79,7 @@
 	insteadOf = "gh:"
 	pushInsteadOf = "github:"
 	pushInsteadOf = "gh:"
-    pushInsteadOf = "git://github.com/"
+	pushInsteadOf = "git://github.com/"
 [url "git://github.com/"]
 	insteadOf = "github:"
 [url "git@gist.github.com:"]
@@ -89,17 +89,17 @@
 [url "git://gist.github.com/"]
 	insteadOf = "gist:"
 [url "https://aur.archlinux.org/"]
-    insteadOf = "aur:"
+	insteadOf = "aur:"
 [url "ssh+git://aur4.archlinux.org/"]
-    pushInsteadOf = "aur:"
+	pushInsteadOf = "aur:"
 # git flow settings
 [gitflow "branch"]
-    master = master
-    develop = develop
+	master = master
+	develop = develop
 [gitflow "prefix"]
-    feature = feature/
-    bugfix = bugfix/
-    release = release/
-    hotfix = hotfix/
-    support = support/
-    versiontag = v
+	feature = feature/
+	bugfix = bugfix/
+	release = release/
+	hotfix = hotfix/
+	support = support/
+	versiontag = v

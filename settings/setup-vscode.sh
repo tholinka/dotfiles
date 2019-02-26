@@ -2,8 +2,8 @@
 echo "Note: probably a good idea to run setup.sh first"
 
 if ! hash code; then
-    echo "VSCode not installed, exiting"
-    exit 1
+	echo "VSCode not installed, exiting"
+	exit 1
 fi
 
 shopt -s expand_aliases
