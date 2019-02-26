@@ -82,6 +82,11 @@ function _zplug_update() {
 # then load
 zplug load
 
+# zplug logs if $ZPLUG_LOADFILE isn't present, which it isn't for my use case of zplug
+# this causes zplug's logging subsystem to take up a good chunk of startup time, so create that file if it doesn't exit
+# this won't help the current shell, but it will fix it for the future
+[[ ! -f "$ZPLUG_LOADFILE" ]] && touch $ZPLUG_LOADFILE
+
 # set autosuggestions color
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=5"
 
