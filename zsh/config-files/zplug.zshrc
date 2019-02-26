@@ -44,12 +44,10 @@ zplug "zdharma/fast-syntax-highlighting", defer:2
 ## 256color
 #ZSH_256COLOR_DEBUG=true
 zplug "chrissicool/zsh-256color", defer:3
-## adds clipboard helper functions so you can pipe into/out of clipboard
-# requires xclip
-zplug "zpm-zsh/clipboard", defer:2
 
 # Only load these if the relevent program is installed
-
+## adds clipboard helper functions to pipe into/out of clipboard
+zplug "zpm-zsh/clipboard", if:"(( $+commands[xclip] ))", defer:3
 ## docker autocmplete
 zplug "plugins/docker", from:oh-my-zsh, if:"(( $+commands[docker] ))", defer:3
 ## git
@@ -62,15 +60,27 @@ if ! zplug check; then
   zplug install
 fi
 
-# need to figure out a way to run these automatically if needed
-# zplug update
-# zplug clean
+# do this in a function, as zplug status takes a while (~a few seconds at least)
+function _zplug_update() {
+	# check if there are any plugins to update
+	if zplug status | grep "Run 'zplug update'." >/dev/null; then
+		zplug update
+
+		# only running clean on update, just so we don't clean every load
+		zplug clean
+	fi
+}
+
+# run the above update in the background
+# do this in an anonomous function so it doesn't notify that we're running in the background
+() {
+	setopt local_options no_notify no_monitor
+
+	_zplug_update & disown
+}
 
 # then load
 zplug load
-
-# then update in background
-zplug update &>/dev/null & disown
 
 # set autosuggestions color
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=5"
@@ -174,6 +184,7 @@ setopt always_to_end
 unsetopt menu_complete   # do not autoselect the first completion entry
 unsetopt flowcontrol
 
+# set up keyboard layout, dynamically with zkbd
 autoload zkbd
 ZKBD_FILE="${ZDOTDIR:-$HOME}/.zkbd/$TERM-${${DISPLAY:t}:-$VENDOR-$OSTYPE}"
 [[ ! -f "$ZKBD_FILE" ]] && zkbd
@@ -184,10 +195,10 @@ unset ZKBD_FILE
 ## Set home/end to go through history
 [[ -n ${key[Home]} ]] && bindkey "${key[Home]}" beginning-of-history
 [[ -n ${key[End]} ]] && bindkey "${key[End]}" end-of-history
-## CTRL+ARROW to move by words
+## CTRL+ARROW to move by words, not handled by zkbd
 bindkey "^[[1;5C" forward-word
 bindkey "^[[1;5D" backward-word
-## CTRL+BACKSPACE deletes whole word
+## CTRL+BACKSPACE deletes whole word, not handled by zkbd
 bindkey "^H" backward-delete-word
 ## Bind UP/DOWN to search through history
 [[ -n ${key[Up]} ]] && bindkey "${key[Up]}" up-line-or-search
