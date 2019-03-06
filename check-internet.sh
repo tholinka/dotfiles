@@ -1,4 +1,5 @@
 #!/bin/bash
+
 tmp="$(tempfile)"
 router_down=""
 dns_down=""
@@ -9,7 +10,18 @@ nine_down=""
 interval=10
 
 if [ -n "$1" ]; then
-	interval="$1"
+	case $1 in
+		*h*)
+			echo "Usage: $0 seconds"
+			echo "Where seconds optionally sets how long to sleep between pings, defaults to 10"
+			exit 0
+			shift
+		;;
+		*)
+			interval="$1"
+			shift
+		;;
+	esac
 fi
 
 # put in file, but also show on screen
