@@ -1,7 +1,7 @@
 # assume we're not using nvim
 USE_NVIM="false"
 # see if nvim is installed, if it is, make sure it's new enough, or fallback to it if vim is to old
-if type nvim &> /dev/null ; then
+if (( $+comamnds[nvim] )); then
 	version="$( nvim --version | head -n1 | sed 's/NVIM v//' )"
 	# 0.3.0 <= $version && use nvim || use vim
 	verlte 0.3.0 "$version" && USE_NVIM="true" || USE_NVIM="false"
@@ -25,14 +25,14 @@ if [ "$USE_NVIM" = "true" ]; then
 	# switch $EDITOR
 	EDITOR="nvim"
 # switch vi and other utilities to vim if neovim doesn't exist
-elif [ "$USE_NVIM" = "false" ] && type vim &> /dev/null ; then
+elif [ "$USE_NVIM" = "false" ] && (( $+commands[vim] )); then
 	alias vi="vim"
 	alias edit="vim"
 	alias vedit="vim"
 	alias ex="vim -E"
 	# switch $EDITOR to vim
 	EDITOR="vim"
-elif type vi &> /dev/null; then
+elif (( $+commands[vi] )); then
 	# make sure editor gets setup
 	EDITOR="vi"
 fi
@@ -45,7 +45,7 @@ VISUAL="$EDITOR"
 GIT_EDITOR="$EDITOR"
 
 # switch ls to exa if it exists, set it as a variable so that I can alias it with colors later
-if type exa &> /dev/null ; then
+if (( $+commands[exa] )); then
 	ls="exa"
 else
 	ls="ls"
@@ -84,7 +84,7 @@ alias fdisk="sudo fdisk $COLOR_OPT"
 # similiar to ls, set diff as a variable as it will be alias'ed later
 if ! diff "$COLOR_OPT" -v &>/dev/null; then
 	# doesn't support COLOR_OPT, see if colordiff is installed
-	if type colordiff &>/dev/null; then
+    if (( $+commands[colordiff] )); then
 		diff="colordiff"
 	else
 		# no colordiff, fall back to uncolored diff
@@ -118,12 +118,12 @@ alias l='ls -F'
 alias fdiskl="fdisk -l"
 
 # make iotop easier to use
-if type iotop &>/dev/null; then
+if (( $+commands[iotop] )); then
 	alias iotop="sudo iotop -Pao"
 fi
 
 # add default glances stuff
-if type glances &>/dev/null; then
+if (( $+commands[glances] )); then
 	alias glances="glances -t 5 --disable-check-update"
 fi
 
@@ -145,11 +145,11 @@ alias perm="stat -c \"%a %n\""
 alias journalctl-follow="journalctl -feu"
 
 # random fortune, outputed using cowsay and rainbow if present
-if type fortune &>/dev/null; then
+if (( $+commands[fortune] )); then
 	FORTCOMMAND="fortune"
 
 	# is cowsay installed?
-	if type cowsay &>/dev/null; then
+    if (( $+commands[cowsay] )); then
 		# what directory are cows in?
 		COWSAYCOWS="/usr/share/cowsay/cows"
 		if [[ ! -d $COWSAYCOWS ]]; then
@@ -167,7 +167,7 @@ if type fortune &>/dev/null; then
 	fi
 
 	# is lolcat installed?
-	if type lolcat &>/dev/null; then
+    if (( $+commands[lolcat] )); then
 		FORTCOMMAND="$FORTCOMMAND | lolcat"
 	fi
 

@@ -33,10 +33,10 @@ paclist() {
 
 ## pacaur is unmaintaned, but yay is more or less a drop in replacement, so just alias pacaur to yay
 # if pacaur is not installed, but yay is installed
-! type pacaur &>/dev/null && type yay &>/dev/null && alias pacaur="yay"
+! (( $+commands[pacaur] )) && (( $+commands[yay] )) && alias pacaur="yay"
 
 ## pacaur aliases, since pacaur is umaintaned, these should get removed at some point, but they're more ingrained in memory
-if type pacaur &>/dev/null; then
+if (( $+commands[pacaur] )); then
 	alias paupg='pacaur -Syu'
 	alias pasu='pacaur -Syu --noconfirm'
 	alias pain='pacaur -S'
@@ -54,7 +54,7 @@ if type pacaur &>/dev/null; then
 fi
 
 ## yay aliases
-if type yay &>/dev/null; then
+if (( $+commands[yay] )); then
 	# set up yay to only use the aur and to always show diffs
 	alias yay='yay --aur --diffmenu --answerdiff All'
 

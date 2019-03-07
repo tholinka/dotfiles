@@ -37,7 +37,7 @@ export ANDROID_JACK_VM_ARGS="-Dfile.encoding=UTF-8 -XX:+TieredCompilation -Xmx4G
 # see if nvm is installed
 if [[ -r $NVM_LOCATION/nvm.sh ]]; then
 	# if it is, define a function to load it when needed, only do it when needed because it takes forever
-	if ! type nvm &> /dev/null ; then
+    if ! (( $+commands[nvm] )) &> /dev/null ; then
 		function nvm() {
 			source  "$NVM_LOCATION/nvm.sh"
 			[[ -v NVM_USE_VERSION ]] && nvm use "v$NVM_USE_VERSION" 1> /dev/null
@@ -65,11 +65,11 @@ export DEVKITA64="$DEVKITPRO/devkitA64"
 
 [[ -r $ZSH_CONFIG/aliases.zshrc  ]] && source $ZSH_CONFIG/aliases.zshrc
 
-[[ -r $ZSH_CONFIG/arch-settings.zshrc ]] && type pacman &>/dev/null && source $ZSH_CONFIG/arch-settings.zshrc
+[[ -r $ZSH_CONFIG/arch-settings.zshrc ]] && (( $+commands[pacman] )) &>/dev/null && source $ZSH_CONFIG/arch-settings.zshrc
 
-[[ -r $ZSH_CONFIG/debian-settings.zshrc ]] && type apt-get &>/dev/null && source $ZSH_CONFIG/debian-settings.zshrc
+[[ -r $ZSH_CONFIG/debian-settings.zshrc ]] && (( $+commands[apt-get] )) &>/dev/null && source $ZSH_CONFIG/debian-settings.zshrc
 
-[[ -r $ZSH_CONFIG/wine.zshrc ]] && type wine &>/dev/null && source $ZSH_CONFIG/wine.zshrc
+[[ -r $ZSH_CONFIG/wine.zshrc ]] && (( $+commands[wine] )) &>/dev/null && source $ZSH_CONFIG/wine.zshrc
 
 [[ -r $ZSH_CONFIG/youtube-dl.zshrc ]] && type youtube-dl &>/dev/null && source $ZSH_CONFIG/youtube-dl.zshrc
 
