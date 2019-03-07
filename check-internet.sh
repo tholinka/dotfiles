@@ -65,6 +65,7 @@ function do_ping()
 
 function cleanup()
 {
+	echo "Removing tmp file: $tmp"
 	rm "$tmp"
 	exit 0
 }
