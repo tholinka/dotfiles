@@ -8,9 +8,9 @@ else
 	tmp="/tmp/check-internet"
 
 	echo "No way to create temp file, as both tempfile and mktemp commands don't exist, so falling back $tmp" | tee $tmp
-
-	sleep 0.5
 fi
+
+date_format="+%_I:%M:%S %p %_m /%_d"
 
 router_down=""
 dns_down=""
@@ -37,8 +37,6 @@ fi
 
 # put in file, but also show on screen
 echo "Using sleep interval of $interval" | tee "$tmp"
-# sleep for a bit so user can read the above before the watch starts
-sleep 0.5
 
 trap cleanup SIGINT SIGTERM
 
@@ -53,7 +51,7 @@ function ping_test()
 	else
 		if ! [ -z "$2" ]; then
 			if [ "${!2}" == "" ]; then
-				eval "$2='Down since $(date "+%_I:%M:%S %p %_m/%_d")'"
+				eval "$2='Down since $(date "$date_format")'"
 			fi
 		fi
 
@@ -86,8 +84,11 @@ function cleanup()
 # which makes having it in the corner of a monitor much less annoying
 watch cat "$tmp" &
 
+# sleep to allow above notifications to be read
+sleep 0.5
+
 while true; do
-	echo "Time: $(date "+%_I:%M:%S %p %_m/%_d")" > "$tmp"
+	echo "Time: $(date "$date_format")" > "$tmp"
 	echo >> "$tmp"
 
 	do_ping >> "$tmp"
