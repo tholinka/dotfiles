@@ -36,7 +36,7 @@ paclist() {
 ! (( $+commands[pacaur] )) && (( $+commands[yay] )) && alias pacaur="yay"
 
 ## pacaur aliases, since pacaur is umaintaned, these should get removed at some point, but they're more ingrained in memory
-if (( $+commands[pacaur] )); then
+if (( $+commands[pacaur] )) || (( $+aliases[pacaur] )); then
 	alias paupg='pacaur -Syu'
 	alias pasu='pacaur -Syu --noconfirm'
 	alias pain='pacaur -S'
@@ -54,7 +54,7 @@ if (( $+commands[pacaur] )); then
 fi
 
 ## yay aliases
-if (( $+commands[yay] )); then
+if (( $+commands[yay] )) || (( $+alaises[yay] )); then
 	# set up yay to only use the aur and to always show diffs
 	alias yay='yay --aur --diffmenu --answerdiff All'
 
