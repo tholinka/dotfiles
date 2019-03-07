@@ -1,6 +1,17 @@
 #!/bin/bash
 
-tmp="$(tempfile)"
+if type tempfile &>/dev/null; then
+	tmp="$(tempfile)"
+elif type mktemp &>/dev/null; then
+	tmp="$(mktemp)"
+else
+	tmp="/tmp/check-internet"
+
+	echo "No way to create temp file, as both tempfile and mktemp commands don't exist, so falling back $tmp" | tee $tmp
+
+	sleep 0.5
+fi
+
 router_down=""
 dns_down=""
 modem_down=""
