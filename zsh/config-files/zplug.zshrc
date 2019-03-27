@@ -81,7 +81,8 @@ function _zplug_update() {
 () {
 	setopt local_options no_notify no_monitor
 
-	_zplug_update & disown
+	# DON'T DISOWN, it causes the zsh process to occasionally never exit; sadly this means we will be notified on exit, and the background process will show up in the prompt
+	_zplug_update & #disown
 }
 
 # then load
