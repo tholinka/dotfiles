@@ -33,3 +33,4 @@ c redhat.vscode-yaml
 c yzhang.markdown-all-in-one
 c shinnn.stylelint
 c streetsidesoftware.code-spell-checker
+c twxs.cmake
