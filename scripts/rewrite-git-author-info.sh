@@ -4,6 +4,7 @@
 # edit "old@email" to the email address you want to change, and "new@email" and "new name"
 # to the new email / name you want the commits to have
 # then force push, after checking that the commits are all still good (they should be, but double check!)
+# this is intended to be used if a commit was pushed with a private email instead of a public one (e.g. a personal email rather than a noreply or business email).  I can't stop you, but please don't use this for nefarious purposes.
 
 echo "Edit the email and author name sections before running"
 exit 1
