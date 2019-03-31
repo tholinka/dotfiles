@@ -78,12 +78,13 @@ function _zplug_update() {
 
 # run the above update in the background
 # do this in an anonomous function so it doesn't notify that we're running in the background
-() {
-	setopt local_options no_notify no_monitor
+# disabled as it sometimes never exits.  and sometimes causes zsh to never finish loading its config
+#() {
+#	setopt local_options no_notify no_monitor
 
 	# DON'T DISOWN, it causes the zsh process to occasionally never exit; sadly this means we will be notified on exit, and the background process will show up in the prompt
-	_zplug_update & #disown
-}
+#	_zplug_update & #disown
+#}
 
 # then load
 zplug load
