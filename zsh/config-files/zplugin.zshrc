@@ -9,55 +9,57 @@ autoload -Uz _zplugin
 (( ${+_comps} )) && _comps[zplugin]=_zplugin
 #end install.sh section from zplugin
 
-ZPLUGIN_WAIT=""
+_ZPLUGIN_WAIT=""
 #_ZLM, to allow global switch between load and light
 #_ZLM=load
 _ZLM=light
-alias zplugin_default_ice="zplugin ice wait\"$ZPLUGIN_WAIT\" depth\"1\" from\"github\""
-
+alias _ZPLUGIN_DEFAULT_ICE="zplugin ice lucid wait\"\$_ZPLUGIN_WAIT\" depth\"1\" from\"github\""
+# only use svn if its present
+(( $+commands[svn] )) && _ZPLUGIN_snippet_svn="svn"
+alias _ZPLUGIN_snippet_DEFAULT_ICE="zplugin ice lucid $_ZPLUGIN_snippet_svn wait\"\$_ZPLUGIN_WAIT\""
 # oh-my-zsh plugins
-zplugin ice svn wait"$ZPLUGIN_WAIT"; zplugin snippet OMZ::"plugins/colorize"
+_ZPLUGIN_snippet_DEFAULT_ICE; zplugin snippet OMZ::"plugins/colorize"
 ## oh-my-zsh theme
-#zplugin ice svn wait"$ZLUGIN_WAIT" pick"agnoster.zsh-theme"; zplugin snippet OMZ::"themes"
+#_ZPLUGIN_snippet_DEFAULT_ICE pick"agnoster.zsh-theme"; zplugin snippet OMZ::"themes"
 ## Get theme from official repository instead
-#zplugin_default_ice; zplugin $_ZLM "agnoster/agnoster-zsh-theme"
+#_ZPLUGIN_DEFAULT_ICE; zplugin $_ZLM "agnoster/agnoster-zsh-theme"
 ## Get theme from my fork
-zplugin_default_ice; zplugin $_ZLM "tholinka/agnoster-zsh-theme"
+_ZPLUGIN_DEFAULT_ICE; zplugin $_ZLM "tholinka/agnoster-zsh-theme"
 
-ZPLUGIN_WAIT="0"
+_ZPLUGIN_WAIT="0"
 # other plugins (defer as much as possible to hopefully improve load times)
 ## git prompt info
-#zplugin_default_ice
+#_ZPLUGIN_DEFAULT_ICE
 #zplugin $_ZLM "tombh/zsh-git-prompt" # my theme handles this
 ## don't run anything pasted until I manually hit enter key
-zplugin_default_ice; zplugin $_ZLM "oz/safe-paste"
+_ZPLUGIN_DEFAULT_ICE; zplugin $_ZLM "oz/safe-paste"
 ## automatically change terminal title based on location / task
-zplugin_default_ice; zplugin $_ZLM "jreese/zsh-titles"
+_ZPLUGIN_DEFAULT_ICE; zplugin $_ZLM "jreese/zsh-titles"
 ## additional zsh completions
-zplugin_default_ice; zplugin $_ZLM "zsh-users/zsh-completions"
+_ZPLUGIN_DEFAULT_ICE; zplugin $_ZLM "zsh-users/zsh-completions"
 ## substring history search (type partial history and arrow key up/down to search history)
-zplugin_default_ice; zplugin $_ZLM "zsh-users/zsh-history-substring-search"
+_ZPLUGIN_DEFAULT_ICE; zplugin $_ZLM "zsh-users/zsh-history-substring-search"
 ## command suggestions
-zplugin_default_ice; zplugin $_ZLM "zsh-users/zsh-autosuggestions"
+_ZPLUGIN_DEFAULT_ICE; zplugin $_ZLM "zsh-users/zsh-autosuggestions"
 ## syntax highlighting
-zplugin_default_ice; zplugin $_ZLM "zdharma/fast-syntax-highlighting"
+_ZPLUGIN_DEFAULT_ICE; zplugin $_ZLM "zdharma/fast-syntax-highlighting"
 ## 256color
 #ZSH_256COLOR_DEBUG=true
-zplugin_default_ice; zplugin $_ZLM "chrissicool/zsh-256color"
+_ZPLUGIN_DEFAULT_ICE; zplugin $_ZLM "chrissicool/zsh-256color"
 
-ZPLUGIN_WAIT="0"
+_ZPLUGIN_WAIT="0"
 # note: if these fail to clone, try running the ice and load manually
 # Only load these if the relevent program is installed
 ## adds clipboard helper functions to pipe into/out of clipboard
-zplugin_default_ice if"(( $+commands[xclip] ))"; zplugin $_ZLM "zpm-zsh/clipboard"
+_ZPLUGIN_DEFAULT_ICE if"(( $+commands[xclip] ))"; zplugin $_ZLM "zpm-zsh/clipboard"
 ## docker autocmplete
-zplugin_default_ice if"(( $+commands[docker] ))" pick"contrib/completion/zsh/_docker"
+_ZPLUGIN_DEFAULT_ICE if"(( $+commands[docker] ))" pick"contrib/completion/zsh/_docker"
 zplugin $_ZLM "docker/cli"
 ## git
-zplugin ice svn wait"$ZPLUGIN_WAIT" if"(( $+commands[git] ))"
+_ZPLUGIN_snippet_DEFAULT_ICE if"(( $+commands[git] ))"
 zplugin snippet OMZ::"plugins/git"
 ## git flow
-zplugin_default_ice if"git flow version &>/dev/null"
+_ZPLUGIN_DEFAULT_ICE if"git flow version &>/dev/null"
 zplugin $_ZLM "petervanderdoes/git-flow-completion"
 ## fuzzy search
 ### executable
@@ -77,10 +79,10 @@ _FZF_MACHINE=$_FZF_MACHINE:l
 
 #echo "Using arch: $_FZF_ARCH and machine $_FZF_MACHINE"
 ### actually try install
-zplugin ice wait"$ZPLUGIN_WAIT" from"gh-r" as"program" bpick"*$_FZF_MACHINE*$_FZF_ARCH*" if"! (( $+commands[fzf] ))"
+zplugin ice lucid wait"$_ZPLUGIN_WAIT" from"gh-r" as"program" bpick"*$_FZF_MACHINE*$_FZF_ARCH*" if"! (( $+commands[fzf] ))"
 zplugin $_ZLM junegunn/fzf-bin
 ### zsh support
-zplugin_default_ice pick"shell/*.zsh"
+_ZPLUGIN_DEFAULT_ICE pick"shell/*.zsh"
 zplugin $_ZLM "junegunn/fzf"
 
 # set up FZF

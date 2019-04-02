@@ -147,6 +147,8 @@ alias perm="stat -c \"%a %n\""
 # follow output of journalctl unit
 alias journalctl-follow="journalctl -feu"
 
+# use make flags by default
+alias make="make \$MAKEFLAGS"
 # random fortune, outputed using cowsay and rainbow if present
 if (( $+commands[fortune] )); then
 	FORTCOMMAND="fortune"

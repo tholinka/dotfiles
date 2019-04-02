@@ -9,7 +9,17 @@ export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quo
 export ARCHFLAGS="-arch $(uname --machine)"
 export USE_CCACHE=1
 export ANDROID_JACK_VM_ARGS="-Dfile.encoding=UTF-8 -XX:+TieredCompilation -Xmx4G"
-
+## roughly from arch's /etc/makepkg.conf, with a few changes
+export CARCH="$(uname -m)"
+### exported as _ so that they can be easily source (e.g. export CPPFLAGS="$_CPPFLAGS") without breaking builds
+export _CPPFLAGS="-D_FORTIFY_SOURCE=2"
+export _CFLAGS="-march=native =mtune=native -O2 -pipe -fno-plt"
+export _CXXFLAGS="${CFLAGS}"
+export _DFLAGS="-Wl,-O1,--sort-common,--as-needed,-z,relro,-z,now"
+export _DEBUG_CFLAGS="-g -fvar-tracking-assignments"
+export _DEBUG_CXXFLAGS="-g -fvar-tracking-assignments"
+### actually export makeflags though, as we use it in aliases
+export MAKEFLAGS="-j$(nproc --all)"
 # set up gpg
 export GPG_TTY=$(tty)
 
