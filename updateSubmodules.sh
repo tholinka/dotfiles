@@ -12,7 +12,7 @@ git pull
 
 # reset all submodules
 submodules="$SettingsLoc/vim/vim-plug"
-submodules+=" $FOLDERLOC/zsh/config-files/zplug"
+submodules+=" $FOLDERLOC/zsh/config-files/zplugin"
 submodules+=" $ColorLoc/vertex-theme"
 submodules+=" $ColorLoc/gedit-super-monokai-theme"
 submodules+=" $ColorLoc/Gogh"
