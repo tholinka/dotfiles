@@ -65,6 +65,9 @@ zplugin $_ZLM "petervanderdoes/git-flow-completion"
 _FZF_ARCH="$(uname -m)"
 if [[ $_FZF_ARCH == "x86_64" ]]; then
 	_FZF_ARCH="amd64"
+# arch rpi2
+elif [[ $_FZF_ARCH == "armv7l" ]]; then
+	_FZF_ARCH="arm7"
 fi
 _FZF_MACHINE="$(uname)"
 # set default to linux
@@ -72,6 +75,8 @@ _FZF_MACHINE=${_FZF_MACHINE:=linux}
 # to lower case
 _FZF_MACHINE=$_FZF_MACHINE:l
 
+#echo "Using arch: $_FZF_ARCH and machine $_FZF_MACHINE"
+### actually try install
 zplugin ice wait"$ZPLUGIN_WAIT" from"gh-r" as"program" bpick"*$_FZF_MACHINE*$_FZF_ARCH*" if"! (( $+commands[fzf] ))"
 zplugin $_ZLM junegunn/fzf-bin
 ### zsh support
