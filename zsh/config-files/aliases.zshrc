@@ -23,7 +23,7 @@ if [ "$USE_NVIM" = "true" ]; then
 	alias ex="nvim -E"
 	alias view="nvim -R"
 	# switch $EDITOR
-	EDITOR="nvim"
+	export EDITOR="nvim"
 # switch vi and other utilities to vim if neovim doesn't exist
 elif [ "$USE_NVIM" = "false" ] && (( $+commands[vim] )); then
 	alias vi="vim"
@@ -31,18 +31,18 @@ elif [ "$USE_NVIM" = "false" ] && (( $+commands[vim] )); then
 	alias vedit="vim"
 	alias ex="vim -E"
 	# switch $EDITOR to vim
-	EDITOR="vim"
+	export EDITOR="vim"
 elif (( $+commands[vi] )); then
 	# make sure editor gets setup
-	EDITOR="vi"
+	export EDITOR="vi"
 fi
 
 unset USE_NVIM
 
 # switch the other editor variables
-SUDO_EDITOR="$EDITOR"
-VISUAL="$EDITOR"
-GIT_EDITOR="$EDITOR"
+export SUDO_EDITOR="$EDITOR"
+export VISUAL="$EDITOR"
+export GIT_EDITOR="$EDITOR"
 
 # switch ls to exa if it exists, set it as a variable so that I can alias it with colors later
 if (( $+commands[exa] )); then

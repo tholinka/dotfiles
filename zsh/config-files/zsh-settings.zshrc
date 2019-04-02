@@ -1,3 +1,8 @@
+# don't nice background processes on windows subsystem for linux, as it doesn't work
+if [ "$(uname -r | sed 's/^.*-//')" = "Microsoft" ]; then
+	unsetopt BG_NICE
+fi
+
 # set autosuggestions color
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=5"
 

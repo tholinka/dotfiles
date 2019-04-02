@@ -1,10 +1,5 @@
 # originally based off of https://github.com/tombh/dotfiles/blob/master/.zshrc
 
-# don't nice background processes on windows subsystem for linux, as it doesn't work
-if [ "$(uname -r | sed 's/^.*-//')" = "Microsoft" ]; then
-	unsetopt BG_NICE
-fi
-
 # set up some zplug environmental variables
 ZPLUG_THREADS="$(nproc --all 2>/dev/null || echo 8)"
 ZPLUG_PROTOCOL="HTTPS"
