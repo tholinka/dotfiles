@@ -8,6 +8,9 @@
 # source zplug
 [[ -r $ZSH_CONFIG/zplug.zshrc ]] && source $ZSH_CONFIG/zplug.zshrc
 
+# source zsh settings
+[[ -r $ZSH_CONFIG/zsh-settings.zshrc ]] && source $ZSH_CONFIG/zsh-settings.zshrc
+
 # Changes the command execution timestamp shown in the history command output.
 # The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
 HIST_STAMPS="yyyy-mm-dd"
