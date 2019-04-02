@@ -1,3 +1,6 @@
+# add global executable folders to PATH
+PATH="/usr/bin:/bin:/usr/sbin:/sbin:$PATH"
+
 # add local-user executable folders to PATH
 PATH="$HOME/bin:$HOME/usr/bin:$HOME/bin:$HOME/.local/bin:$PATH"
 
