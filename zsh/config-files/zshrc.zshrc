@@ -5,10 +5,13 @@
 # Path to config folder if not already set
 [[ -v ZSH_CONFIG ]] || export ZSH_CONFIG="$HOME/.zsh-config"
 
+# Path to zplugin folder, if not already set
+[[ -v ZPLG_HOME ]] || export ZPLG_HOME="$HOME/.zplugin"
+
+# zplugin setup
+source "$ZSH_CONFIG/zplugin.zshrc"
 # zsh settings
 source "$ZSH_CONFIG/zsh.zshrc"
-# zplugin plugins
-source "$ZSH_CONFIG/zplugin.zshrc"
 # general variables, used for instance in aliases
 source "$ZSH_CONFIG/variables.zshrc"
 # general functions, used for intsnace in aliases
@@ -24,3 +27,6 @@ source "$ZSH_CONFIG/aliases.zshrc"
 source "$ZSH_CONFIG/nvm.zshrc"
 # machine specific settings, only source if its present
 [[ -r $HOME/.zsh-local.zshrc ]] && source "$HOME/.zsh-local.zshrc"
+
+# negs
+source "$ZSH_CONFIG/ack.zshrc"

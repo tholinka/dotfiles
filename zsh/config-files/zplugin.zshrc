@@ -3,7 +3,14 @@
 LOCAL_PLUGINS="$ZSH_CONFIG/local-plugins"
 
 # init zplugin
-# this is compied directly from install.sh for zplugin
+# use module if avilable
+_ZPLUGIN_MODULE_PATH="$ZSH_CONFIG/zplugin/zmodules/Src"
+if [[ -r "$_ZPLUGIN_MODULE_PATH/zdharma/zplugin.so" ]]; then
+	module_path+=( "$_ZPLUGIN_MODULE_PATH" )
+	zmodload zdharma/zplugin
+	_ZPLUGIN_USING_MODULE=yes
+fi
+# this is copied directly from install.sh for zplugin
 source "$ZSH_CONFIG/zplugin/zplugin.zsh"
 autoload -Uz _zplugin
 (( ${+_comps} )) && _comps[zplugin]=_zplugin
@@ -15,12 +22,23 @@ _ZPLUGIN_WAIT=""
 _ZLM=light
 alias _ZPLUGIN_DEFAULT_ICE="zplugin ice lucid wait\"\$_ZPLUGIN_WAIT\" depth\"1\" from\"github\""
 # only use svn if its present
-(( $+commands[svn] )) && _ZPLUGIN_snippet_svn="svn"
-alias _ZPLUGIN_snippet_DEFAULT_ICE="zplugin ice lucid $_ZPLUGIN_snippet_svn wait\"\$_ZPLUGIN_WAIT\""
+(( $+commands[svn] )) && _ZPLUGIN_USE_SVN="yes"
+
+if [[ -v _ZPLUGIN_USE_SVN ]]; then
+	alias _ZPLUGIN_SNIPPET_DEFAULT_ICE="zplugin ice lucid svn wait\"\$_ZPLUGIN_WAIT\""
+else
+	alias _ZPLUGIN_SNIPPET_DEFAULT_ICE="zplugin ice lucid wait \"\$_ZPLUGIN_WAIT\""
+fi
+
 # oh-my-zsh plugins
-_ZPLUGIN_snippet_DEFAULT_ICE; zplugin snippet OMZ::"plugins/colorize"
+_ZPLUGIN_SNIPPET_DEFAULT_ICE
+if [[ -v _ZPLUGIN_USE_SVN ]]; then
+	zplugin snippet OMZ::"plugins/colorize"
+else
+	zplugin snippet OMZ::"plugins/colorize/colorize.plugin.zsh"
+fi
 ## oh-my-zsh theme
-#_ZPLUGIN_snippet_DEFAULT_ICE pick"agnoster.zsh-theme"; zplugin snippet OMZ::"themes"
+#_ZPLUGIN_SNIPPET_DEFAULT_ICE pick"agnoster.zsh-theme"; zplugin snippet OMZ::"themes"
 ## Get theme from official repository instead
 #_ZPLUGIN_DEFAULT_ICE; zplugin $_ZLM "agnoster/agnoster-zsh-theme"
 ## Get theme from my fork
@@ -56,8 +74,12 @@ _ZPLUGIN_DEFAULT_ICE if"(( $+commands[xclip] ))"; zplugin $_ZLM "zpm-zsh/clipboa
 _ZPLUGIN_DEFAULT_ICE if"(( $+commands[docker] ))" pick"contrib/completion/zsh/_docker"
 zplugin $_ZLM "docker/cli"
 ## git
-_ZPLUGIN_snippet_DEFAULT_ICE if"(( $+commands[git] ))"
-zplugin snippet OMZ::"plugins/git"
+_ZPLUGIN_SNIPPET_DEFAULT_ICE if"(( $+commands[git] ))"
+if [[ -v _ZPLUGIN_USE_SVN ]]; then
+	zplugin snippet OMZ::"plugins/git"
+else
+	zplugin snippet OMZ::"plugins/git/git.plugin.zsh"
+fi
 ## git flow
 _ZPLUGIN_DEFAULT_ICE if"git flow version &>/dev/null"
 zplugin $_ZLM "petervanderdoes/git-flow-completion"
