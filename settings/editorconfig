@@ -16,4 +16,4 @@ indent_style = tab
 
 [*.md]
 indent_style = space
-indnet_size = 2
+indent_size = 2
