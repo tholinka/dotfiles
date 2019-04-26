@@ -34,3 +34,4 @@ c yzhang.markdown-all-in-one
 c shinnn.stylelint
 c streetsidesoftware.code-spell-checker
 c twxs.cmake
+c sibiraj-s.vscode-scss-formatter
