@@ -47,10 +47,23 @@
 	},
 	/** extensions */
 	"astyle.astylerc": "~/.astylerc",
+	"C_Cpp.formatting": "Disabled",
 	"rust.rustup": {
 		"toolchain": "stable-x86_64-unknown-linux-gnu"
 	},
 	"rust.mode": "legacy",
 	"extensions.ignoreRecommendations": true,
 	"php.validate.executablePath": "/bin/php",
+	"scss.lint.boxModel": "warning",
+	"scss.lint.compatibleVendorPrefixes": "warning",
+	"scss.lint.duplicateProperties": "warning",
+	"scss.lint.float": "warning",
+	"scss.lint.ieHack": "warning",
+	"scss.lint.important": "warning",
+	"scss.lint.universalSelector": "warning",
+	"scss.lint.unknownVendorSpecificProperties": "warning",
+	"scss.lint.zeroUnits": "warning",
+	"scssFormatter.useTabs": true,
+	"scssFormatter.tabWidth": 4,
+	"C_Cpp.autoAddFileAssociations": false,
 }
