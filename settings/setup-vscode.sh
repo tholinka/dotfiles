@@ -20,8 +20,6 @@ c ms-vscode.PowerShell
 c waderyan.gitblame
 c rogalmic.bash-debug
 c dan-c-underwood.arm
-c christian-kohler.npm-intellisense
-c eg2.vscode-npm-script
 c austin.code-gnu-global
 c msjsdiag.debugger-for-chrome
 c redhat.java
@@ -34,4 +32,12 @@ c yzhang.markdown-all-in-one
 c shinnn.stylelint
 c streetsidesoftware.code-spell-checker
 c twxs.cmake
-c sibiraj-s.vscode-scss-formatter
+c HookyQR.beautify
+
+# javascript
+c mgmcdermott.vscode-language-babel
+c mikestead.dotenv
+c wix.vscode-import-cost
+c christian-kohler.npm-intellisense
+c eg2.vscode-npm-script
+c kisstkondoros.vscode-codemetrics
