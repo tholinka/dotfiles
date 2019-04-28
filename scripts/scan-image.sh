@@ -3,6 +3,7 @@
 if [ "$1" = "-h" ] || [ "$1" = "--help" ]; then
 	echo "Scans image from printer and outputs to specified file"
 	echo "Specify SSHAUTH as user@ip to use, and RSYNCLOC as location to sync file to, defaults to ~/windows_home_dir or ~ if that doesn't exist"
+fi
 
 if type tempfile &>/dev/null; then
 	TMPFILE="$(tmpfile).png"
@@ -29,11 +30,11 @@ if [ -z "$RSYNCLOC" ]; then
 fi
 
 echo "Running scanimage on $SSHAUTH with file of $TMPFILE"
-ssh -t $SSHAUTH "scanimage --format=png > $TMPFILE"
+ssh -t "$SSHAUTH" "scanimage --format=png > $TMPFILE"
 
 echo "Rsyncing $TMPFILE from $SSHAUTH to $RSYNCLOC"
 
-rsync $SSHAUTH:"$TMPFILE" "$RSYNCLOC"
+rsync "$SSHAUTH":"$TMPFILE" "$RSYNCLOC"
 
 echo "Removing $TMPFILE on $SSHAUTH"
-ssh -t $SSHAUTH "rm $TMPFILE"
+ssh -t "$SSHAUTH" "rm $TMPFILE"
