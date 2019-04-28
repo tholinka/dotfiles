@@ -2,7 +2,7 @@
 
 if [ "$1" = "-h" ] || [ "$1" = "--help" ]; then
 	echo "Scans image from printer and outputs to specified file"
-	echo "Specify SSHAUTH as user@ip to use, and RSYNCLOC as location to sync file to, defaults to ~/windows_home_dir or ~ if that doesn't exist"
+	echo "export SSHAUTH as user@ip to use that server, and RSYNCLOC as location to sync file to, defaults to ~/windows_home_dir or ~ if that doesn't exist"
 fi
 
 if type tempfile &>/dev/null; then
@@ -15,7 +15,7 @@ else
 	echo "No way to create tempfile, as both tempfile and mktemp commands don't exist, so falling back to $TMPFILE"
 fi
 
-if [ -z "$SSHAUTH" ]; then
+if [ -z ${SSHAUTH+x} ]; then
 	SSHAUTH="p1.printers.local"
 fi
 
