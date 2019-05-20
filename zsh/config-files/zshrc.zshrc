@@ -23,6 +23,7 @@ source "$ZSH_CONFIG/aliases.zshrc"
 (( $+commands[apt-get] )) && source "$ZSH_CONFIG/debian.zshrc"
 (( $+commands[wine] )) && source "$ZSH_CONFIG/wine.zshrc"
 (( $+commands[youtube-dl] )) && source "$ZSH_CONFIG/youtube-dl.zshrc"
+(( $+commands[docker-compose] )) && source "$ZSH_CONFIG/docker-compose.zshrc"
 # nvm settings, sets up nvm if not present
 source "$ZSH_CONFIG/nvm.zshrc"
 # machine specific settings, only source if its present
