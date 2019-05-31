@@ -15,6 +15,9 @@ PATH="$GOBIN:$PATH"
 # add rbenv
 PATH="$HOME/.rbenv/bin:$PATH"
 
+# add snap
+PATH="/snap/bin:$PATH"
+
 # add colorgcc
 PATH="/usr/lib/colorgcc/bin:$PATH"
 
