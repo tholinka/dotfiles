@@ -7,7 +7,7 @@ alias docker-compose-down-remove="docker-compose down -v --remove-orphans --rmi 
 alias docker-compose-up="docker-compose up -d"
 alias docker-compose-up-build="docker-compose up --build -d"
 
-alias docker-update-images="docker images --format \"{{.Repository}}:{{.Tag}}\" | grep -v \"<none>\" | xargs -L1 docker pull"
+alias docker-update-images="docker images --format \"{{.Repository}}:{{.Tag}}\" | grep -v \"<none>\" | xargs -L1 -P $(nproc --all) docker pull"
 
 function docker-exec-bash() {
 	docker exec -it $@ bash
