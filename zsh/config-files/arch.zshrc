@@ -25,10 +25,15 @@ function paclistsize()
 	expac -H M "%011m\t%-20n\t%10d" $(comm -23 <(pacman -Qqe | sort) <(pacman -Qqg base base-devel | sort)) | sort -n
 }
 
-paclist() {
+function paclist() {
 	# Source: https://bbs.archlinux.org/viewtopic.php?id=93683
 	LC_ALL=C pacman -Qei $(pacman -Qu | cut -d " " -f 1) | \
 	awk 'BEGIN {FS=":"} /^Name/{printf("\033[1;36m%s\033[1;37m", $2)} /^Description/{print $2}'
+}
+
+# lists packages explicitly installed, but not in base or base-devel
+function paclistnobase() {
+    pacman -Qe | grep -v "$(pacman -Qg base | sed 's/base //')" | grep -v "$(pacman -Qg base-devel | sed 's/base-devel //')"
 }
 
 ## pacaur is unmaintaned, but yay is more or less a drop in replacement, so just alias pacaur to yay
