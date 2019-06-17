@@ -28,3 +28,6 @@ export LD_LIBRARY_PATH="$LD_LIBRARY_PATH${LD_LIBRARY_PATH+:}$HOME/usr/lib:$HOME/
 
 # add ccache
 export CCACHE_PATH="/usr/bin"
+
+# notify that this file was ran
+export ZPROFILE_SOURCED=true

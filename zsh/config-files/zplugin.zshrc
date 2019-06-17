@@ -1,5 +1,13 @@
 # originally based off of https://github.com/tombh/dotfiles/blob/master/.zshrc
 
+# zplugin, when using the module, can cause issues if sourced twice, so don't allow that
+if [[ -v _ZPLUGIN_ALREADY_SOURCED ]]; then
+	return;
+else
+	export _ZPLUGIN_ALREADY_SOURCED=true
+fi
+
+
 LOCAL_PLUGINS="$ZSH_CONFIG/local-plugins"
 
 # init zplugin

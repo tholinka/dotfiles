@@ -1,6 +1,6 @@
 # make sure zprofile gets sourced, as for some reason it doesn't sometimes
 # but only do it once so that if ```source ~/.zshrc``` is called we don't add paths again
-[[ -v ZPROFILE_SOURCED ]] || source "$HOME/.zprofile" && export ZPROFILE_SOURCED=true
+[[ -v ZPROFILE_SOURCED ]] || source "$HOME/.zprofile"
 
 # Path to config folder if not already set
 [[ -v ZSH_CONFIG ]] || export ZSH_CONFIG="$HOME/.zsh-config"

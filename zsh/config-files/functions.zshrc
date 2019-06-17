@@ -92,6 +92,10 @@ function screen()
 	fi
 }
 
+function psgrep() {
+	ps auxww | grep -i $@
+}
+
 # some helper functions to figure out version numbers
 # from https://stackoverflow.com/a/4024263
 verlte() {
