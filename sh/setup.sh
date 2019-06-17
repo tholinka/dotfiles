@@ -18,3 +18,9 @@ echo "source ~/.sh-config/profile.shrc" > ~/.profile
 # replace ~/.bash_profile with a pointer here
 echo "Replacing ~/.bash_profile with a pointer to ~/.sh-config/profile.shrc"
 echo "source ~/.sh-config/profile.shrc" > ~/.bash_profile
+
+# replace ~/.bashrc and ~/.bash_aliases with a pointer here
+echo "Replacing ~/.bashrc with a pointer to ~/.sh-config/bashrc.bashrc"
+echo "source ~/.sh-config/bashrc.bashrc" > ~/.bashrc
+echo "Replacing ~/.bash_aliases with a pointer to ~/.sh-config/aliases.bashrc"
+echo "source ~/.sh-config/aliases.bashrc" > ~/.bash_aliases
