@@ -27,38 +27,40 @@ export GIT_EDITOR="$EDITOR"
 export EDITOR="$EDITOR"
 
 # switch ls to exa if it exists, set it as a variable so that I can alias it with colors later
-if (( $+commands[exa] )); then
-	ls="exa"
-else
-	ls="ls"
-fi
+(( $+commands[exa] )) && ls="exa" || ls="ls"
 
 alias ls="$ls"
 
 # set colors
 COLOR_OPT="--color=always"
 
+# if first argument exists as a command, it sets an alias of the first argument to the value of the third argument, first argument, COLOR_OPT, second argument
+# if $1 exists, sets $1 equal to $ $1 $2 $3
+function color_if_installed() {
+	(( $+commands[$1] )) && alias $1="$3 $1 $COLOR_OPT $2"
+}
+
 ## ls options that are the same for ls and exa, set to always use color
-alias ls="$ls $COLOR_OPT --group-directories-first"
+color_if_installed ls --group-directories-first
 
 ## add color support to a bunch of commands
-alias dir="dir $COLOR_OPT"
-alias vdir="vdir $COLOR_OPT"
+color_if_installed dir
+color_if_installed vdir
 
 ## there are to many different greps
-alias bzgrep="bzgrep $COLOR_OPT"
-alias egrep="egrep $COLOR_OPT"
-alias fgrep="fgrep $COLOR_OPT"
-alias grep="grep $COLOR_OPT"
-#alias pgrep="pgrep $COLOR_OPT"
-alias xzgrep="xzgrep $COLOR_OPT"
-alias zegrep="zegrep $COLOR_OPT"
-alias zfgrep="zfgrep $COLOR_OPT"
-alias zgrep="zgrep $COLOR_OPT"
-alias zipgrep="zipgrep $COLOR_OPT"
+color_if_installed bzgrep
+color_if_installed egrep
+color_if_installed fgrep
+color_if_installed grep
+color_if_installed pgrep
+color_if_installed xzgrep
+color_if_installed zegrep
+color_if_installed zfgrep
+color_if_installed zgrep
+color_if_installed zipgrep
 
-alias dmesg="sudo dmesg $COLOR_OPT"
-alias fdisk="sudo fdisk $COLOR_OPT"
+color_if_installed dmesg "" sudo
+color_if_installed fdisk "" sudo
 
 # not all versions of diff accept colors, so figure out if this one does
 # do this by specifing the color, and then request the version
@@ -77,7 +79,11 @@ else
 	diff="diff $COLOR_OPT"
 fi
 
-alias top="top -c"
+# set diff default settings
+alias diff="$diff --unified=0"
+
+COLOR_OPT="-c"
+color_if_installed top
 
 # color less
 export LESS='-R'
@@ -100,63 +106,21 @@ alias l='ls -F'
 alias fdiskl="fdisk -l"
 
 # make iotop easier to use
-if (( $+commands[iotop] )); then
-	alias iotop="sudo iotop -Pao"
-fi
+(( $+commands[iotop] )) && alias iotop="sudo iotop -Pao"
 
 # add default glances stuff
-if (( $+commands[glances] )); then
-	alias glances="glances -t 5 --disable-check-update"
-fi
+(( $+commands[glances] )) && alias glances="glances -t 5 --disable-check-update"
 
 # set resolution to 1080p, mostly useful in vms
 alias fixres="xrandr --newmode \"1920x1080\"  173.00  1920 2048 2248 2576  1080 1083 1088 1120 -hsync +vsync && xrandr --addmode Virtual1 1920x1080 && xrandr --output Virtual1 --mode 1920x1080"
 
-# set diff default settings
-alias diff="$diff --unified=0"
-
 alias c="clear"
-alias get="git"
-alias gitk="gitk &>/dev/null &"
-alias gitgui="git gui &>/dev/null &"
-alias gitupdatesubmodules="git submodule update --jobs $(nproc --all) --recursive --remote"
 
-# alias to list all commits since newest tag
-alias glotags="git log --graph --pretty='\''%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%an>%Creset'\'' --date=short' \$(git describe --tags | cut -d'-' -f1)..HEAD"
-
-alias perm="stat -c \"%a %n\""
+# list numeric perms off specified files
+(( $+commands[stat] )) && alias perm="stat -c \"%a %n\""
 
 # follow output of journalctl unit
-alias journalctl-follow="journalctl -feu"
+(( $+commands[journalctl] )) && alias journalctl-follow="journalctl -feu"
 
 # use make flags by default
 alias make="make \$MAKEFLAGS"
-# random fortune, outputed using cowsay and rainbow if present
-if (( $+commands[fortune] )); then
-	FORTCOMMAND="fortune"
-
-	# is cowsay installed?
-    if (( $+commands[cowsay] )); then
-		# what directory are cows in?
-		COWSAYCOWS="/usr/share/cowsay/cows"
-		if [[ ! -d $COWSAYCOWS ]]; then
-			# arch has it setup this way
-			COWSAYCOWS="/usr/share/cows"
-		fi
-
-		# did we find the cows directory?
-		if [[ -d $COWSAYCOWS ]]; then
-			# \$ls so that it doesn't resolve at source time, but at run time
-			FORTCOMMAND="$FORTCOMMAND | cowsay -f \$(ls $COWSAYCOWS | shuf -n1)"
-		else
-			FORTCOMMAND="$FORTCOMMAND | cowsay"
-		fi
-	fi
-
-	# is lolcat installed?
-    if (( $+commands[lolcat] )); then
-		FORTCOMMAND="$FORTCOMMAND | lolcat"
-	fi
-
-	alias fortune="$FORTCOMMAND"
-fi

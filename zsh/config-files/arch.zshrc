@@ -12,14 +12,14 @@ alias paclocs='pacman -Qs'
 alias pacinsd='sudo pacman -S --asdeps'
 alias pacmir='sudo pacman -Syy'
 alias paclsorphans='sudo pacman -Qdt'
-#alias pacrmorphans="sudo pacman -Rns $(pacman -Qtdq) $@"
 alias pacfileupg='sudo pacman -Fy'
 alias pacfiles='pacman tFs'
 
 function pacrmorphans()
 {
-	sudo pacman -Rns $(pacman -Qtdq)
+	sudo pacman -Rns $(pacman -Qtdq) $@
 }
+
 function paclistsize()
 {
 	expac -H M "%011m\t%-20n\t%10d" $(comm -23 <(pacman -Qqe | sort) <(pacman -Qqg base base-devel | sort)) | sort -n
@@ -40,7 +40,7 @@ function paclistnobase() {
 # if pacaur is not installed, but yay is installed
 ! (( $+commands[pacaur] )) && (( $+commands[yay] )) && alias pacaur="yay"
 
-## pacaur aliases, since pacaur is umaintaned, these should get removed at some point, but they're more ingrained in memory
+## pacaur-style aliases
 if (( $+commands[pacaur] )) || (( $+aliases[pacaur] )); then
 	alias paupg='pacaur -Syu'
 	alias pasu='pacaur -Syu --noconfirm'

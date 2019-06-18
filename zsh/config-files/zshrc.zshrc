@@ -24,6 +24,7 @@ source "$ZSH_CONFIG/aliases.zshrc"
 (( $+commands[wine] )) && source "$ZSH_CONFIG/wine.zshrc"
 (( $+commands[youtube-dl] )) && source "$ZSH_CONFIG/youtube-dl.zshrc"
 (( $+commands[docker] )) && source "$ZSH_CONFIG/docker.zshrc"
+(( $+commands[git] )) && source "$ZSH_CONFIG/git.zshrc"
 # nvm settings, sets up nvm if not present
 source "$ZSH_CONFIG/nvm.zshrc"
 # machine specific settings, only source if its present

@@ -13,13 +13,19 @@ export ANDROID_JACK_VM_ARGS="-Dfile.encoding=UTF-8 -XX:+TieredCompilation -Xmx4G
 export CARCH="$(uname -m)"
 ### exported as _ so that they can be easily source (e.g. export CPPFLAGS="$_CPPFLAGS") without breaking builds
 export _CPPFLAGS="-D_FORTIFY_SOURCE=2"
+export CPPFLAGS="$_CPPFLAGS"
 export _CFLAGS="-march=native =mtune=native -O2 -pipe -fno-plt"
 export _CXXFLAGS="${CFLAGS}"
+export CFLAGS="$_CFLAGS"
+export CFLAGS="$_CXXFLAGS"
 export _DFLAGS="-Wl,-O1,--sort-common,--as-needed,-z,relro,-z,now"
+export DFLAGS="$_DFLAGS"
 export _DEBUG_CFLAGS="-g -fvar-tracking-assignments"
-export _DEBUG_CXXFLAGS="-g -fvar-tracking-assignments"
-### actually export makeflags though, as we use it in aliases
-export MAKEFLAGS="-j$(nproc --all)"
+export _DEBUG_CXXFLAGS="$_DEBUG_CFLAGS"
+export DEBUG_CFLAGS="$_DEBUG_CFLAGS"
+export DEBUG_CXXFLAGS="$_DEBUG_CFLAGS"
+export _MAKEFLAGS="-j$(nproc --all)"
+export MAKEFLAGS="$_MAKEFLAGS"
 # set up gpg
 export GPG_TTY=$(tty)
 
@@ -33,5 +39,5 @@ export DEVKITARM="$DEVKITPRO/devkitARM"
 export DEVKITPPC="$DEVKITPPC/devkitPPC"
 export DEVKITA64="$DEVKITPRO/devkitA64"
 
-# set up default user for theme, done in two sed steps to also work for root (home is /root on arch)
+# set up default user for theme
 [[ -v DEFAULT_USER_SETUP ]] || export DEFAULT_USER="$(whoami)" && DEFAULT_USER_SETUP=yes
