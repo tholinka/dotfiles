@@ -1,48 +1,30 @@
-# assume we're not using nvim
-USE_NVIM="false"
-# see if nvim is installed, if it is, make sure it's new enough, or fallback to it if vim is to old
-if (( $+comamnds[nvim] )); then
-	version="$( nvim --version | head -n1 | sed 's/NVIM v//' )"
-	# 0.3.0 <= $version && use nvim || use vim
-	verlte 0.3.0 "$version" && USE_NVIM="true" || USE_NVIM="false"
-
-	if [ "USE_NVIM" = "false" ]; then
-		# but only use that if regular vim is greater than v8
-		version="$( vim --version | head -n1 | sed 's/VIM - Vi IMproved //' | sed -r 's/ \(.+//' )"
-		verlte 8.0 "$version" && USE_NVIM="false" || USE_NVIM="true"
-	fi
-fi
-
-if [ "$USE_NVIM" = "true" ]; then
-	alias vi="nvim"
-	alias vim="nvim"
-
-	# also switch various other utilities
-	alias edit="nvim"
-	alias vedit="nvim"
-	alias ex="nvim -E"
-	alias view="nvim -R"
-	# switch $EDITOR
-	export EDITOR="nvim"
-# switch vi and other utilities to vim if neovim doesn't exist
-elif [ "$USE_NVIM" = "false" ] && (( $+commands[vim] )); then
-	alias vi="vim"
-	alias edit="vim"
-	alias vedit="vim"
-	alias ex="vim -E"
-	# switch $EDITOR to vim
-	export EDITOR="vim"
+# prioritise nvim if installed
+if (( $+commands[nvim] )); then
+	EDITOR="nvim"
+# fallback to vim, if it's installed
+elif (( $+commands[vim] )); then
+	EDITOR="vim"
+# fallback to vi, if installed
 elif (( $+commands[vi] )); then
-	# make sure editor gets setup
-	export EDITOR="vi"
+	EDITOR="vi"
+# fallback to nano, if installed
+elif (( $+commands[nano] )); then
+	EDITOR="nano"
 fi
 
-unset USE_NVIM
-
+# set commands to editor
+alias vi="$EDITOR"
+alias vim="$EDITOR"
+# also switch various other utilities
+alias edit="$EDITOR"
+alias vedit="$EDITOR"
+alias ex="$EDITOR -E"
+alias view="$EDITOR -R"
 # switch the other editor variables
 export SUDO_EDITOR="$EDITOR"
 export VISUAL="$EDITOR"
 export GIT_EDITOR="$EDITOR"
+export EDITOR="$EDITOR"
 
 # switch ls to exa if it exists, set it as a variable so that I can alias it with colors later
 if (( $+commands[exa] )); then
