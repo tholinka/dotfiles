@@ -13,19 +13,25 @@ export ANDROID_JACK_VM_ARGS="-Dfile.encoding=UTF-8 -XX:+TieredCompilation -Xmx4G
 export CARCH="$(uname -m)"
 ### exported as _ so that they can be easily source (e.g. export CPPFLAGS="$_CPPFLAGS") without breaking builds
 export _CPPFLAGS="-D_FORTIFY_SOURCE=2"
-export CPPFLAGS="$_CPPFLAGS"
 export _CFLAGS="-march=native =mtune=native -O2 -pipe -fno-plt"
-export _CXXFLAGS="${CFLAGS}"
-export CFLAGS="$_CFLAGS"
-export CFLAGS="$_CXXFLAGS"
+export _CXXFLAGS="$_CFLAGS"
 export _DFLAGS="-Wl,-O1,--sort-common,--as-needed,-z,relro,-z,now"
-export DFLAGS="$_DFLAGS"
 export _DEBUG_CFLAGS="-g -fvar-tracking-assignments"
 export _DEBUG_CXXFLAGS="$_DEBUG_CFLAGS"
-export DEBUG_CFLAGS="$_DEBUG_CFLAGS"
-export DEBUG_CXXFLAGS="$_DEBUG_CFLAGS"
 export _MAKEFLAGS="-j$(nproc --all)"
+
+# see if we're not suppose to define the default build variables
+if ! [[ -v NO_BUILD_DEFINES ]]; then
+	export CPPFLAGS="$_CPPFLAGS"
+	export CFLAGS="$_CFLAGS"
+	export CXXFLAGS="$_CXXFLAGS"
+	export DFLAGS="$_DFLAGS"
+	export DEBUG_CFLAGS="$_DEBUG_CFLAGS"
+	export DEBUG_CXXFLAGS="$_DEBUG_CXXFLAGS"
+fi
+# always define MAKEFLAGS
 export MAKEFLAGS="$_MAKEFLAGS"
+
 # set up gpg
 export GPG_TTY=$(tty)
 
