@@ -1,10 +1,9 @@
 # originally based off of https://github.com/tombh/dotfiles/blob/master/.zshrc
 
 # zplugin, when using the module, can cause issues if sourced twice, so don't allow that
-if [[ -v _ZPLUGIN_ALREADY_SOURCED ]]; then
+# also, if there ARE issues, delete the *.zwc files in ~/.zsh-config
+if (( $+functions[zplugin] )); then
 	return;
-else
-	export _ZPLUGIN_ALREADY_SOURCED=true
 fi
 
 
