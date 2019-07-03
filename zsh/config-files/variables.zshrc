@@ -13,7 +13,7 @@ export ANDROID_JACK_VM_ARGS="-Dfile.encoding=UTF-8 -XX:+TieredCompilation -Xmx4G
 export CARCH="$(uname -m)"
 ### exported as _ so that they can be easily source (e.g. export CPPFLAGS="$_CPPFLAGS") without breaking builds
 export _CPPFLAGS="-D_FORTIFY_SOURCE=2"
-export _CFLAGS="-march=native =mtune=native -O2 -pipe -fno-plt"
+export _CFLAGS="-march=native -mtune=native -O2 -pipe -fno-plt"
 export _CXXFLAGS="$_CFLAGS"
 export _DFLAGS="-Wl,-O1,--sort-common,--as-needed,-z,relro,-z,now"
 export _DEBUG_CFLAGS="-g -fvar-tracking-assignments"
