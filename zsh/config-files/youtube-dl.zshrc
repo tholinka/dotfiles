@@ -25,3 +25,7 @@ function vimeo-password()
 
 	youtube-dl "$1" --video-password "$2" "$YOUTUBE_DL_OUTPUT" "${@:3}" || echo "Usage: vimeo-password VIDEO-URL PASSWORD"
 )
+
+# probably want to set up mpv config as well, https://wiki.archlinux.org/index.php/Mpv#High_quality_configurations
+# https://wiki.archlinux.org/index.php/Mpv#youtube-dl_and_choosing_formats
+alias mpv-yt="mpv --ytdl-format=\"bestvideo[height<=?1080]+bestaudio/best\""
