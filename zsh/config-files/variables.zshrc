@@ -45,5 +45,22 @@ export DEVKITARM="$DEVKITPRO/devkitARM"
 export DEVKITPPC="$DEVKITPPC/devkitPPC"
 export DEVKITA64="$DEVKITPRO/devkitA64"
 
+# set up stuff for react-native builds
+JAVA_HOME=$(readlink -f /usr/bin/javac | sed "s:/bin/javac::")
+[[ -d $JAVA_HOME ]] && export JAVA_HOME
+## prioritise local installs
+if [[ -d $HOME/Android/Sdk ]]; then
+	export ANDROID_HOME="$HOME/Android/Sdk"
+	export ANDROID_SDK_ROOT="$HOME/Android/Sdk"
+# see system level installs
+elif [[ -d /opt/android-sdk/ ]]; then
+	export ANDROID_HOME="/opt/android-sdk"
+	export ANDROID_SDK_ROOT="/opt/android-sdk"
+fi
+# add to path
+if ! [[ -v $ANDOID_HOME ]]; then
+	export PATH="$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools"
+fi
+
 # set up default user for theme
 [[ -v DEFAULT_USER_SETUP ]] || export DEFAULT_USER="$(whoami)" && DEFAULT_USER_SETUP=yes
