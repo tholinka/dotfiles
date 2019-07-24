@@ -49,7 +49,7 @@ fi
 ## Get theme from official repository instead
 #_ZPLUGIN_DEFAULT_ICE; zplugin $_ZLM "agnoster/agnoster-zsh-theme"
 ## Get theme from my fork
-_ZPLUGIN_DEFAULT_ICE; zplugin $_ZLM "tholinka/agnoster-zsh-theme"
+_ZPLUGIN_DEFAULT_ICE reset-prompt; zplugin $_ZLM "tholinka/agnoster-zsh-theme"
 
 _ZPLUGIN_WAIT="0"
 # other plugins (defer as much as possible to hopefully improve load times)
