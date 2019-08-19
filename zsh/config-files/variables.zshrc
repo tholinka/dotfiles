@@ -61,6 +61,8 @@ fi
 if ! [[ -v $ANDOID_HOME ]]; then
 	export PATH="$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools"
 fi
+# we use this to build react-native's api in docker-compose
+export IP=$(ip -4 route get 1.1.1.1 | awk {'print $7'} | tr -d '\n')
 
 # set up default user for theme
 [[ -v DEFAULT_USER_SETUP ]] || export DEFAULT_USER="$(whoami)" && DEFAULT_USER_SETUP=yes
