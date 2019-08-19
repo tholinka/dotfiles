@@ -5,7 +5,7 @@ alias docker-compose-down-remove="docker-compose down -v --remove-orphans --rmi 
 
 alias docker-compose-up="docker-compose up -d"
 alias docker-compose-up-build="docker-compose-up --build"
-alias docker-compose-up-build-single="docker-compose-up-build --nodeps"
+alias docker-compose-up-build-single="docker-compose-up-build --no-deps"
 
 alias docker-update-images="docker images --format \"{{.Repository}}:{{.Tag}}\" | grep -v \"<none>\" | xargs -L1 -P $(nproc --all) docker pull"
 
