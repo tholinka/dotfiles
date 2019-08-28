@@ -2,8 +2,10 @@
 SCRIPTLOC=$(readlink -f "$0")
 FOLDERLOC=$(dirname "$SCRIPTLOC")
 
-# remove existing link
-rm ~/.vscode
+# remove existing link if it exists
+if [ -d ~/.vscode ]; then
+	rm ~/.vscode
+fi
 
 ### .config section ###
 if [ ! -d ~/.config ]; then
@@ -90,7 +92,7 @@ ln -sf "$FOLDERLOC/local/share/konsole/monokai.colorscheme" ~/.local/share/konso
 ln -sf "$FOLDERLOC/local/share/konsole/Shell.profile" ~/.local/share/konsole/Shell.profile
 
 ## have to copy, steam can't do symlinks for skins
-if [ ! -z ${NO_STEAM+x} ]; then
+if [ -z ${NO_STEAM+x} ]; then
 	cp -r "$FOLDERLOC/local/share/Steam/skins/Metro 4.2.4" ~/.steam/steam/skins/
 fi
 ### end of .local ###

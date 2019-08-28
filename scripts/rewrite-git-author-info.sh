@@ -12,7 +12,7 @@ exit 1
 # pull changes that might have happened
 git pull
 
-# replace link123451-?noreply
+# replace old@email with new@email and new name
 git filter-branch --env-filter 'if [ "$GIT_AUTHOR_EMAIL" = "old@email"  ]; then
 GIT_AUTHOR_EMAIL="new@email";
 GIT_AUTHOR_NAME="new name";
