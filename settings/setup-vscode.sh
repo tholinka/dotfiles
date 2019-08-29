@@ -11,7 +11,6 @@ shopt -s expand_aliases
 alias c="code --install-extension"
 
 c kalitaalexey.vscode-rust
-c DavidAnson.vscode-markdownlint
 c EditorConfig.EditorConfig
 c chiehyu.vscode-astyle
 c ms-python.python
@@ -24,15 +23,19 @@ c austin.code-gnu-global
 c msjsdiag.debugger-for-chrome
 c redhat.java
 c ms-vscode.csharp
-c peterjausovec.vscode-docker
+c ms-azuretools.vscode-docker
 c ms-vscode.go
 c donjayamanne.githistory
 c redhat.vscode-yaml
-c yzhang.markdown-all-in-one
 c shinnn.stylelint
 c streetsidesoftware.code-spell-checker
 c twxs.cmake
 c HookyQR.beautify
+
+# markdown
+c DavidAnson.vscode-markdownlint
+c yzhang.markdown-all-in-one
+c shd101wyy.markdown-preview-enhanced
 
 # javascript
 c mgmcdermott.vscode-language-babel
