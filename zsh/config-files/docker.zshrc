@@ -16,7 +16,7 @@ alias docker-system-prune="docker system prune --volumes"
 
 # default args to exec something
 function docker-exec {
-	docker exec -it
+	docker exec -it $@
 }
 compdef __docker_complete_containers docker-exec
 
