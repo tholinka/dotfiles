@@ -6,6 +6,9 @@
 [[ -v WINEARCH ]] || export WINEARCH="win32"
 [[ -v WINEPREFIX ]] || export WINEPREFIX="$HOME/.wine"
 
+# don't add things to the system file associations
+export WINEDLLOVERRIDES="$WINEDDLOVERRIDES winemenubuilder.exe=d"
+
 # run this at some point, really don't need to be done on every shell tho
 # it sets up a paged pool size for wine, source games require it
 # wine reg add "HKLM\\System\\CurrentControlSet\\Control\\Session Manager\\Memory Management\\" /v PagedPoolSize /t REG_DWORD /d 402653184 /f
