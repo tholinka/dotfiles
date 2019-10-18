@@ -124,3 +124,6 @@ alias c="clear"
 
 # use make flags by default
 alias make="make \$MAKEFLAGS"
+
+# rsync flags
+alias rsyncp="rsync -avz --progress"
