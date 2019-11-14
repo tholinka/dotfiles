@@ -46,14 +46,13 @@ else
 	zplugin snippet OMZ::"plugins/colorize/colorize.plugin.zsh"
 fi
 
-## oh-my-zsh theme
-#_ZPLUGIN_SNIPPET_DEFAULT_ICE pick"agnoster.zsh-theme"; zplugin snippet OMZ::"themes"
-## Get theme from official repository instead
-#_ZPLUGIN_DEFAULT_ICE; zplugin $_ZLM "agnoster/agnoster-zsh-theme"
-## Get theme from my fork
-_ZPLUGIN_DEFAULT_ICE reset-prompt; zplugin $_ZLM "tholinka/agnoster-zsh-theme"
 
-_ZPLUGIN_WAIT="0"
+## Get theme from my fork
+#_ZPLUGIN_DEFAULT_ICE reset-prompt; zplugin $_ZLM "tholinka/agnoster-zsh-theme"
+## Powerlevel10k
+_ZPLUGIN_DEFAULT_ICE; zplugin $_ZLM romkatv/powerlevel10k
+
+_ZPLUGIN_WAIT="1"
 # other plugins (defer as much as possible to hopefully improve load times)
 ## git prompt info
 #_ZPLUGIN_DEFAULT_ICE
