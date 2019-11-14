@@ -27,6 +27,7 @@ _ZPLUGIN_WAIT=""
 #_ZLM, to allow global switch between load and light
 #_ZLM=load
 _ZLM=light
+# we construct this in a way that the values of the variables are ran at run time, so we can change the "wait" on the fly
 alias _ZPLUGIN_DEFAULT_ICE="zplugin ice lucid wait\"\$_ZPLUGIN_WAIT\" depth\"1\" from\"github\""
 # only use svn if its present
 (( $+commands[svn] )) && _ZPLUGIN_USE_SVN="yes"
@@ -44,6 +45,7 @@ if [[ -v _ZPLUGIN_USE_SVN ]]; then
 else
 	zplugin snippet OMZ::"plugins/colorize/colorize.plugin.zsh"
 fi
+
 ## oh-my-zsh theme
 #_ZPLUGIN_SNIPPET_DEFAULT_ICE pick"agnoster.zsh-theme"; zplugin snippet OMZ::"themes"
 ## Get theme from official repository instead
@@ -72,7 +74,7 @@ _ZPLUGIN_DEFAULT_ICE; zplugin $_ZLM "zdharma/fast-syntax-highlighting"
 #ZSH_256COLOR_DEBUG=true
 _ZPLUGIN_DEFAULT_ICE; zplugin $_ZLM "chrissicool/zsh-256color"
 
-_ZPLUGIN_WAIT="0"
+_ZPLUGIN_WAIT="1"
 # note: if these fail to clone, try running the ice and load manually
 # Only load these if the relevent program is installed
 ## adds clipboard helper functions to pipe into/out of clipboard
