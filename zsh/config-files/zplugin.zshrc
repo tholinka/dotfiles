@@ -59,8 +59,6 @@ _ZPLUGIN_WAIT="1"
 #zplugin $_ZLM "tombh/zsh-git-prompt" # my theme handles this
 ## don't run anything pasted until I manually hit enter key
 _ZPLUGIN_DEFAULT_ICE; zplugin $_ZLM "oz/safe-paste"
-## automatically change terminal title based on location / task
-_ZPLUGIN_DEFAULT_ICE; zplugin $_ZLM "jreese/zsh-titles"
 ## additional zsh completions
 _ZPLUGIN_DEFAULT_ICE; zplugin $_ZLM "zsh-users/zsh-completions"
 ## substring history search (type partial history and arrow key up/down to search history)
@@ -73,7 +71,10 @@ _ZPLUGIN_DEFAULT_ICE; zplugin $_ZLM "zdharma/fast-syntax-highlighting"
 #ZSH_256COLOR_DEBUG=true
 _ZPLUGIN_DEFAULT_ICE; zplugin $_ZLM "chrissicool/zsh-256color"
 
+# don't load these immediatly
 _ZPLUGIN_WAIT="1"
+## automatically change terminal title based on location / task
+_ZPLUGIN_DEFAULT_ICE; zplugin $_ZLM "jreese/zsh-titles"
 # note: if these fail to clone, try running the ice and load manually
 # Only load these if the relevent program is installed
 ## adds clipboard helper functions to pipe into/out of clipboard
@@ -103,20 +104,22 @@ elif [[ $_FZF_ARCH == "armv7l" ]]; then
 fi
 _FZF_MACHINE="$(uname)"
 # set default to linux
-_FZF_MACHINE=${_FZF_MACHINE:=linux}
+_FZF_MACHINE="${_FZF_MACHINE:=linux}"
 # to lower case
-_FZF_MACHINE=$_FZF_MACHINE:l
-
-#echo "Using arch: $_FZF_ARCH and machine $_FZF_MACHINE"
+_FZF_MACHINE="$_FZF_MACHINE:l"
 ### actually try install
 zplugin ice lucid wait"$_ZPLUGIN_WAIT" from"gh-r" as"program" bpick"*$_FZF_MACHINE*$_FZF_ARCH*" if"! (( $+commands[fzf] ))"
 zplugin $_ZLM junegunn/fzf-bin
 ### zsh support
 _ZPLUGIN_DEFAULT_ICE pick"shell/*.zsh"
 zplugin $_ZLM "junegunn/fzf"
-
-# set up FZF
+### set up FZF
 #export FZF_COMPLETION_TRIGGER="tt"
+## python virtual environment
+_ZPLUGIN_DEFAULT_ICE if"(( $+commands[python3] ))"
+zplugin $_ZLM "MichaelAquilina/zsh-autoswitch-virtualenv"
+### setup venv
+export AUTOSWITCH_DEFAULT_PYTHON="/usr/bin/python3"
 
 autoload -Uz compinit
 compinit
