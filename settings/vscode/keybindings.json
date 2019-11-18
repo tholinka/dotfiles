@@ -3,5 +3,11 @@
 	{
 		"key": "ctrl+i",
 		"command": "editor.action.formatDocument"
+    },
+    {
+        // don't close window if no tabs are open
+        "key": "cmd+w",
+        "command": "-workbench.action.closeWindow",
+        "when": "!editorIsOpen"
 	}
 ]

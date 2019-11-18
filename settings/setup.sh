@@ -12,11 +12,25 @@ if [ ! -d ~/.config ]; then
 	mkdir ~/.config
 fi
 
+#### vscode
+if [ ! -d ~/.vscode ]; then
+    mkdir ~/.vscode
+fi
 if [ ! -d ~/.config/Code ]; then
 	mkdir ~/.config/Code
 fi
 if [ ! -d ~/.config/Code/User ]; then
 	mkdir ~/.config/Code/User
+fi
+#### open source vscode (arch)
+if [ ! -d ~/.vscode-oss ]; then
+    mkdir ~/.vscode-oss
+fi
+if [ ! -d ~/.config/Code\ -\ OSS ]; then
+    mkdir ~/.config/Code\ -\ OSS
+fi
+if [ ! -d ~/.config/Code\ -\ OSS/User ]; then
+    mkdir ~/.config/Code\ -\ OSS/User
 fi
 
 if [ ! -d ~/.config/QtProject ]; then
@@ -73,8 +87,10 @@ fi
 
 ## symlinks
 ### .config section ###
-ln -sf "$FOLDERLOC/config/Code/User/keybinds.json" ~/.config/Code/User/
-ln -sf "$FOLDERLOC/config/Code/User/settings.json" ~/.config/Code/User/
+for i in keybindings  settings; do
+    ln -sf "$FOLDERLOC/config/Code/User/$i.json" ~/.config/Code/User/
+    ln -sf "$FOLDERLOC/config/Code/User/$i.json" ~/.config/Code\ -\ OSS/User/
+done
 
 ln -sf "$FOLDERLOC/config/QtProject/qtcreator/styles/monokai_tyler.xml" ~/.config/QtProject/qtcreator/styles/
 
@@ -106,7 +122,10 @@ ln -sf "$FOLDERLOC/vim" ~/.vim
 # replace ~/.vimrc with a link to ~/.vim
 echo "source ~/.vim/vim.vimrc" > ~/.vimrc
 
-ln -sf "$FOLDERLOC/vscode" ~/.vscode
+for i in keybindings  settings; do
+    ln -sf "$FOLDERLOC/vscode/$i.json" ~/.vscode
+    ln -sf "$FOLDERLOC/vscode/$i.json" ~/.vscode-oss
+done
 
 ln -sf "$FOLDERLOC/astylerc" ~/.astylerc
 
