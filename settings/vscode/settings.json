@@ -1,5 +1,4 @@
 {
-	"editor.fontFamily": "Verdana",
 	"editor.fontSize": 14,
 	"editor.fontLigatures": true,
 	"files.trimTrailingWhitespace": true,
@@ -66,4 +65,5 @@
 	"scssFormatter.useTabs": true,
 	"scssFormatter.tabWidth": 4,
 	"C_Cpp.autoAddFileAssociations": false,
+	"editor.fontFamily": "'Hack', 'Consolas', 'Verdana'",
 }
