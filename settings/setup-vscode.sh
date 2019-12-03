@@ -10,7 +10,6 @@ shopt -s expand_aliases
 
 alias c="code --install-extension"
 
-c kalitaalexey.vscode-rust
 c EditorConfig.EditorConfig
 c chiehyu.vscode-astyle
 c ms-python.python
@@ -27,7 +26,6 @@ c ms-azuretools.vscode-docker
 c ms-vscode.go
 c donjayamanne.githistory
 c redhat.vscode-yaml
-c shinnn.stylelint
 c streetsidesoftware.code-spell-checker
 c twxs.cmake
 c HookyQR.beautify
@@ -44,3 +42,6 @@ c wix.vscode-import-cost
 c christian-kohler.npm-intellisense
 c eg2.vscode-npm-script
 c kisstkondoros.vscode-codemetrics
+
+# rust
+c rust-lang.rust
