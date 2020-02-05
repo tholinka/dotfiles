@@ -109,7 +109,7 @@ ln -sf "$FOLDERLOC/local/share/konsole/Shell.profile" ~/.local/share/konsole/She
 
 ## have to copy, steam can't do symlinks for skins
 if [ -z ${NO_STEAM+x} ]; then
-	cp -r "$FOLDERLOC/local/share/Steam/skins/Metro 4.2.4" ~/.steam/steam/skins/
+	cp -r "$FOLDERLOC/local/share/Steam/skins/metro-for-steam/" ~/.steam/steam/skins/
 fi
 ### end of .local ###
 
