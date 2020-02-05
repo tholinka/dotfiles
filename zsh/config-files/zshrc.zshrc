@@ -13,11 +13,11 @@ fi
 # Path to config folder if not already set
 [[ -v ZSH_CONFIG ]] || export ZSH_CONFIG="$HOME/.zsh-config"
 
-# Path to zplugin folder, if not already set
-[[ -v ZPLG_HOME ]] || export ZPLG_HOME="$HOME/.zplugin"
+# Path to zinit folder, if not already set
+[[ -v ZPLG_HOME ]] || export ZPLG_HOME="$HOME/.zinit"
 
-# zplugin setup
-source "$ZSH_CONFIG/zplugin.zshrc"
+# zinit setup
+source "$ZSH_CONFIG/zinit.zshrc"
 # zsh settings
 source "$ZSH_CONFIG/zsh.zshrc"
 # general variables, used for instance in aliases

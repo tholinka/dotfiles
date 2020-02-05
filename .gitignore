@@ -4,7 +4,7 @@ settings/vscode/extensions
 # ignore vim plugged directory, as that's handled per-machine
 settings/vim/plugged
 
-# ignore zplugin's module's compiled files
+# ignore zinit's module's compiled files
 *.zwc
 
 # Created by https://www.gitignore.io/api/vim,linux

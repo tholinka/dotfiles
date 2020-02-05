@@ -10,6 +10,6 @@
 [submodule "settings/vim/vim-plug"]
 	path = settings/vim/vim-plug
 	url = git@github.com:junegunn/vim-plug.git
-[submodule "zsh/config-files/zplugin"]
-	path = zsh/config-files/zplugin
-	url = git@github.com:zdharma/zplugin.git
+[submodule "zsh/config-files/zinit"]
+	path = zsh/config-files/zinit
+	url = gh:zdharma/zinit
