@@ -41,3 +41,31 @@ function screen()
 function psgrep() {
 	ps auxww | grep -i $@
 }
+
+# some sites that support curl
+if (( $+commands[curl] )); then
+	function weather() {
+		curl -s https://wttr.in/"$1"
+	}
+	function cheat() {
+		curl -s https://cheat.sh/"$1"
+	}
+	function publicip() {
+		curl -s https://ifconfig.co/"$1"
+	}
+	function qrcode() {
+		curl -s -F"-=$1" https://qrenco.de
+	}
+	function dictionary() {
+		curl -s dict://dict.org/d:"$1"
+	}
+	function crypto() {
+		curl -s https://rate.sx/"$1"
+	}
+	function shorturl() {
+		curl -F"shorten=$1" https://0x0.st
+	}
+	function news() {
+		curl getnews.tech/"$1"
+	}
+fi
