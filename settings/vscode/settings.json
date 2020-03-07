@@ -66,4 +66,7 @@
 	"scssFormatter.tabWidth": 4,
 	"C_Cpp.autoAddFileAssociations": false,
 	"editor.fontFamily": "'Hack', 'Consolas', 'Verdana'",
+	"[html]": {
+		"editor.defaultFormatter": "HookyQR.beautify"
+	},
 }
