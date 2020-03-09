@@ -33,6 +33,10 @@ if [ ! -d ~/.config/Code\ -\ OSS/User ]; then
     mkdir ~/.config/Code\ -\ OSS/User
 fi
 
+if [ ! -d ~/.config/mpv ]; then
+	mkdir ~/.config/mpv
+fi
+
 if [ ! -d ~/.config/QtProject ]; then
 	mkdir ~/.config/QtProject
 fi
@@ -91,6 +95,8 @@ for i in keybindings  settings; do
     ln -sf "$FOLDERLOC/config/Code/User/$i.json" ~/.config/Code/User/
     ln -sf "$FOLDERLOC/config/Code/User/$i.json" ~/.config/Code\ -\ OSS/User/
 done
+
+ln -sf "$FOLDERLOC/config/mpv/"* ~/.config/mpv/
 
 ln -sf "$FOLDERLOC/config/QtProject/qtcreator/styles/monokai_tyler.xml" ~/.config/QtProject/qtcreator/styles/
 
