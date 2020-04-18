@@ -52,7 +52,7 @@ color_if_installed bzgrep
 color_if_installed egrep
 color_if_installed fgrep
 color_if_installed grep
-color_if_installed pgrep
+#color_if_installed pgrep
 color_if_installed xzgrep
 color_if_installed zegrep
 color_if_installed zfgrep
