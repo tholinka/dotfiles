@@ -11,6 +11,5 @@ function git-gc-all()
 {
 	git reflog expire --expire-unreachable=now --all
 
-	git -c gc.reflogExpire=0 -c gc.reflogExpireUnreachable=0 -c gc.rerereresolved=0 \
-	-c gc.rerereunresolved=0 -c gc.pruneExpire=now gc "$@"
+	git -c gc.reflogExpire=0 -c gc.reflogExpireUnreachable=now -c gc.rerereResolved=0 -c gc.rerereUnresolved=0 -c gc.worktreePruneExpire=now -c gc.pruneExpire=now gc --prune=now --aggressive "$@"
 }
