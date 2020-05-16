@@ -12,4 +12,4 @@
 	url = git@github.com:junegunn/vim-plug.git
 [submodule "zsh/config-files/zinit"]
 	path = zsh/config-files/zinit
-	url = gh:zdharma/zinit
+	url = git@github.com:zdharma/zinit.git
