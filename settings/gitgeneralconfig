@@ -14,7 +14,7 @@
 [rerere]
 	enabled = true
 [core]
-	# use comstom .gitignore and .gitattributes
+	# use cumstom .gitignore and .gitattributes
 	excludesfile = ~/.gitignore
 	attributesfile = ~/.gitattributes
 
@@ -70,6 +70,8 @@
 [merge]
 	# Include summaries of merged commits in newly created merge commit messages
 	log = true
+[advice]
+	addEmptyPathspec = false
 
 # URL shorthands
 [url "git@github.com:"]
