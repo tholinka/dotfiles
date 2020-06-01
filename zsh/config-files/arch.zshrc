@@ -24,11 +24,6 @@ function paclist() {
 	awk 'BEGIN {FS=":"} /^Name/{printf("\033[1;36m%s\033[1;37m", $2)} /^Description/{print $2}'
 }
 
-# lists packages explicitly installed, but not in base or base-devel
-function paclistnobase() {
-    pacman -Qe | grep -v "$(pacman -Qg base | sed 's/base //')" | grep -v "$(pacman -Qg base-devel | sed 's/base-devel //')"
-}
-
 ## pacaur is unmaintaned, but yay is more or less a drop in replacement, so just alias pacaur to yay
 # if pacaur is not installed, but yay is installed
 ! (( $+commands[pacaur] )) && (( $+commands[yay] )) && alias pacaur="yay"
