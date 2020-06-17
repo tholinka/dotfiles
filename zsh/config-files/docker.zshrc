@@ -25,3 +25,7 @@ function docker-logs {
 	docker logs $@ --follow
 }
 compdef __docker_complete_containers docker-logs
+
+# use buildkit
+export DOCKER_BUILDKIT=1
+export COMPOSE_DOCKER_CLI_BUILD=1

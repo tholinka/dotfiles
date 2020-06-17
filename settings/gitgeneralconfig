@@ -62,6 +62,9 @@
 	# Detect copies as well as renames
 	renames = copies
 	algorithm = patience
+	renameLimit = 0
+	indentHeuristic = true
+
 [diff "bin"]
 	# Use `hexdump` to diff binary files
 	textconv = hexdump -v -C
