@@ -126,7 +126,7 @@ alias c="clear"
 alias make="make \$MAKEFLAGS"
 
 # rsync flags
-alias rsync="rsync -avzh --progress --stats"
+alias rsync="rsync --archive --verbose --compress --human-readable --progress --stats --sparse --partial --append-verify"
 
 # dd show progress
 alias dd="dd status=progress"
