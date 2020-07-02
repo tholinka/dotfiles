@@ -69,4 +69,8 @@
 	"[html]": {
 		"editor.defaultFormatter": "HookyQR.beautify"
 	},
+	"explorer.confirmDelete": false,
+	"[javascript]": {
+		"editor.defaultFormatter": "HookyQR.beautify"
+	},
 }
