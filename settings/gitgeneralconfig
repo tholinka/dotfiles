@@ -76,6 +76,9 @@
 	log = true
 [advice]
 	addEmptyPathspec = false
+[transfer]
+	fsckObjects = true
+
 
 # URL shorthands
 [url "git@github.com:"]
