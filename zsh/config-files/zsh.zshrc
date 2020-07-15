@@ -3,6 +3,9 @@ if [ "$(uname -r | sed 's/^.*-//')" = "Microsoft" ]; then
 	unsetopt BG_NICE
 fi
 
+# set tab size to 4 spaces
+(( $+commands[tabs] )) && tabs 4
+
 # set autosuggestions color
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=5"
 
