@@ -1,13 +1,33 @@
 // Place your key bindings in this file to overwrite the defaults
 [
-	{
-		"key": "ctrl+i",
-		"command": "editor.action.formatDocument"
+    {
+        "key": "ctrl+i",
+        "command": "editor.action.formatDocument"
     },
     {
         // don't close window if no tabs are open
         "key": "cmd+w",
         "command": "-workbench.action.closeWindow",
         "when": "!editorIsOpen"
-	}
+    },
+    {
+        "key": "alt+enter",
+        "command": "editor.action.quickFix",
+        "when": "editorHasCodeActionsProvider && editorTextFocus && !editorReadonly"
+    },
+    {
+        "key": "ctrl+.",
+        "command": "-editor.action.quickFix",
+        "when": "editorHasCodeActionsProvider && editorTextFocus && !editorReadonly"
+    },
+    {
+        "key": "alt+enter",
+        "command": "problems.action.showQuickFixes",
+        "when": "problemFocus"
+    },
+    {
+        "key": "ctrl+.",
+        "command": "-problems.action.showQuickFixes",
+        "when": "problemFocus"
+    }
 ]
