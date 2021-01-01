@@ -1,12 +1,3 @@
-[submodule "colorschemes/vertex-theme"]
-	path = colorschemes/vertex-theme
-	url = git@github.com:horst3180/vertex-theme.git
-[submodule "colorschemes/gedit-super-monokai-theme"]
-	path = colorschemes/gedit-super-monokai-theme
-	url = git@github.com:saahov/gedit-super-monokai-theme.git
-[submodule "colorschemes/Gogh"]
-	path = colorschemes/Gogh
-	url = git@github.com:Mayccoll/Gogh.git
 [submodule "settings/vim/vim-plug"]
 	path = settings/vim/vim-plug
 	url = git@github.com:junegunn/vim-plug.git
