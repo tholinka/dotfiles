@@ -45,3 +45,6 @@ c kisstkondoros.vscode-codemetrics
 
 # rust
 c rust-lang.rust
+
+# latex
+c torn4dom4n.latex-support
