@@ -24,9 +24,9 @@ function paclist() {
 	awk 'BEGIN {FS=":"} /^Name/{printf("\033[1;36m%s\033[1;37m", $2)} /^Description/{print $2}'
 }
 
-## pacaur is unmaintaned, but yay is more or less a drop in replacement, so just alias pacaur to yay
-# if pacaur is not installed, but yay is installed
-! (( $+commands[pacaur] )) && (( $+commands[yay] )) && alias pacaur="yay"
+## pacaur is unmaintaned, but paru is more or less a drop in replacement, so just alias pacaur to paru
+# if pacaur is not installed, but paru is installed
+! (( $+commands[pacaur] )) && (( $+commands[paru] )) && alias pacaur="paru --aur"
 
 ## pacaur-style aliases
 if (( $+commands[pacaur] )) || (( $+aliases[pacaur] )); then
@@ -36,8 +36,8 @@ if (( $+commands[pacaur] )) || (( $+aliases[pacaur] )); then
 	alias painsd='pacaur -S --asdeps'
 fi
 
-## yay aliases
-if (( $+commands[yay] )) || (( $+alaises[yay] )); then
-	# set up yay to only use the aur and to always show diffs
-	alias yay='yay --aur --diffmenu --answerdiff All'
+## paru aliases
+if (( $+commands[paru] )) || (( $+alaises[paru] )); then
+	# set up paru to only use the aur
+	alias paru='paru --aur'
 fi
