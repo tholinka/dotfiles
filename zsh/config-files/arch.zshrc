@@ -26,7 +26,7 @@ function paclist() {
 
 ## pacaur is unmaintaned, but paru is more or less a drop in replacement, so just alias pacaur to paru
 # if pacaur is not installed, but paru is installed
-! (( $+commands[pacaur] )) && (( $+commands[paru] )) && alias pacaur="paru --aur"
+! (( $+commands[pacaur] )) && (( $+commands[paru] )) && alias pacaur="paru"
 
 ## pacaur-style aliases
 if (( $+commands[pacaur] )) || (( $+aliases[pacaur] )); then
