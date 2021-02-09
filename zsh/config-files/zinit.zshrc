@@ -104,6 +104,8 @@ if [[ $_FZF_ARCH == "x86_64" ]]; then
 # arch rpi2
 elif [[ $_FZF_ARCH == "armv7l" ]]; then
 	_FZF_ARCH="arm7"
+elif [[ $_FZF_ARCH == "aarch64" ]]; then
+	_FZF_ARCH="arm64"
 fi
 _FZF_MACHINE="$(uname)"
 # set default to linux
@@ -112,7 +114,7 @@ _FZF_MACHINE="${_FZF_MACHINE:=linux}"
 _FZF_MACHINE="$_FZF_MACHINE:l"
 ### actually try install
 zinit ice lucid wait"$_ZINIT_WAIT" from"gh-r" as"program" bpick"*$_FZF_MACHINE*$_FZF_ARCH*" if"! (( $+commands[fzf] ))"
-zinit $_ZLM junegunn/fzf-bin
+zinit $_ZLM junegunn/fzf
 ### zsh support
 _ZINIT_DEFAULT_ICE_WAIT pick"shell/*.zsh"
 zinit $_ZLM "junegunn/fzf"
