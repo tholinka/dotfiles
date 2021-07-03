@@ -69,3 +69,16 @@ if (( $+commands[curl] )); then
 		curl getnews.tech/"$1"
 	}
 fi
+
+if (( $+commands[runelite] )); then
+	# don't pollute ~ with runescape's files - probably edit this into /usr/bin/runelite so you can start it from your DE's launcher
+	function runelite() {
+		RL_DIR="/home/$USER/.config/Runelite/jagexcache"
+
+		if [ -z _JAVA_OPTIONS ] ; then
+			env _JAVA_OPTIONS="-Duser.home=\"$RL_DIR\"" runelite
+		else
+			env _JAVA_OPTIONS="$_JAVA_OPTIONS -Duser.home=\"$RL_DIR\"" runelite
+		fi
+	}
+fi
