@@ -129,4 +129,4 @@ alias make="make \$MAKEFLAGS"
 alias rsync="rsync --archive --verbose --compress --human-readable --progress --stats --sparse --partial --append-verify"
 
 # dd show progress
-alias dd="sudo dd status=progress bs=4M"
+alias dd="sudo dd status=progress bs=1M oflag=direct conv=noerror,sync,fsync"
