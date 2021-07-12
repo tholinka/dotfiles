@@ -80,7 +80,7 @@ fi
 
 ### see if gnupg exists
 if [ ! -d ~/.gnupg ]; then
-	mkdir ~/.gnupg
+	mkdir ~/.gnupg -m 700
 fi
 ### end gnupg
 
