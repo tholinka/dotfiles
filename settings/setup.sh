@@ -1,5 +1,9 @@
 #!/bin/sh
+if [[ $(uname -s) == Darwin* ]]; then
+SCRIPTLOC="$(pwd -P)/setup.sh"
+else
 SCRIPTLOC=$(readlink -f "$0")
+fi
 FOLDERLOC=$(dirname "$SCRIPTLOC")
 
 # remove existing link if it exists

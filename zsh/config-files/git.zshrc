@@ -1,7 +1,14 @@
 alias get="git"
 alias gitk="gitk &>/dev/null &"
 alias gitgui="git gui &>/dev/null &"
-alias gitupdatesubmodules="git submodule update --jobs $(nproc --all) --recursive --remote"
+
+if [ -z ${_MAC+x} ]; then
+        _PROCESSORS="$(nproc --all)"
+else
+        _PROCESSORS="$(sysctl -n hw.physicalcpu)"
+fi
+
+alias gitupdatesubmodules="git submodule update --jobs _PROCESSORS --recursive --remote"
 
 # alias to list all commits since newest tag
 alias glotags="git log --graph --pretty='\''%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%an>%Creset'\'' --date=short' \$(git describe --tags | cut -d'-' -f1)..HEAD"

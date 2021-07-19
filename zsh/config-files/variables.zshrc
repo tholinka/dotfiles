@@ -6,7 +6,7 @@ export HIST_STAMPS="yyyy-mm-dd"
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
 # Compilation flags
-export ARCHFLAGS="-arch $(uname --machine)"
+export ARCHFLAGS="-arch $(uname -m)"
 export USE_CCACHE=1
 export ANDROID_JACK_VM_ARGS="-Dfile.encoding=UTF-8 -XX:+TieredCompilation -Xmx4G"
 ## roughly from arch's /etc/makepkg.conf, with a few changes
@@ -18,7 +18,11 @@ export _CXXFLAGS="$_CFLAGS"
 export _DFLAGS="-Wl,-O1,--sort-common,--as-needed,-z,relro,-z,now"
 export _DEBUG_CFLAGS="-g -fvar-tracking-assignments"
 export _DEBUG_CXXFLAGS="$_DEBUG_CFLAGS"
-export _MAKEFLAGS="-j$(nproc --all)"
+if [ -z ${_MAC+x} ]; then
+	export _MAKEFLAGS="-j$(nproc --all)"
+else
+	export _MAKEFLAGS="-j$(sysctl -n hw.physicalcpu)"
+fi
 
 # see if we're not suppose to define the default build variables
 if ! [[ -v NO_BUILD_DEFINES ]]; then
@@ -46,7 +50,12 @@ export DEVKITPPC="$DEVKITPPC/devkitPPC"
 export DEVKITA64="$DEVKITPRO/devkitA64"
 
 # set up stuff for react-native builds
-JAVA_HOME=$(readlink -f /usr/bin/javac | sed "s:/bin/javac::")
+if [ -z ${_MAC+x} ]; then
+        JAVA_HOME=$(readlink -f /usr/bin/javac | sed "s:/bin/javac::")
+else
+       JAVA_HOME=/usr/bin
+fi
+
 [[ -d $JAVA_HOME ]] && export JAVA_HOME
 ## prioritise local installs
 if [[ -d $HOME/Android/Sdk ]]; then

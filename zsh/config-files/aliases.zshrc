@@ -41,7 +41,7 @@ function color_if_installed() {
 }
 
 ## ls options that are the same for ls and exa, set to always use color
-color_if_installed ls --group-directories-first
+color_if_installed $ls --group-directories-first
 
 ## add color support to a bunch of commands
 color_if_installed dir
