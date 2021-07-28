@@ -51,9 +51,9 @@ export DEVKITA64="$DEVKITPRO/devkitA64"
 
 # set up stuff for react-native builds
 if [ -z ${_MAC+x} ]; then
-        JAVA_HOME=$(readlink -f /usr/bin/javac | sed "s:/bin/javac::")
+	JAVA_HOME=$(readlink -f /usr/bin/javac | sed "s:/bin/javac::")
 else
-       JAVA_HOME=/usr/bin
+	JAVA_HOME=$(/usr/libexec/java_home)
 fi
 
 [[ -d $JAVA_HOME ]] && export JAVA_HOME
