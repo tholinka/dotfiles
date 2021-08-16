@@ -45,8 +45,10 @@ fi
 _ZINIT_SNIPPET_DEFAULT_ICE
 if [[ -v _ZINIT_USE_SVN ]]; then
 	zinit snippet OMZ::"plugins/colorize"
+	zinit snippet OMZ::"plugins/gradle"
 else
 	zinit snippet OMZ::"plugins/colorize/colorize.plugin.zsh"
+	zinit snippet OMZ::"plugins/gradle/gradle.plugin.zsh"
 fi
 
 
