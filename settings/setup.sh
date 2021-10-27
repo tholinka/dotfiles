@@ -88,6 +88,12 @@ if [ ! -d ~/.gnupg ]; then
 fi
 ### end gnupg
 
+### gradle
+if [ ! -d ~/.gnupg ]; then
+	mkdir ~/.gradle
+fi
+### end gradle
+
 ### remove ~/.vim if it exists ###
 if [ -d ~/.vim ]; then
 	rm ~/.vim
@@ -126,6 +132,10 @@ fi
 ### .gnupg ###
 ln -sf "$FOLDERLOC/gnupg/gpg-agent.conf" ~/.gnupg/gpg-agent.conf
 ### end .gnupg
+
+### .gradle ###
+ln -sf "$FOLDERLOC/gradle/gradle.properties" ~/.gradle/gradle.properties
+### end .gradle ###
 
 ### link vim's folder ###
 ln -sf "$FOLDERLOC/vim" ~/.vim
