@@ -9,7 +9,7 @@ alias docker-compose-up-build="docker-compose-up --build"
 alias docker-compose-up-build-single="docker-compose-up-build --no-deps"
 
 # get new versions of images
-alias docker-update-images="docker images --format \"{{.Repository}}:{{.Tag}}\" | grep -v \"<none>\" | xargs -L1 -P $(nproc --all) docker pull"
+alias docker-update-images="docker images --format \"{{.Repository}}:{{.Tag}}\" | grep -v \"<none>\" | xargs -L1 -P $$_PROCESSORS docker pull"
 
 # assume we want to always prune volumes
 alias docker-system-prune="docker system prune --volumes"

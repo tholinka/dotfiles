@@ -2,12 +2,6 @@ alias get="git"
 alias gitk="gitk &>/dev/null &"
 alias gitgui="git gui &>/dev/null &"
 
-if [ -z ${_MAC+x} ]; then
-        _PROCESSORS="$(nproc --all)"
-else
-        _PROCESSORS="$(sysctl -n hw.physicalcpu)"
-fi
-
 alias gitupdatesubmodules="git submodule update --jobs _PROCESSORS --recursive --remote"
 
 # alias to list all commits since newest tag

@@ -5,6 +5,13 @@ export HIST_STAMPS="yyyy-mm-dd"
 # colored GCC warnings and errors
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
+# mac vs linux helper
+if [ -z ${_MAC+x} ]; then
+	export _PROCESSORS="$(nproc --all)"
+else
+	export _PROCESSORS="$(sysctl -n hw.physicalcpu)"
+fi
+
 # Compilation flags
 export ARCHFLAGS="-arch $(uname -m)"
 export USE_CCACHE=1
@@ -18,11 +25,7 @@ export _CXXFLAGS="$_CFLAGS"
 export _DFLAGS="-Wl,-O1,--sort-common,--as-needed,-z,relro,-z,now"
 export _DEBUG_CFLAGS="-g -fvar-tracking-assignments"
 export _DEBUG_CXXFLAGS="$_DEBUG_CFLAGS"
-if [ -z ${_MAC+x} ]; then
-	export _MAKEFLAGS="-j$(nproc --all)"
-else
-	export _MAKEFLAGS="-j$(sysctl -n hw.physicalcpu)"
-fi
+export _MAKEFLAGS="-j$_PROCESSORS"
 
 # see if we're not suppose to define the default build variables
 if ! [[ -v NO_BUILD_DEFINES ]]; then
