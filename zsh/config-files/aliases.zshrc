@@ -26,16 +26,20 @@ export VISUAL="$EDITOR"
 export GIT_EDITOR="$EDITOR"
 export EDITOR="$EDITOR"
 
-# switch ls to exa if it exists, set it as a variable so that I can alias it with colors later
-(( $+commands[exa] )) && ls="exa" || ls="ls"
+## figure out ls - set it as a variable so that it can be alias'ed with colors later
+# if `gls` exists, we're probably on mac, use that instead of `ls`
+(( $+commands[gls] )) && ls="gls" || ls="ls"
+# switch ls to exa if it exists
+(( $+commands[exa] )) && ls="exa"
 
 alias ls="$ls"
 
 # set colors
 COLOR_OPT="--color=always"
 
-# if first argument exists as a command, it sets an alias of the first argument to the value of the third argument, first argument, COLOR_OPT, second argument
-# if $1 exists, sets $1 equal to $ $1 $2 $3
+# if first argument exists as a command
+# if $1 exists, sets $1 equal to $3 $1 $COLOR_OPT $2
+# e.g. color_if_installed fdisk "--default-option" "sudo"
 function color_if_installed() {
 	(( $+commands[$1] )) && alias $1="$3 $1 $COLOR_OPT $2"
 }
@@ -63,7 +67,7 @@ color_if_installed dmesg "" sudo
 color_if_installed fdisk "" sudo
 
 # not all versions of diff accept colors, so figure out if this one does
-# do this by specifing the color, and then request the version
+# do this by specifing the color, and then try differnt exe's to find the correct one
 # ubuntu (subsystem for windows)'s diff will return false saying unrecognized option, but arch just returns the version
 # similiar to ls, set diff as a variable as it will be alias'ed later
 if ! diff "$COLOR_OPT" -v &>/dev/null; then
@@ -112,9 +116,9 @@ alias fdiskl="fdisk -l"
 (( $+commands[glances] )) && alias glances="glances -t 5 --disable-check-update"
 
 # set resolution to 1080p, mostly useful in vms
-alias fixres="xrandr --newmode \"1920x1080\"  173.00  1920 2048 2248 2576  1080 1083 1088 1120 -hsync +vsync && xrandr --addmode Virtual1 1920x1080 && xrandr --output Virtual1 --mode 1920x1080"
+(( $+commands[xrandr] )) && alias fixres="xrandr --newmode \"1920x1080\"  173.00  1920 2048 2248 2576  1080 1083 1088 1120 -hsync +vsync && xrandr --addmode Virtual1 1920x1080 && xrandr --output Virtual1 --mode 1920x1080"
 
-alias c="clear"
+(( $+commands[clear] )) && alias c="clear"
 
 # list numeric perms off specified files
 (( $+commands[stat] )) && alias perm="stat -c \"%a %n\""
@@ -123,10 +127,10 @@ alias c="clear"
 (( $+commands[journalctl] )) && alias journalctl-follow="journalctl -feu"
 
 # use make flags by default
-alias make="make \$MAKEFLAGS"
+(( $+commands[make] )) && alias make="make \$MAKEFLAGS"
 
 # rsync flags
-alias rsync="rsync --archive --verbose --compress --human-readable --progress --stats --sparse --partial --append-verify"
+(( $+commands[rsync] )) && alias rsync="rsync --archive --verbose --compress --human-readable --progress --stats --sparse --partial --append-verify"
 
 # dd show progress
-alias dd="sudo dd status=progress bs=1M oflag=direct conv=noerror,sync,fsync"
+(( $+commands[dd] )) && alias dd="sudo dd status=progress bs=1M oflag=direct conv=noerror,sync,fsync"
