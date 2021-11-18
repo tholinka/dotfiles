@@ -18,7 +18,7 @@ fi
 
 # mac or linux?
 if [[ $(uname -s) == Darwin* ]]; then
-export _MAC=true
+	source "$ZSH_CONFIG/mac.zshrc"
 fi
 
 # zinit setup

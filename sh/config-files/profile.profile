@@ -1,4 +1,3 @@
-
 # if running bash (from ubuntu's .profile)
 if [ -n "$BASH_VERSION" ]; then
 	# include .bashrc if it exists
@@ -27,6 +26,11 @@ PATH="$HOME/.rbenv/bin:$PATH"
 # add colorgcc
 PATH="/usr/lib/colorgcc/bin:$PATH"
 
+# mac?
+if [[ $(uname -s) == Darwin* ]]; then
+	# include coreutils
+	PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+fi
 export PATH
 
 # add local stuff to library path, might already be added

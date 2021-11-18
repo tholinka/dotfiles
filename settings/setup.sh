@@ -1,9 +1,7 @@
 #!/bin/sh
-if [[ $(uname -s) == Darwin* ]]; then
-SCRIPTLOC="$(pwd -P)/setup.sh"
-else
+# if on mac, make sure you `brew install coreutils`
+PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH" # mac workaround, since we don't have ~/.profile setup yet to fix this
 SCRIPTLOC=$(readlink -f "$0")
-fi
 FOLDERLOC=$(dirname "$SCRIPTLOC")
 
 # remove existing link if it exists
@@ -18,7 +16,7 @@ fi
 
 #### vscode
 if [ ! -d ~/.vscode ]; then
-    mkdir ~/.vscode
+	mkdir ~/.vscode
 fi
 if [ ! -d ~/.config/Code ]; then
 	mkdir ~/.config/Code
@@ -28,13 +26,13 @@ if [ ! -d ~/.config/Code/User ]; then
 fi
 #### open source vscode (arch)
 if [ ! -d ~/.vscode-oss ]; then
-    mkdir ~/.vscode-oss
+	mkdir ~/.vscode-oss
 fi
 if [ ! -d ~/.config/Code\ -\ OSS ]; then
-    mkdir ~/.config/Code\ -\ OSS
+	mkdir ~/.config/Code\ -\ OSS
 fi
 if [ ! -d ~/.config/Code\ -\ OSS/User ]; then
-    mkdir ~/.config/Code\ -\ OSS/User
+	mkdir ~/.config/Code\ -\ OSS/User
 fi
 
 if [ ! -d ~/.config/mpv ]; then
@@ -101,9 +99,9 @@ fi
 
 ## symlinks
 ### .config section ###
-for i in keybindings  settings; do
-    ln -sf "$FOLDERLOC/config/Code/User/$i.json" ~/.config/Code/User/
-    ln -sf "$FOLDERLOC/config/Code/User/$i.json" ~/.config/Code\ -\ OSS/User/
+for i in keybindings settings; do
+	ln -sf "$FOLDERLOC/config/Code/User/$i.json" ~/.config/Code/User/
+	ln -sf "$FOLDERLOC/config/Code/User/$i.json" ~/.config/Code\ -\ OSS/User/
 done
 
 ln -sf "$FOLDERLOC/config/mpv/"* ~/.config/mpv/
@@ -140,17 +138,16 @@ ln -sf "$FOLDERLOC/gradle/gradle.properties" ~/.gradle/gradle.properties
 ### link vim's folder ###
 ln -sf "$FOLDERLOC/vim" ~/.vim
 # replace ~/.vimrc with a link to ~/.vim
-echo "source ~/.vim/vim.vimrc" > ~/.vimrc
+echo "source ~/.vim/vim.vimrc" >~/.vimrc
 
-for i in keybindings  settings; do
-    ln -sf "$FOLDERLOC/vscode/$i.json" ~/.vscode
-    ln -sf "$FOLDERLOC/vscode/$i.json" ~/.vscode-oss
+for i in keybindings settings; do
+	ln -sf "$FOLDERLOC/vscode/$i.json" ~/.vscode
+	ln -sf "$FOLDERLOC/vscode/$i.json" ~/.vscode-oss
 done
 
 ln -sf "$FOLDERLOC/astylerc" ~/.astylerc
 
 ln -sf "$FOLDERLOC/gitgeneralconfig" ~/.gitgeneralconfig
-
 
 # copy editorconfig, gitattributes, and gitignore
 cp $FOLDERLOC/editorconfig ~/.editorconfig
@@ -158,10 +155,10 @@ cp $FOLDERLOC/gitattributes ~/.gitattributes
 cp $FOLDERLOC/gitignore ~/.gitignore
 
 echo "[include]
-	path = ~/.gitgeneralconfig" >> ~/.gitconfig
+	path = ~/.gitgeneralconfig" >>~/.gitconfig
 echo "Included link to .gitgeneralconfig in ~/.gitconfig, make sure there aren't to many links of that in there"
 
-echo;
+echo
 
 #echo "Also tell git about your gpg key: \"gpg --list-secret-keys --keyid-format LONG\" to get the key and \"git config --global user.signingkey [key from previous command]\" to have git use it"
 #echo "You may also need to restart the agent (probably not, but maybe): \"gpg--connect-agent reloadagent /bye\""
