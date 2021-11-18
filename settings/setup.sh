@@ -4,35 +4,9 @@ PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH" # mac workaround, since we 
 SCRIPTLOC=$(readlink -f "$0")
 FOLDERLOC=$(dirname "$SCRIPTLOC")
 
-# remove existing link if it exists
-if [ -d ~/.vscode ]; then
-	rm ~/.vscode
-fi
-
 ### .config section ###
 if [ ! -d ~/.config ]; then
 	mkdir ~/.config
-fi
-
-#### vscode
-if [ ! -d ~/.vscode ]; then
-	mkdir ~/.vscode
-fi
-if [ ! -d ~/.config/Code ]; then
-	mkdir ~/.config/Code
-fi
-if [ ! -d ~/.config/Code/User ]; then
-	mkdir ~/.config/Code/User
-fi
-#### open source vscode (arch)
-if [ ! -d ~/.vscode-oss ]; then
-	mkdir ~/.vscode-oss
-fi
-if [ ! -d ~/.config/Code\ -\ OSS ]; then
-	mkdir ~/.config/Code\ -\ OSS
-fi
-if [ ! -d ~/.config/Code\ -\ OSS/User ]; then
-	mkdir ~/.config/Code\ -\ OSS/User
 fi
 
 if [ ! -d ~/.config/mpv ]; then
@@ -99,11 +73,6 @@ fi
 
 ## symlinks
 ### .config section ###
-for i in keybindings settings; do
-	ln -sf "$FOLDERLOC/config/Code/User/$i.json" ~/.config/Code/User/
-	ln -sf "$FOLDERLOC/config/Code/User/$i.json" ~/.config/Code\ -\ OSS/User/
-done
-
 ln -sf "$FOLDERLOC/config/mpv/"* ~/.config/mpv/
 
 ln -sf "$FOLDERLOC/config/QtProject/qtcreator/styles/monokai_tyler.xml" ~/.config/QtProject/qtcreator/styles/
@@ -139,11 +108,6 @@ ln -sf "$FOLDERLOC/gradle/gradle.properties" ~/.gradle/gradle.properties
 ln -sf "$FOLDERLOC/vim" ~/.vim
 # replace ~/.vimrc with a link to ~/.vim
 echo "source ~/.vim/vim.vimrc" >~/.vimrc
-
-for i in keybindings settings; do
-	ln -sf "$FOLDERLOC/vscode/$i.json" ~/.vscode
-	ln -sf "$FOLDERLOC/vscode/$i.json" ~/.vscode-oss
-done
 
 ln -sf "$FOLDERLOC/astylerc" ~/.astylerc
 
