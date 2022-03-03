@@ -25,7 +25,7 @@
 	# [off by default] tab-in-indent: watches for tabs in the indentation portion of a line
 	# [off by default] cr-at-eol: tells git carriage returns at eol are ok
 	# a - before means "disable"
-	whitespace = blank-at-eol,blank-at-eof,tab-in-indent,-cr-at-eol,-spaces-before-tab,-indent-with-non-tab
+	whitespace = blank-at-eol,blank-at-eof,-tab-in-indent,-cr-at-eol,spaces-before-tab,-indent-with-non-tab
 
 	# set git-diff tabsize
 	page = 'less -x4'
