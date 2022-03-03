@@ -73,7 +73,7 @@ _ZINIT_DEFAULT_ICE_WAIT; zinit $_ZLM "zsh-users/zsh-history-substring-search"
 ## command suggestions
 _ZINIT_DEFAULT_ICE_WAIT; zinit $_ZLM "zsh-users/zsh-autosuggestions"
 ## syntax highlighting
-_ZINIT_DEFAULT_ICE_WAIT; zinit $_ZLM "zdharma/fast-syntax-highlighting"
+_ZINIT_DEFAULT_ICE_WAIT; zinit $_ZLM "zdharma-continuum/fast-syntax-highlighting"
 ## 256color
 #ZSH_256COLOR_DEBUG=true
 _ZINIT_DEFAULT_ICE_WAIT; zinit $_ZLM "chrissicool/zsh-256color"
