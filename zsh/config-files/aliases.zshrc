@@ -133,4 +133,4 @@ alias fdiskl="fdisk -l"
 (( $+commands[rsync] )) && alias rsync="rsync --archive --verbose --compress --human-readable --progress --stats --sparse --partial --append-verify"
 
 # dd show progress
-(( $+commands[dd] )) && alias dd="sudo dd status=progress bs=1M oflag=direct conv=noerror,sync,fsync"
+(( $+commands[dd] )) && alias dd="sudo dd status=progress bs=1M oflag=direct conv=sparse,noerror,sync,fsync"
