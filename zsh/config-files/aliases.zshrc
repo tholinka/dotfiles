@@ -133,7 +133,8 @@ alias fdiskl="fdisk -l"
 (( $+commands[rsync] )) && alias rsync="rsync --archive --verbose --compress --human-readable --progress --stats --sparse --partial --append-verify"
 
 # dd show progress
-(( $+commands[dd] )) && alias dd="sudo dd status=progress bs=1M oflag=direct conv=sparse,noerror,sync,fsync"
+(( $+commands[dd] )) && alias dd="sudo dd status=progress bs=1M oflag=direct conv=noerror,sync,fsync"
+(( $+commands[dd] )) && alias dd-sparse="sudo dd status=progress bs=1M oflag=direct conv=sparse,noerror,sync,fsync"
 
 # if python (aka python2) is not installed, but python3 is, use python3
 (( ! $+commands[python] )) && (( $+commands[python3] )) && alias python="python3"
