@@ -123,7 +123,7 @@ zinit $_ZLM "junegunn/fzf"
 ### set up FZF
 #export FZF_COMPLETION_TRIGGER="tt"
 ## python virtual environment
-_ZINIT_DEFAULT_ICE_WAIT if"(( $+commands[python3] ))"
+_ZINIT_DEFAULT_ICE_WAIT if"(( $+commands[python] ))) || (( $+commands[python3] ))"
 zinit $_ZLM "MichaelAquilina/zsh-autoswitch-virtualenv"
 ### setup venv
 export AUTOSWITCH_DEFAULT_PYTHON="/usr/bin/python3"
