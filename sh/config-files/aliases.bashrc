@@ -1,5 +1,5 @@
 psgrep() {
-    ps auxww | grep -i "$1"
+    ps auxww | grep -i -e "$@" | grep -v -e "grep -i -e $@"
 }
 export -f psgrep
 

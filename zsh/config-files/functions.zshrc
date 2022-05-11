@@ -1,9 +1,9 @@
 FUNCTIONS_FILE_LOC="${(%):-%N}" # hacky workaround to replace bash's export
 
-# grep wrapper (even though it's called findhere) that does grep --include "..." --exclude "..." -Rnwi . -e "[pattern]" in an easy function of findhere [pattern] [exclude] [include]
-function findhere()
+# grep wrapper that does grep --include "..." --exclude "..." -Rnwi . -e "[pattern]" in an easy function of grephere [pattern] [exclude] [include]
+function grephere()
 {
-	# echo "findhere pattern exclude include e.g. findhere \"hello world\" \"*.o\" \"*.{c,h}\""
+	# echo "grephere pattern exclude include e.g. grephere \"hello world\" \"*.o\" \"*.{c,h}\""
 	if [ -z "$2" ]; then
 		exclude=""
 	else
@@ -39,7 +39,7 @@ function screen()
 }
 
 function psgrep() {
-	ps auxww | grep -i $@
+    ps auxww | grep -i -e "$@" | grep -v -e "grep -i -e "$@""
 }
 
 # some sites that support curl

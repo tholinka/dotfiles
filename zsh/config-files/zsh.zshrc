@@ -9,6 +9,12 @@ fi
 # set autosuggestions color
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=5"
 
+# save history
+export HISTFILE="$HOME/.zsh-history"
+export HISTSIZE="100000"
+export SAVEHIST="1000000"
+
+
 # Highlights the suggestions created by tab, eg; from `ls`
 zstyle ':completion:*' menu select
 
@@ -94,9 +100,9 @@ setopt INC_APPEND_HISTORY # Write to the history file immediately, not when the 
 setopt SHARE_HISTORY # Share history between all sessions.
 setopt HIST_EXPIRE_DUPS_FIRST # Expire duplicate entries first when trimming history.
 setopt HIST_IGNORE_DUPS # Don't record an entry that was just recorded again.
-setopt HIST_IGNORE_ALL_DUPS # Delete old recorded entry if new entry is a duplicate.
-setopt HIST_FIND_NO_DUPS # Do not display a line previously found.
-setopt HIST_IGNORE_SPACE # Don't record an entry starting with a space.
+#setopt HIST_IGNORE_ALL_DUPS # Delete old recorded entry if new entry is a duplicate.
+#setopt HIST_FIND_NO_DUPS # Do not display a line previously found.
+#setopt HIST_IGNORE_SPACE # Don't record an entry starting with a space.
 setopt HIST_SAVE_NO_DUPS # Don't write duplicate entries in the history file.
 setopt HIST_REDUCE_BLANKS # Remove superfluous blanks before recording entry.
 setopt HIST_VERIFY # Don't execute immediately upon history expansion.
@@ -110,10 +116,10 @@ unsetopt flowcontrol
 
 # set up keyboard layout, dynamically with zkbd
 autoload zkbd
-ZKBD_FILE="${ZDOTDIR:-$HOME}/.zkbd/$TERM-${${DISPLAY:t}:-$VENDOR-$OSTYPE}"
-[[ ! -f "$ZKBD_FILE" ]] && zkbd
-source "$ZKBD_FILE"
-unset ZKBD_FILE
+_ZKBD_FILE="${ZDOTDIR:-$HOME}/.zkbd/$TERM-${${DISPLAY:t}:-$VENDOR-$OSTYPE}"
+[[ ! -f "$_ZKBD_FILE" ]] && zkbd
+source "$_ZKBD_FILE"
+unset _ZKBD_FILE
 
 # bindkey, partially from tombh, and partially from several different posts in https://bbs.archlinux.org/viewtopic.php?id=26110
 ## Set home/end to go through history

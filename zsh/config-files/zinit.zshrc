@@ -6,7 +6,6 @@ if (( $+functions[zinit] )); then
 	return;
 fi
 
-
 LOCAL_PLUGINS="$ZSH_CONFIG/local-plugins"
 
 # start zinit
