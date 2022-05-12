@@ -13,9 +13,6 @@ fi
 # Path to config folder if not already set
 [[ -v ZSH_CONFIG ]] || export ZSH_CONFIG="$HOME/.zsh-config"
 
-# Path to zinit folder, if not already set
-[[ -v ZPLG_HOME ]] || export ZPLG_HOME="$HOME/.zinit"
-
 # mac or linux?
 if [[ $(uname -s) == Darwin* ]]; then
 	source "$ZSH_CONFIG/mac.zshrc"

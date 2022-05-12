@@ -26,6 +26,7 @@ autoload -Uz _zinit
 #_ZLM=load
 _ZLM=light
 
+
 # Load these things immediatly
 _ZINIT_WAIT=0
 # we construct this in a way that the values of the variables are ran at run time, so we can change the "wait" on the fly
@@ -49,6 +50,10 @@ else
 	zinit snippet OMZ::"plugins/colorize/colorize.plugin.zsh"
 	zinit snippet OMZ::"plugins/gradle/gradle.plugin.zsh"
 fi
+
+# we use these annex's to load others
+_ZINIT_DEFAULT_ICE; zinit $_ZLM zdharma-continuum/zinit-annex-patch-dl
+_ZINIT_DEFAULT_ICE; zinit $_ZLM zdharma-continuum/zinit-annex-bin-gem-node
 
 
 ### Theme note: if there is a "wait" present, it will fail to load on first prompt
@@ -96,36 +101,19 @@ fi
 ## git flow
 _ZINIT_DEFAULT_ICE_WAIT if"git flow version &>/dev/null"
 zinit $_ZLM "petervanderdoes/git-flow-completion"
-## fuzzy search
-### executable
-#### try to decode which version to get
-_FZF_ARCH="$(uname -m)"
-if [[ $_FZF_ARCH == "x86_64" ]]; then
-	_FZF_ARCH="amd64"
-# arch rpi2
-elif [[ $_FZF_ARCH == "armv7l" ]]; then
-	_FZF_ARCH="arm7"
-elif [[ $_FZF_ARCH == "aarch64" ]]; then
-	_FZF_ARCH="arm64"
-fi
-_FZF_MACHINE="$(uname)"
-# set default to linux
-_FZF_MACHINE="${_FZF_MACHINE:=linux}"
-# to lower case
-_FZF_MACHINE="$_FZF_MACHINE:l"
-### actually try install
-zinit ice lucid wait"$_ZINIT_WAIT" from"gh-r" as"program" bpick"*$_FZF_MACHINE*$_FZF_ARCH*" if"! (( $+commands[fzf] ))"
-zinit $_ZLM junegunn/fzf
-### zsh support
-_ZINIT_DEFAULT_ICE_WAIT pick"shell/*.zsh"
-zinit $_ZLM "junegunn/fzf"
-### set up FZF
-#export FZF_COMPLETION_TRIGGER="tt"
 ## python virtual environment
 _ZINIT_DEFAULT_ICE_WAIT if"(( $+commands[python] )) || (( $+commands[python3] ))"
 zinit $_ZLM "MichaelAquilina/zsh-autoswitch-virtualenv"
 ### setup venv
 export AUTOSWITCH_DEFAULT_PYTHON="/usr/bin/python3"
+
+
+# zinit packages
+zinit wait pack for dircolors-material
+
+# FZF, hotkeys: ctrl-t file/dir search. ctrl-r history search, alt-c dir search + cd
+zinit wait pack"bgn-binary+keys" for fzf
+
 
 autoload -Uz compinit
 compinit
