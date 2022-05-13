@@ -8,17 +8,19 @@ fi
 
 LOCAL_PLUGINS="$ZSH_CONFIG/local-plugins"
 
+# this is copied directly from install.sh for zinit
+source "$ZSH_CONFIG/zinit/zinit.zsh"
+autoload -Uz _zinit
+
 # start zinit
 # use module if avilable
-_ZINIT_MODULE_PATH="$HOME/.zinit/module/Src"
+_ZINIT_MODULE_PATH="${ZINIT[MODULE_DIR]}/Src"
 if [[ -r "$_ZINIT_MODULE_PATH/zdharma_continuum/zinit.so" ]]; then
 	module_path+=( "$_ZINIT_MODULE_PATH" )
 	zmodload zdharma_continuum/zinit
 	_ZINIT_USING_MODULE=yes
 fi
-# this is copied directly from install.sh for zinit
-source "$ZSH_CONFIG/zinit/zinit.zsh"
-autoload -Uz _zinit
+
 (( ${+_comps} )) && _comps[zinit]=_zinit
 #end install.sh section from zinit
 
