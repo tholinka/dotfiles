@@ -2,11 +2,9 @@
 
 # zinit, when using the module, can cause issues if sourced twice, so don't allow that
 # also, if there ARE issues, delete the *.zwc files in ~/.zsh-config
-if (( $+functions[zinit] )); then
+if (( $+_ZINIT_USING_MODULE )); then
 	return;
 fi
-
-LOCAL_PLUGINS="$ZSH_CONFIG/local-plugins"
 
 # this is copied directly from install.sh for zinit
 source "$ZSH_CONFIG/zinit/zinit.zsh"
@@ -24,98 +22,62 @@ fi
 (( ${+_comps} )) && _comps[zinit]=_zinit
 #end install.sh section from zinit
 
-#_ZLM, to allow global switch between load and light
-#_ZLM=load
-_ZLM=light
-
-
+# we want light and lucid added if not debugging
+_ZLOAD_NON_DEBUG="light-mode lucid "
 # Load these things immediatly
-_ZINIT_WAIT=0
 # we construct this in a way that the values of the variables are ran at run time, so we can change the "wait" on the fly
-alias _ZINIT_DEFAULT_ICE='zinit ice lucid depth"1" from"github"'
-alias _ZINIT_DEFAULT_ICE_WAIT="g_ZINIT_DEFAULT_ICE wait\"$_ZINIT_WAIT\""
+alias _zload="zinit blockf $_ZLOAD_NON_DEBUG"'depth"1" from"github"'
 # only use svn if its present
 (( $+commands[svn] )) && _ZINIT_USE_SVN="yes"
 
-if [[ -v _ZINIT_USE_SVN ]]; then
-	alias _ZINIT_SNIPPET_DEFAULT_ICE="zinit ice lucid svn wait\"$_ZINIT_WAIT\""
-else
-	alias _ZINIT_SNIPPET_DEFAULT_ICE="zinit ice lucid wait\"$_ZINIT_WAIT\""
-fi
-
 # oh-my-zsh plugins
-_ZINIT_SNIPPET_DEFAULT_ICE
-if [[ -v _ZINIT_USE_SVN ]]; then
-	zinit snippet OMZ::"plugins/colorize"
-	zinit snippet OMZ::"plugins/gradle"
-else
-	zinit snippet OMZ::"plugins/colorize/colorize.plugin.zsh"
-	zinit snippet OMZ::"plugins/gradle/gradle.plugin.zsh"
-fi
+_zload svn for \
+wait"0d" OMZ::"plugins/command-not-found" \
+wait"0d" if"(( $+commands[gradle] ))" OMZ::"plugins/gradle" \
+wait"0b" if"(( $+_MAC ))" OMZ::"plugins/macos" \
+wait"0b" if"(( $+commands[git] ))" OMZ::"plugins/git"
 
 # we use these annex's to load others
-_ZINIT_DEFAULT_ICE; zinit $_ZLM zdharma-continuum/zinit-annex-patch-dl
-_ZINIT_DEFAULT_ICE; zinit $_ZLM zdharma-continuum/zinit-annex-bin-gem-node
-
+_zload for \
+zdharma-continuum/zinit-annex-patch-dl \
+zdharma-continuum/zinit-annex-bin-gem-node
 
 ### Theme note: if there is a "wait" present, it will fail to load on first prompt
 ### and will instead load after a command is entered
 ## Get theme from my fork
-#_ZINIT_DEFAULT_ICE; zinit $_ZLM "tholinka/agnoster-zsh-theme"
+#_zload for "tholinka/agnoster-zsh-theme"
 ## Powerlevel10k
-_ZINIT_DEFAULT_ICE; zinit $_ZLM romkatv/powerlevel10k
+_zload for romkatv/powerlevel10k
 
-_ZINIT_WAIT=1
-alias _ZINIT_DEFAULT_ICE_WAIT="_ZINIT_DEFAULT_ICE wait\"$_ZINIT_WAIT\""
 # other plugins (defer as much as possible to hopefully improve load times)
 ## git prompt info
-#_ZINIT_DEFAULT_ICE_WAIT;zinit $_ZLM "tombh/zsh-git-prompt" # my theme handles this
+#_zload wait"0a" for"tombh/zsh-git-prompt" # my theme handles this
 ## don't run anything pasted until I manually hit enter key
-_ZINIT_DEFAULT_ICE_WAIT; zinit $_ZLM "oz/safe-paste"
-## additional zsh completions
-_ZINIT_DEFAULT_ICE_WAIT; zinit $_ZLM "zsh-users/zsh-completions"
-## substring history search (type partial history and arrow key up/down to search history)
-_ZINIT_DEFAULT_ICE_WAIT; zinit $_ZLM "zsh-users/zsh-history-substring-search"
-## command suggestions
-_ZINIT_DEFAULT_ICE_WAIT; zinit $_ZLM "zsh-users/zsh-autosuggestions"
-## syntax highlighting
-_ZINIT_DEFAULT_ICE_WAIT; zinit $_ZLM "zdharma-continuum/fast-syntax-highlighting"
+_zload wait"0a" for "oz/safe-paste"
+## additional syntax highlighting, zsh completions, command suggestion
+_zload wait"0zzz" for \
+atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" zdharma-continuum/fast-syntax-highlighting \
+zsh-users/zsh-completions \
+atload"!_zsh_autosuggest_start" zsh-users/zsh-autosuggestions
 ## 256color
 #ZSH_256COLOR_DEBUG=true
-_ZINIT_DEFAULT_ICE_WAIT; zinit $_ZLM "chrissicool/zsh-256color"
+_zload wait"0a" for "chrissicool/zsh-256color"
 
 ## automatically change terminal title based on location / task
-_ZINIT_DEFAULT_ICE_WAIT; zinit $_ZLM "jreese/zsh-titles"
+_zload wait"0e" for "jreese/zsh-titles"
 # note: if these fail to clone, try running the ice and load manually
 # Only load these if the relevent program is installed
 ## adds clipboard helper functions to pipe into/out of clipboard
-_ZINIT_DEFAULT_ICE_WAIT if"(( $+commands[xclip] ))"; zinit $_ZLM "zpm-zsh/clipboard"
+_zload wait"0d" if"(( $+commands[xclip] ))" for "zpm-zsh/clipboard"
 ## docker autocmplete
-_ZINIT_DEFAULT_ICE_WAIT if"(( $+commands[docker] ))" pick"contrib/completion/zsh/_docker"
-zinit $_ZLM "docker/cli"
-## git
-_ZINIT_SNIPPET_DEFAULT_ICE if"(( $+commands[git] ))"
-if [[ -v _ZINIT_USE_SVN ]]; then
-	zinit snippet OMZ::"plugins/git"
-else
-	zinit snippet OMZ::"plugins/git/git.plugin.zsh"
-fi
+_zload wait"0d" if"(( $+commands[docker] ))" pick"contrib/completion/zsh/_docker" for "docker/cli"
 ## git flow
-_ZINIT_DEFAULT_ICE_WAIT if"git flow version &>/dev/null"
-zinit $_ZLM "petervanderdoes/git-flow-completion"
+_zload wait"0d" if"git flow version &>/dev/null" for "petervanderdoes/git-flow-completion"
 ## python virtual environment
-_ZINIT_DEFAULT_ICE_WAIT if"(( $+commands[python] )) || (( $+commands[python3] ))"
-zinit $_ZLM "MichaelAquilina/zsh-autoswitch-virtualenv"
-### setup venv
-export AUTOSWITCH_DEFAULT_PYTHON="/usr/bin/python3"
-
+_zload wait"0d" if"(( $+commands[python] )) || (( $+commands[python3] ))" for "MichaelAquilina/zsh-autoswitch-virtualenv"
 
 # zinit packages
-zinit wait pack for dircolors-material
+zinit blockf wait"0e" pack for dircolors-material
 
 # FZF, hotkeys: ctrl-t file/dir search. ctrl-r history search, alt-c dir search + cd
-zinit wait pack"bgn-binary+keys" for fzf
-
-
-autoload -Uz compinit
-compinit
+zinit blockf wait"0z" pack"bgn-binary+keys" for fzf

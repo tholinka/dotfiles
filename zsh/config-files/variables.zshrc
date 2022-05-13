@@ -78,9 +78,11 @@ export IP=$(ip -4 route get 1.1.1.1 2>/dev/null | awk {'print $7'} | tr -d '[:sp
 # set up default user for theme
 [[ -v DEFAULT_USER_SETUP ]] || export DEFAULT_USER="$(whoami)" && DEFAULT_USER_SETUP=yes
 
-# FZF
-export FZF_DEFAULT_OPTS='--height 40% --layout=reverse'
-
 if [[ $XDG_SESSION_TYPE == "wayland" ]]; then
 	export _WAYLAND=true
 fi
+
+# FZF
+export FZF_DEFAULT_OPTS='--height 40% --layout=reverse'
+# zsh-autoswitch-virtualenv plugin
+export AUTOSWITCH_DEFAULT_PYTHON="/usr/bin/python3"
