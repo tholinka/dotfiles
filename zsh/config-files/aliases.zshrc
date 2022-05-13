@@ -138,3 +138,7 @@ alias fdiskl="fdisk -l"
 
 # if python (aka python2) is not installed, but python3 is, use python3
 (( ! $+commands[python] )) && (( $+commands[python3] )) && alias python="python3"
+
+# if vscode is installed, and we're wayland, switch to wayland
+(( $+_WAYLAND )) && (( $+commands[code] )) && alias code="code --enable-features=UseOzonePlatform --ozone-platform=wayland"
+

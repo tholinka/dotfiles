@@ -80,3 +80,7 @@ export IP=$(ip -4 route get 1.1.1.1 2>/dev/null | awk {'print $7'} | tr -d '[:sp
 
 # FZF
 export FZF_DEFAULT_OPTS='--height 40% --layout=reverse'
+
+if [[ $XDG_SESSION_TYPE == "wayland" ]]; then
+	export _WAYLAND=true
+fi
