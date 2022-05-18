@@ -18,13 +18,13 @@ alias docker-system-prune="docker system prune --volumes"
 function docker-exec {
 	docker exec -it $@
 }
-compdef __docker_complete_containers docker-exec
+zicompdef __docker_complete_containers docker-exec
 
 # default args to follow logs
 function docker-logs {
 	docker logs $@ --follow
 }
-compdef __docker_complete_containers docker-logs
+zicompdef __docker_complete_containers docker-logs
 
 # use buildkit
 export DOCKER_BUILDKIT=1
