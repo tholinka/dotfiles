@@ -82,3 +82,16 @@ if (( $+commands[runelite] )); then
 		fi
 	}
 fi
+
+# set open if 1) not present (e.g. not mac) and 2) we have some way of opening apps (xdg-open, powershell.exe, etc)
+if (( ! $+commands[open] )); then
+	if (( $+commands[powershell.exe] )); then # WSL
+		function open() {
+			for fil in $@; do
+				powershell.exe Start \"$(wslpath -w "$fil")\"
+			done
+		}
+	elif (( $+commands[xdg-open] )); then # linux
+		alias open="xdg-open"
+	fi
+fi

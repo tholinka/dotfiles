@@ -72,7 +72,7 @@ color_if_installed fdisk "" sudo
 # similiar to ls, set diff as a variable as it will be alias'ed later
 if ! diff "$COLOR_OPT" -v &>/dev/null; then
 	# doesn't support COLOR_OPT, see if colordiff is installed
-    if (( $+commands[colordiff] )); then
+	if (( $+commands[colordiff] )); then
 		diff="colordiff"
 	else
 		# no colordiff, fall back to uncolored diff
