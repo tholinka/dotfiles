@@ -23,7 +23,7 @@ fi
 #end install.sh section from zinit
 
 # we want light and lucid added if not debugging
-_ZLOAD_NON_DEBUG="light-mode lucid "
+_ZLOAD_NON_DEBUG="silent light-mode lucid "
 # Load these things immediatly
 # we construct this in a way that the values of the variables are ran at run time, so we can change the "wait" on the fly
 alias _zload="zinit blockf $_ZLOAD_NON_DEBUG"'depth"1" from"github"'
@@ -36,6 +36,9 @@ wait"0d" OMZ::"plugins/command-not-found" \
 wait"0d" if"(( $+commands[gradle] ))" OMZ::"plugins/gradle" \
 wait"0b" if"(( $+_MAC ))" OMZ::"plugins/macos" \
 wait"0b" if"(( $+commands[git] ))" OMZ::"plugins/git"
+
+zinit ice blockf $_ZLOAD_NON_DEBUG wait"0d" if"(( $+commands[java] && ${+_MAC} ))"
+zinit snippet "$ZSH_CONFIG/plugins/java.plugin.zsh"
 
 # we use these annex's to load others
 _zload for \
