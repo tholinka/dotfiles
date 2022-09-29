@@ -1,7 +1,9 @@
 # originally from https://github.com/jtaisa/java-zsh-plugin
 
 function java_versions {
-	reply=($(ls /Library/Java/JavaVirtualMachines | sed 's/[^[:digit:]]//g'))
+	# zulu-11.jdk -> 11
+	# zulu-8.jdk -> 1.8
+	reply=($(ls --color=never /Library/Java/JavaVirtualMachines | sed 's/[^[:digit:]]//g' | sed 's/8/1.8/'))
 }
 
 function remove_from_path {
