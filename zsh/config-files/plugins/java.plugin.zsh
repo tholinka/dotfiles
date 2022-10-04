@@ -25,4 +25,8 @@ function jdk {
 	echo -n $(java -version)
 }
 
+if (( $+commands[mvn] )); then
+	alias mvn="mvn -T \$_PROCESSORS"
+fi
+
 compctl -K java_versions jdk
