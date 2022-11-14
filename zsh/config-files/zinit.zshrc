@@ -39,6 +39,7 @@ wait"0b" if"(( $+commands[git] ))" OMZ::"plugins/git"
 
 zinit ice blockf $_ZLOAD_NON_DEBUG wait"0d" if"(( $+commands[java] && ${+_MAC} ))"
 zinit snippet "$ZSH_CONFIG/plugins/java.plugin.zsh"
+zinit snippet "$ZSH_CONFIG/plugins/base64.plugin.zsh"
 
 # we use these annex's to load others
 _zload for \
