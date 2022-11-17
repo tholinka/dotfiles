@@ -40,12 +40,11 @@ export GPG_TTY=$(tty)
 # set up devkitpro location if not already set
 if [ -z ${DEVKITPRO+x} ]; then
 	export DEVKITPRO="/opt/devkitpro"
+	# set up devkitARCH variables
+	export DEVKITARM="$DEVKITPRO/devkitARM"
+	export DEVKITPPC="$DEVKITPPC/devkitPPC"
+	export DEVKITA64="$DEVKITPRO/devkitA64"
 fi
-
-# set up devkitARCH variables
-export DEVKITARM="$DEVKITPRO/devkitARM"
-export DEVKITPPC="$DEVKITPPC/devkitPPC"
-export DEVKITA64="$DEVKITPRO/devkitA64"
 
 # set up java home information
 if [ -z ${_MAC+x} ]; then
@@ -67,16 +66,7 @@ elif [[ -d /opt/android-sdk/ ]]; then
 	export ANDROID_SDK_ROOT="/opt/android-sdk"
 fi
 # add to path
-if ! [[ -v $ANDOID_HOME ]]; then
-	export PATH="$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools"
-fi
-# we use this to build react-native's api in docker-compose
-# this will contain "your" ip (e.g. the first hop ip, aka according to your gateway)
-# this obviously isn't completely optimal, but it works well enough for desktops or often opened/closed ssh sessions
-export IP=$(ip -4 route get 1.1.1.1 2>/dev/null | awk {'print $7'} | tr -d '[:space:]')
-
-# set up default user for theme
-[[ -v DEFAULT_USER_SETUP ]] || export DEFAULT_USER="$(whoami)" && DEFAULT_USER_SETUP=yes
+[[ -v $ANDOID_HOME ]] && export PATH="$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools"
 
 if [[ $XDG_SESSION_TYPE == "wayland" ]]; then
 	export _WAYLAND=true
