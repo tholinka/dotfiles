@@ -73,7 +73,7 @@ fi
 if (( $+commands[runelite] )); then
 	# don't pollute ~ with runescape's files - probably edit this into /usr/bin/runelite so you can start it from your DE's launcher
 	function runelite() {
-		RL_DIR="/home/$USER/.config/Runelite/jagexcache"
+		RL_DIR="/home/$USER/.config/runelite"
 
 		if [ -z _JAVA_OPTIONS ] ; then
 			env _JAVA_OPTIONS="-Duser.home=\"$RL_DIR\"" runelite
