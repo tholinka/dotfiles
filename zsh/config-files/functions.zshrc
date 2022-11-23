@@ -76,10 +76,18 @@ if (( $+commands[runelite] )); then
 		RL_DIR="/home/$USER/.config/runelite"
 
 		if [ -z _JAVA_OPTIONS ] ; then
-			env _JAVA_OPTIONS="-Duser.home=\"$RL_DIR\"" runelite
+			RUNELITE_JAVA_OPTIONS="-Duser.home=\"$RL_DIR\""
 		else
-			env _JAVA_OPTIONS="$_JAVA_OPTIONS -Duser.home=\"$RL_DIR\"" runelite
+			RUNELITE_JAVA_OPTIONS="$_JAVA_OPTIONS -Duser.home=\"$RL_DIR\""
 		fi
+
+		if (( $+commands[prime-run] )); then
+			env _JAVA_OPTIONS="$RUNELITE_JAVA_OPTIONS" prime-run runelite
+		else 
+			env _JAVA_OPTIONS="$RUNELITE_JAVA_OPTIONS" runelite
+		fi 
+
+		unset RUNELITE_JAVA_OPTIONS
 	}
 fi
 
