@@ -130,7 +130,7 @@ alias fdiskl="fdisk -l"
 (( $+commands[make] )) && alias make="make \$MAKEFLAGS"
 
 # rsync flags
-(( $+commands[rsync] )) && alias rsync="rsync --archive --verbose --compress --human-readable --progress --stats --sparse --partial --append-verify"
+(( $+commands[rsync] )) && alias rsync="rsync --archive --compress --human-readable --info=progress2 --stats --sparse --partial --append-verify"
 
 # dd show progress
 (( $+commands[dd] )) && alias dd="sudo dd status=progress bs=1M oflag=direct conv=noerror,sync,fsync"
