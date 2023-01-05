@@ -30,5 +30,8 @@ if [[ $(uname -s) == Darwin* ]]; then
 fi
 
 if (( $+commands[mvn] )); then
-	alias mvn="mvn -T 1C -Dmaven.test.skip -DskipTests -Dmaven.javadoc.skip=true"
+	alias mvnt="mvn -Dmaven.test.skip -DskipTests -Dmaven.javadoc.skip=true"
+	alias mvn="mvn -T 1C"
+	# java 6 and up debug
+	alias mvn-debug='JAVA_OPTS="-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005" mvn'
 fi
