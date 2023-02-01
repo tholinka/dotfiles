@@ -19,6 +19,8 @@
 'builtin' 'setopt' 'no_aliases' 'no_sh_glob' 'brace_expand'
 
 () {
+	typeset -g POWERLEVEL9K_TERM_SHELL_INTEGRATION=true
+
 	emulate -L zsh -o extended_glob
 
 	zmodload zsh/langinfo
