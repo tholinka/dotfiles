@@ -12,5 +12,5 @@ function base64d {
 }
 
 function base64urld {
-	echo -n "$@" | base64 --base64url -d
+	echo -n "$@" | basenc --base64url -d
 }
