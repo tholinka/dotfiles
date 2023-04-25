@@ -69,7 +69,7 @@ zinit snippet "$ZSH_CONFIG/plugins/docker.plugin.zshrc"
 zinit ice $_ZLOAD_NON_DEBUG wait"0z" if"(( $+commands[git] ))"
 zinit snippet "$ZSH_CONFIG/plugins/git.plugin.zshrc"
 
-zinit ice $_ZLOAD_NON_DEBUG wait"0z" if"(( $+commands[java] && ${+_MAC} ))"
+zinit ice $_ZLOAD_NON_DEBUG wait"0z" if"(( $+commands[java] ))"
 zinit snippet "$ZSH_CONFIG/plugins/java.plugin.zsh"
 
 zinit ice $_ZLOAD_NON_DEBUG wait"0z" if"(( $+commands[basenc] ))"
