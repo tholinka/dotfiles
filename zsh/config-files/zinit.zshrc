@@ -42,6 +42,10 @@ wait"0b" if"(( $+commands[git] ))" OMZ::"plugins/git"
 zinit ice $_ZLOAD_NON_DEBUG wait'0a' if"[[ $(uname -s) == Darwin* ]]"
 zinit snippet "$ZSH_CONFIG/plugins/mac.plugin.zshrc"
 
+# load tmux first
+zinit ice $_ZLOAD_NON_DEBUG if"(( $+commands[tmux] ))" atinit"ZSH_TMUX_AUTOSTART=true"
+zinit snippet "$ZSH_CONFIG/plugins/tmux.plugin.zshrc"
+
 # zsh settings
 zinit ice light-mode ludid wait"0a"
 zinit snippet "$ZSH_CONFIG/plugins/zsh.plugin.zshrc"
@@ -103,7 +107,8 @@ _zload wait"0a" for "oz/safe-paste"
 _zload wait"0zzz" for \
 atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" zdharma-continuum/fast-syntax-highlighting \
 zsh-users/zsh-completions \
-atload"!_zsh_autosuggest_start" zsh-users/zsh-autosuggestions
+atload"!_zsh_autosuggest_start; _zsh_autosuggest_bind_widgets" zsh-users/zsh-autosuggestions
+export ZSH_AUTOSUGGEST_MANUAL_REBIND=1
 ## 256color
 #ZSH_256COLOR_DEBUG=true
 _zload wait"0a" for "chrissicool/zsh-256color"

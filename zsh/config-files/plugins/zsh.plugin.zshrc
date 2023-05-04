@@ -107,9 +107,13 @@ setopt HIST_SAVE_NO_DUPS # Don't write duplicate entries in the history file.
 setopt HIST_REDUCE_BLANKS # Remove superfluous blanks before recording entry.
 setopt HIST_VERIFY # Don't execute immediately upon history expansion.
 setopt HIST_BEEP # Beep when accessing nonexistent history.
-setopt auto_menu         # show completion menu on successive tab press
-setopt complete_in_word
-setopt always_to_end
+setopt auto_menu # show completion menu on successive tab press
+setopt complete_in_word # allow completion from within a word/phrase
+setopt always_to_end # when completing from the middle of a word, move the cursor to the end of the wor
+setopt hash_list_all # hash everything before completion
+setopt completealiases # complete alisases
+setopt list_ambiguous # complete as much of a completion until it gets ambiguous.
+setopt listpacked
 
 unsetopt menu_complete   # do not autoselect the first completion entry
 unsetopt flowcontrol
