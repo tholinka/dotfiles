@@ -121,7 +121,7 @@ unsetopt flowcontrol
 # set up keyboard layout, dynamically with zkbd
 autoload zkbd
 _ZKBD_FILE="${ZDOTDIR:-$HOME}/.zkbd/$TERM-${${DISPLAY:t}:-$VENDOR-$OSTYPE}"
-[[ ! -f "$_ZKBD_FILE" ]] && echo "Please run \"zkbd\" to setup keyboard layout!" || source "$_ZKBD_FILE"
+[[ ! -f "$_ZKBD_FILE" ]] && echo "Please run \"zkbd\" to setup keyboard layout! (looking for $_ZKBD_FILE)" || source "$_ZKBD_FILE"
 unset _ZKBD_FILE
 
 # bindkey, partially from tombh, and partially from several different posts in https://bbs.archlinux.org/viewtopic.php?id=26110
