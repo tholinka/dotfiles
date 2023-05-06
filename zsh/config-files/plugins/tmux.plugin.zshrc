@@ -47,10 +47,12 @@ fi
 0="${${ZERO:-${0:#$ZSH_ARGZERO}}:-${(%):-%N}}"
 0="${${(M)0:#/*}:-$PWD/$0}"
 
+export _IS_WSL=$(uname -r | sed -n 's/.*\( *Microsoft *\).*/\1/ip')
+
 # Set the correct local config file to use.
 export _ZSH_TMUX_FIXED_CONFIG="$ZSH_CONFIG/tmux/tmux.conf"
 export _ZSH_TMUX_FIXED_CONFIG_ITERM2="$ZSH_CONFIG/tmux/iterm2.conf"
-
+export _ZSH_TMUX_FIXED_CONFIG_WSL="$ZSH_CONFIG/tmux/wsl.conf"
 # Wrapper function for tmux.
 function _zsh_tmux_plugin_run() {
 	if [[ -n "$@" ]]; then
@@ -64,7 +66,9 @@ function _zsh_tmux_plugin_run() {
 	[[ "$ZSH_TMUX_UNICODE" == "true" ]] && tmux_cmd+=(-u)
 
 	if [[ "$ZSH_TMUX_FIXTERM" == "true" ]]; then
-		if [[ "$ZSH_TMUX_ITERM2" == "true" ]]; then
+		if [[ "$_IS_WSL" == "microsoft" ]]; then
+			tmud_cmd+=(-f "$_ZSH_TMUX_FIXED_CONFIG_WSL")
+		elif [[ "$ZSH_TMUX_ITERM2" == "true" ]]; then
 			tmux_cmd+=(-f "$_ZSH_TMUX_FIXED_CONFIG_ITERM2")
 		else
 			tmux_cmd+=(-f "$_ZSH_TMUX_FIXED_CONFIG")
