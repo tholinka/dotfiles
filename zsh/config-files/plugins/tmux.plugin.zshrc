@@ -80,14 +80,16 @@ function _zsh_tmux_plugin_run() {
 	local -a existing
 	existing="$(command tmux ls || true | grep -v attached | awk -F ':' '{print $1}' | head -n 1)"
 	if [[ -n $existing ]]; then
-		$tmux_cmd attach -t $existing || echo "failed to attach to tmux session"
+		$tmux_cmd attach -t $existing || _ZSH_TMUX_FAIL=true
 	elif [[ -n "$ZSH_TMUX_DEFAULT_SESSION_NAME" ]]; then
-		$tmux_cmd new-session -s $ZSH_TMUX_DEFAULT_SESSION_NAME || echo "failed to start tmux session"
+		$tmux_cmd new-session -s $ZSH_TMUX_DEFAULT_SESSION_NAME || _ZSH_TMUX_FAIL=true
 	else
-		$tmux_cmd new-session || echo "failed to start tmux session"
+		$tmux_cmd new-session || _ZSH_TMUX_FAIL=true
 	fi
 
-	if [[ "$ZSH_TMUX_AUTOQUIT" == "true" ]]; then
+	if [[ "$_ZSH_TMUX_FAIL" == "true" ]]; then
+		echo "failed to start/attach to tmux session"
+	elif [[ "$ZSH_TMUX_AUTOQUIT" == "true" ]]; then
 		exit
 	fi
 }
