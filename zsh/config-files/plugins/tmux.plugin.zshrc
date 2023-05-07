@@ -78,7 +78,7 @@ function _zsh_tmux_plugin_run() {
 	fi
 
 	local -a existing
-	existing="$(command tmux ls | grep -v attached | awk -F ':' '{print $1}' | head -n 1)"
+	existing="$(command tmux ls || true | grep -v attached | awk -F ':' '{print $1}' | head -n 1)"
 	if [[ -n $existing ]]; then
 		$tmux_cmd attach -t $existing
 	elif [[ -n "$ZSH_TMUX_DEFAULT_SESSION_NAME" ]]; then
