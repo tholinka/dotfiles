@@ -43,7 +43,7 @@ zinit ice $_ZLOAD_NON_DEBUG wait'0a' if"[[ $(uname -s) == Darwin* ]]"
 zinit snippet "$ZSH_CONFIG/plugins/mac.plugin.zshrc"
 
 # load tmux first
-zinit ice $_ZLOAD_NON_DEBUG if"(( $+commands[tmux] ))" atinit"ZSH_TMUX_AUTOSTART=true"
+zinit ice $_ZLOAD_NON_DEBUG if"(( $+commands[tmux] ))" atinit"ZSH_TMUX_AUTOSTART=false"
 zinit snippet "$ZSH_CONFIG/plugins/tmux.plugin.zshrc"
 
 # zsh settings
