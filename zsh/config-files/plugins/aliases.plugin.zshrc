@@ -31,6 +31,8 @@ export EDITOR="$EDITOR"
 (( $+commands[gls] )) && ls="gls" || ls="ls"
 # switch ls to exa if it exists
 (( $+commands[exa] )) && ls="exa"
+# use eza if it exists
+(( $+commands[eza] )) && ls="eza" #--git --git-repos" # sadly --git and --git-repos really slow down eza
 
 alias ls="$ls"
 
@@ -103,8 +105,9 @@ export LESS_TERMCAP_ue=$'\E[0m'        # reset underline
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
 # some more ls aliases
-alias ll='ls -alhF'
-alias la='ls -a'
+# eza needa double-a to show . and ..
+alias ll="ls -aalhF --time-style=long-iso $([[ $aliases[ls] == eza* ]] && echo '-Og --total-size')"
+alias la='ls -aa'
 alias l='ls -F'
 
 alias fdiskl="fdisk -l"
