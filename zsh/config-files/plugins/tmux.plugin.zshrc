@@ -55,9 +55,14 @@ export _ZSH_TMUX_FIXED_CONFIG_ITERM2="$ZSH_CONFIG/tmux/iterm2.conf"
 export _ZSH_TMUX_FIXED_CONFIG_WSL="$ZSH_CONFIG/tmux/wsl.conf"
 # Wrapper function for tmux.
 function _zsh_tmux_plugin_run() {
+
 	if [[ -n "$@" ]]; then
 		command tmux "$@"
 		return $?
+	fi
+
+	if ! tmux info &>/dev/null; then
+		command tmux start-server
 	fi
 
 	local -a tmux_cmd

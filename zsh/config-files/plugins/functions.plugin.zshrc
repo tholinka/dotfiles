@@ -83,9 +83,9 @@ if (( $+commands[runelite] )); then
 
 		if (( $+commands[prime-run] )); then
 			env _JAVA_OPTIONS="$RUNELITE_JAVA_OPTIONS" prime-run runelite
-		else 
+		else
 			env _JAVA_OPTIONS="$RUNELITE_JAVA_OPTIONS" runelite
-		fi 
+		fi
 
 		unset RUNELITE_JAVA_OPTIONS
 	}
@@ -102,4 +102,11 @@ if (( ! $+commands[open] )); then
 	elif (( $+commands[xdg-open] )); then # linux
 		alias open="xdg-open"
 	fi
+fi
+
+# add code if on WSL
+if [[ -e "/mnt/c/Program Files/Microsoft VS Code/Code.exe" ]]; then
+	function code() {
+		"/mnt/c/Program Files/Microsoft VS Code/Code.exe" "$@" &>/dev/null &
+	}
 fi
