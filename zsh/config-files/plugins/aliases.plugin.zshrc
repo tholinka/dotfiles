@@ -116,7 +116,11 @@ alias fdiskl="fdisk -l"
 (( $+commands[iotop] )) && alias iotop="sudo iotop -Pao"
 
 # add default glances stuff
-(( $+commands[glances] )) && alias glances="glances -t 5 --disable-check-update"
+(( $+commands[glances] )) && alias glances="nice -19 glances -t 5 --disable-check-update"
+
+(( $+commands[htop] )) && alias htop="nice -19 htop"
+(( $+commands[top] )) && alias htop="nice -19 top"
+(( $+commands[iotop] )) && alias htop="nice -19 iotop"
 
 # set resolution to 1080p, mostly useful in vms
 (( $+commands[xrandr] )) && alias fixres="xrandr --newmode \"1920x1080\"  173.00  1920 2048 2248 2576  1080 1083 1088 1120 -hsync +vsync && xrandr --addmode Virtual1 1920x1080 && xrandr --output Virtual1 --mode 1920x1080"
