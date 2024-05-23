@@ -102,7 +102,7 @@ zinit snippet "$ZSH_CONFIG/plugins/powerlevel10k.plugin.zshrc"
 ## git prompt info
 #_zload wait"0a" for"tombh/zsh-git-prompt" # my theme handles this
 ## don't run anything pasted until I manually hit enter key
-_zload wait"0a" for "oz/safe-paste"
+# _zload wait"0a" for "oz/safe-paste"
 ## additional syntax highlighting, zsh completions, command suggestion
 _zload wait"0zzz" for \
 atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" zdharma-continuum/fast-syntax-highlighting \
