@@ -31,7 +31,7 @@ alias _zload="zinit blockf $_ZLOAD_NON_DEBUG"'depth"1" from"github"'
 (( $+commands[svn] )) && _ZINIT_USE_SVN="yes"
 
 # oh-my-zsh plugins
-_zload svn for \
+_zload for \
 wait"0d" OMZ::"plugins/command-not-found" \
 wait"0d" if"(( $+commands[gradle] ))" OMZ::"plugins/gradle" \
 wait"0b" if"(( $+_MAC ))" OMZ::"plugins/macos" \
