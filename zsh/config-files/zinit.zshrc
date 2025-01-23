@@ -27,16 +27,37 @@ _ZLOAD_NON_DEBUG="lucid light-mode "
 # Load these things immediatly
 # we construct this in a way that the values of the variables are ran at run time, so we can change the "wait" on the fly
 alias _zload="zinit blockf $_ZLOAD_NON_DEBUG"'depth"1" from"github"'
-# only use svn if its present
-(( $+commands[svn] )) && _ZINIT_USE_SVN="yes"
+
+# https://github.com/zdharma-continuum/zinit/discussions/651#discussioncomment-11442498
+_fix-omz-plugin() {
+    [[ -f ./._zinit/teleid ]] || return 1
+    local teleid="$(<./._zinit/teleid)"
+    local pluginid
+    for pluginid (${teleid#OMZ::plugins/} ${teleid#OMZP::}) {
+        [[ $pluginid != $teleid ]] && break
+    }
+    (($?)) && return 1
+    print "Fixing $teleid..."
+    git clone --quiet --no-checkout --depth=1 --filter=tree:0 https://github.com/ohmyzsh/ohmyzsh
+    cd ./ohmyzsh
+    git sparse-checkout set --no-cone /plugins/$pluginid
+    git checkout --quiet
+    cd ..
+    local file
+    for file (./ohmyzsh/plugins/$pluginid/*~(.gitignore|*.plugin.zsh)(D)) {
+        print "Copying ${file:t}..."
+        cp -R $file ./${file:t}
+    }
+    rm -rf ./ohmyzsh
+}
 
 # oh-my-zsh plugins
-_zload for \
+_zload atpull"%atclone" atclone"_fix-omz-plugin" for \
 wait"0d" OMZ::"plugins/command-not-found" \
 wait"0d" if"(( $+commands[gradle] ))" OMZ::"plugins/gradle" \
 wait"0b" if"(( $+_MAC ))" OMZ::"plugins/macos" \
-wait"0b" if"(( $+commands[git] ))" OMZ::"plugins/git"
-
+wait"0b" if"(( $+commands[git] ))" OMZ::"plugins/git" \
+wait"0b" if"(( $+commands[kubectl] ))" OMZ::"plugins/kubectl"
 
 # mac or linux?
 zinit ice $_ZLOAD_NON_DEBUG wait'0a' if"[[ $(uname -s) == Darwin* ]]"
