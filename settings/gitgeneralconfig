@@ -66,6 +66,9 @@
 	renameLimit = 0
 	indentHeuristic = true
 
+[diff "sopsdiffer"]
+    textconv = sops -d --config /dev/null
+
 [diff "bin"]
 	# Use `hexdump` to diff binary files
 	textconv = hexdump -v -C
