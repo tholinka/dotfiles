@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 # if on mac, make sure you `brew install coreutils`
 PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH" # mac workaround, since we don't have ~/.profile setup yet to fix this
 SCRIPTLOC=$(readlink -f "$0")
@@ -60,7 +60,7 @@ fi
 
 ### see if gnupg exists
 if [ ! -d ~/.gnupg ]; then
-	mkdir ~/.gnupg -m 700
+	mkdir -m 700 ~/.gnupg
 fi
 ### end gnupg
 
@@ -117,6 +117,15 @@ echo "source ~/.vim/vim.vimrc" >~/.vimrc
 ln -sf "$FOLDERLOC/astylerc" ~/.astylerc
 
 ln -sf "$FOLDERLOC/gitgeneralconfig" ~/.gitgeneralconfig
+
+### mac
+if [[ $(uname -s) == Darwin* ]]; then
+	mkdir -p '~/Library/Application Support/iTerm2/DynamicProfiles'
+	ln -sf "$FOLDERLOC/iTerm2/*" '~/Library/Application Support/iTerm2/DynamicProfiles'
+	echo "Set the dynamic profile as the default in iTerm2 settings"
+	echo "Also under Settings -> General -> Startup, set "Only Restore Hotkey Window"
+fi
+###
 
 # copy editorconfig, gitattributes, and gitignore
 cp $FOLDERLOC/editorconfig ~/.editorconfig
