@@ -51,13 +51,17 @@ _fix-omz-plugin() {
     rm -rf ./ohmyzsh
 }
 
+# some of the completions require this as the location they store their completions (e.g. fux)
+mkdir -p $ZSH_CACHE_DIR/completions
+
 # oh-my-zsh plugins
 _zload atpull"%atclone" atclone"_fix-omz-plugin" for \
 wait"0d" OMZ::"plugins/command-not-found" \
 wait"0d" if"(( $+commands[gradle] ))" OMZ::"plugins/gradle" \
 wait"0b" if"(( $+_MAC ))" OMZ::"plugins/macos" \
 wait"0b" if"(( $+commands[git] ))" OMZ::"plugins/git" \
-wait"0b" if"(( $+commands[kubectl] ))" OMZ::"plugins/kubectl"
+wait"0b" if"(( $+commands[kubectl] ))" OMZ::"plugins/kubectl" \
+wait"0b" if"(( $+commands[flux] ))" OMZ::"plugins/fluxcd"
 
 # mac or linux?
 zinit ice $_ZLOAD_NON_DEBUG wait'0a' if"[[ $(uname -s) == Darwin* ]]"
