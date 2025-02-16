@@ -146,3 +146,6 @@ alias fdiskl="fdisk -l"
 
 # if vscode is installed, and we're wayland, switch to wayland
 (( $+_WAYLAND )) && (( $+commands[code] )) && alias code="code --enable-features=UseOzonePlatform --ozone-platform=wayland"
+
+# better, more modern, version of watch
+(( $+commands[viddy] )) && alias watch=viddy

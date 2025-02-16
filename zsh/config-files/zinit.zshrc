@@ -99,10 +99,13 @@ zinit ice $_ZLOAD_NON_DEBUG wait"0z" if"(( $+commands[git] ))"
 zinit snippet "$ZSH_CONFIG/plugins/git.plugin.zshrc"
 
 zinit ice $_ZLOAD_NON_DEBUG wait"0z" if"(( $+commands[java] ))"
-zinit snippet "$ZSH_CONFIG/plugins/java.plugin.zsh"
+zinit snippet "$ZSH_CONFIG/plugins/java.plugin.zshrc"
 
 zinit ice $_ZLOAD_NON_DEBUG wait"0z" if"(( $+commands[basenc] ))"
-zinit snippet "$ZSH_CONFIG/plugins/base64.plugin.zsh"
+zinit snippet "$ZSH_CONFIG/plugins/base64.plugin.zshrc"
+
+zinit ice $_ZLOAD_NON_DEBUG wait"0z" if"(( $+commands[kubectl] ))"
+zinit snippet "$ZSH_CONFIG/plugins/k8s.plugin.zshrc"
 
 # nvm settings, sets up nvm if not present
 zinit ice $_ZLOAD_NON_DEBUG wait"0z"
@@ -144,7 +147,7 @@ _zload wait"0e" for "jreese/zsh-titles"
 # Only load these if the relevent program is installed
 ## adds clipboard helper functions to pipe into/out of clipboard
 _zload wait"0d" if"(( $+commands[xclip] ))" for "zpm-zsh/clipboard"
-## docker autocmplete
+## docker autocomplete
 _zload wait"0d" if"(( $+commands[docker] ))" pick"contrib/completion/zsh/_docker" for "docker/cli"
 ## git flow
 _zload wait"0d" if"git flow version &>/dev/null" for "petervanderdoes/git-flow-completion"
