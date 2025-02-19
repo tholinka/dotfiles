@@ -106,7 +106,7 @@ export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quo
 
 # some more ls aliases
 # eza needa double-a to show . and ..
-alias ll="ls -aalhF --time-style=long-iso $([[ $aliases[ls] == eza* ]] && echo '-Og --total-size')"
+alias ll="ls -aalhF --time-style=long-iso $([[ $aliases[ls] == eza* ]] && echo '-Og')"
 alias la='ls -aa'
 alias l='ls -F'
 
