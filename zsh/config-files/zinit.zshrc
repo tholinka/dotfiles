@@ -51,8 +51,10 @@ _fix-omz-plugin() {
     rm -rf ./ohmyzsh
 }
 
-# some of the completions require this as the location they store their completions (e.g. fux)
-mkdir -p $ZSH_CACHE_DIR/completions
+# Create cache and completions dir and add to $fpath
+# some of the completions require this as the location they store their completions (e.g. flux)
+mkdir -p "$ZSH_CACHE_DIR/completions"
+(( ${fpath[(Ie)$ZSH_CACHE_DIR/completions]} )) || fpath=("$ZSH_CACHE_DIR/completions" $fpath)
 
 # oh-my-zsh plugins
 _zload atpull"%atclone" atclone"_fix-omz-plugin" for \
@@ -106,6 +108,9 @@ zinit snippet "$ZSH_CONFIG/plugins/base64.plugin.zshrc"
 
 zinit ice $_ZLOAD_NON_DEBUG wait"0z" if"(( $+commands[kubectl] ))"
 zinit snippet "$ZSH_CONFIG/plugins/k8s.plugin.zshrc"
+
+zinit ice $_ZLOAD_NON_DEBUG wait"0z" if"(( $+commands[bws] ))"
+zinit snippet "$ZSH_CONFIG/plugins/bws.plugin.zshrc"
 
 # nvm settings, sets up nvm if not present
 zinit ice $_ZLOAD_NON_DEBUG wait"0z"
