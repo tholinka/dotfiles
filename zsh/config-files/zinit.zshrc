@@ -78,7 +78,7 @@ zinit ice light-mode ludid wait"0a"
 zinit snippet "$ZSH_CONFIG/plugins/zsh.plugin.zshrc"
 # general variables, used for instance in aliases
 zinit ice $_ZLOAD_NON_DEBUG wait"0b"
-zinit snippet "$ZSH_CONFIG/plugins/variables.plugin.zsh"
+zinit snippet "$ZSH_CONFIG/plugins/variables.plugin.zshrc"
 # general functions, used for intsnace in aliases
 zinit ice $_ZLOAD_NON_DEBUG wait"0b"
 zinit snippet "$ZSH_CONFIG/plugins/functions.plugin.zshrc"
