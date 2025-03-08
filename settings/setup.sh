@@ -106,6 +106,10 @@ ln -sf "$FOLDERLOC/gnupg/gpg-agent.conf" ~/.gnupg/gpg-agent.conf
 ### end .gnupg
 
 ### .gradle ###
+if [ ! -d ~/.gradle ]; then
+	mkdir ~/.gradle
+fi
+
 ln -sf "$FOLDERLOC/gradle/gradle.properties" ~/.gradle/gradle.properties
 ### end .gradle ###
 
@@ -123,7 +127,7 @@ if [[ $(uname -s) == Darwin* ]]; then
 	mkdir -p '~/Library/Application Support/iTerm2/DynamicProfiles'
 	ln -sf "$FOLDERLOC/iTerm2/*" '~/Library/Application Support/iTerm2/DynamicProfiles'
 	echo "Set the dynamic profile as the default in iTerm2 settings"
-	echo "Also under Settings -> General -> Startup, set "Only Restore Hotkey Window"
+	echo "Also under Settings -> General -> Startup, set \"Only Restore Hotkey Window\""
 fi
 ###
 
@@ -132,8 +136,11 @@ cp $FOLDERLOC/editorconfig ~/.editorconfig
 cp $FOLDERLOC/gitattributes ~/.gitattributes
 cp $FOLDERLOC/gitignore ~/.gitignore
 
-echo "[include]
-	path = ~/.gitgeneralconfig" >>~/.gitconfig
+cat << EOT >> ~/.gitconfig
+[include]
+	path = ~/.gitgeneralconfig
+EOT
+
 echo "Included link to .gitgeneralconfig in ~/.gitconfig, make sure there aren't to many links of that in there"
 
 echo
