@@ -1,8 +1,12 @@
 FUNCTIONS_FILE_LOC="${(%):-%N}" # hacky workaround to replace bash's export
 
+# until ssh; sleep; done wrapper
+function up() {
+  until ssh -o ConnectTimeout=1s "$@" 'exit 0'; do echo -n 'sleeping...'; sleep 5; done
+}
+
 # grep wrapper that does grep --include "..." --exclude "..." -Rnwi . -e "[pattern]" in an easy function of grephere [pattern] [exclude] [include]
-function grephere()
-{
+function grephere() {
 	# echo "grephere pattern exclude include e.g. grephere \"hello world\" \"*.o\" \"*.{c,h}\""
 	if [ -z "$2" ]; then
 		exclude=""
@@ -21,8 +25,7 @@ function grephere()
 	grep $include $exclude -Rnwi . -e $1 || echo "nothing found"
 }
 
-function screen()
-{
+function screen() {
 	# see if there are any arguments
 	if [ -z "$@" ]; then
 		# no arguments, quiet screen
