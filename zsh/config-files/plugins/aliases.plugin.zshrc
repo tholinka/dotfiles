@@ -148,4 +148,8 @@ alias fdiskl="fdisk -l"
 (( $+_WAYLAND )) && (( $+commands[code] )) && alias code="code --enable-features=UseOzonePlatform --ozone-platform=wayland"
 
 # better, more modern, version of watch
-(( $+commands[viddy] )) && alias watch=viddy
+# space at the end causes aliases to be expanded
+(( $+commands[viddy] )) && alias watch='viddy ' || alias watch='watch '
+
+# space at the end causes aliases to be expanded
+alias sudo='sudo '
