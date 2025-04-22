@@ -73,6 +73,6 @@ if [[ $XDG_SESSION_TYPE == "wayland" ]]; then
 fi
 
 # FZF
-export FZF_DEFAULT_OPTS='--height 40% --layout=reverse'
+# export FZF_DEFAULT_OPTS='--height 40% --layout=reverse'
 # zsh-autoswitch-virtualenv plugin
 export AUTOSWITCH_DEFAULT_PYTHON="/usr/bin/python3"

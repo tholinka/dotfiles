@@ -9,6 +9,10 @@ if [ ! -d ~/.config ]; then
 	mkdir ~/.config
 fi
 
+if [ ! -d ~/.config/atuin ]; then
+	mkdir ~/.config/atuin
+fi
+
 if [ ! -d ~/.config/glances ]; then
 	mkdir ~/.config/glances
 fi
@@ -77,7 +81,8 @@ fi
 
 ## symlinks
 ### .config section ###
-ln -sf "$FOLDERLOC/config/glances"* ~/.config/glances/
+ln -sf "$FOLDERLOC/config/atuin/"* ~/.config/atuin/
+ln -sf "$FOLDERLOC/config/glances/"* ~/.config/glances/
 ln -sf "$FOLDERLOC/config/mpv/"* ~/.config/mpv/
 
 ln -sf "$FOLDERLOC/config/QtProject/qtcreator/styles/monokai_tyler.xml" ~/.config/QtProject/qtcreator/styles/

@@ -1,0 +1,10 @@
+sync_address = "https://sh.tholinka.dev"
+enter_accept = false
+inline_height = 40
+show_help = false
+show_tabs = false
+keymap_mode = "vim-insert"
+show_preview = false
+
+[sync]
+records = true

@@ -118,8 +118,8 @@ zinit snippet "$ZSH_CONFIG/plugins/nvm.plugin.zshrc"
 
 # we use these annex's to load others
 _zload for \
-wait'0a' zdharma-continuum/zinit-annex-patch-dl \
-wait'0a' zdharma-continuum/zinit-annex-bin-gem-node
+zdharma-continuum/zinit-annex-patch-dl \
+zdharma-continuum/zinit-annex-bin-gem-node
 
 ### Theme note: if there is a "wait" present, it will fail to load on first prompt
 ### and will instead load after a command is entered
@@ -162,5 +162,24 @@ _zload wait"0d" if"(( $+commands[python] ))" for "MichaelAquilina/zsh-autoswitch
 # zinit packages
 zinit blockf $_ZLOAD_NON_DEBUG wait"0e" pack for dircolors-material
 
-# FZF, hotkeys: ctrl-t file/dir search. ctrl-r history search, alt-c dir search + cd
-zinit blockf $_ZLOAD_NON_DEBUG wait"1" pack"bgn-binary+keys" for fzf
+# shell history sync - ctrl-r history search
+zinit blockf $_ZLOAD_NON_DEBUG \
+	bpick"atuin-*.tar.gz" \
+	mv"atuin*/atuin -> atuin" \
+	atclone"mkdir -p $ZPFX/bin && ./atuin init zsh --disable-up-arrow > key-bindings.zsh && ./atuin gen-completions --shell zsh > _atuin" \
+	atpull"%atclone" \
+	from"gh-r" \
+	id-as"atuinsh/atuin" \
+	nocompile \
+	pick'/dev/null' \
+	sbin'atuin' \
+	src'key-bindings.zsh' \
+	for atuinsh/atuin
+
+# FZF, hotkeys: ctrl-t file/dir search, alt-c dir search + cd
+# add bin-gem-node entries to PATH. Only needed on the very first time, after that bgn auto sets this
+# also, only add fzf on the very first run, or we get warnings about duplicate plugins
+if ! [[ "$PATH" =~ "$ZPFX/bin" ]]; then
+	zinit blockf $_ZLOAD_NON_DEBUG wait"1" pack"bgn-binary+keys" for fzf
+	export PATH="$ZPFX/bin:$PATH"
+fi
