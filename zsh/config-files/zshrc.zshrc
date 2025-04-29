@@ -10,9 +10,6 @@ fi
 # but only do it once so that if ```source ~/.zshrc``` is called we don't add paths again
 [[ -v ZPROFILE_SOURCED ]] || source "$HOME/.zprofile"
 
-# Path to config folder if not already set
-[[ -v ZSH_CONFIG ]] || export ZSH_CONFIG="$HOME/.zsh-config"
-
 # zinit setup
 source "$ZSH_CONFIG/zinit.zshrc"
 

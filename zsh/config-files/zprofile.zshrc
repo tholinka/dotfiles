@@ -1,3 +1,6 @@
+# Path to config folder if not already set
+[[ -v ZSH_CONFIG ]] || export ZSH_CONFIG="$HOME/.zsh-config"
+
 # add global executable folders to PATH
 PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 
@@ -6,6 +9,9 @@ PATH="$HOME/bin:$HOME/usr/bin:$HOME/bin:$HOME/.local/bin:$PATH"
 
 # add rust-lang's cargo executables to PATH
 PATH="$HOME/.cargo/bin:$PATH"
+
+# add scripts
+PATH="$ZSH_CONFIG/scripts:$PATH"
 
 # add Golang
 export GOPATH=$HOME/.go
