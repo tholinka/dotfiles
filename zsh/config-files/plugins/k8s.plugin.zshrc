@@ -21,3 +21,10 @@ autoload -Uz _kubectl-decode
 _comps[kubectl-decode]=_kubectl-decode
 
 alias kgsecd="kubectl-decode"
+
+if (( $+commands[kubectl-cnpg] )); then
+	typeset -g -A _comps
+	autoload -Uz _kubectl-cnpg
+	_comps[kubectl-cnpg]=_kubectl-cnpg
+	kubectl-cnpg completion zsh 2>/dev/null >| "$ZSH_CACHE_DIR/completions/_kubectl-cnpg" &|
+fi
