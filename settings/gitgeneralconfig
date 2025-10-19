@@ -40,8 +40,6 @@
 	whitespace = fix
 [rebase]
 	autoStash = true
-	# don't update commit author and date on rebase
-	instructionFormat = %s%nexec GIT_COMMITTER_DATE="\"%cD\"" GIT_COMMITTER_NAME="\"%cn\"" GIT_COMMITTER_EMAIL="\"%ce\"" git commit --amend --no-edit --reset-author --date="\"%cD\""
 [color]
 	# Use colors in Git commands that are capable of colored output when
 	# outputting to the terminal. (This is the default setting in Git ≥ 1.8.4.)
