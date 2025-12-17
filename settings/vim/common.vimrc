@@ -2,42 +2,19 @@
 "" Git wrapper
 Plug 'tpope/vim-fugitive'
 
-"" NERD tree
-Plug 'scrooloose/nerdtree'
-"" Add support for git to NERD tree
-Plug 'Xuyuanp/nerdtree-git-plugin'
-
-" handle "surroundings", e.g. parentheses, brackets, etc.
-Plug 'tpope/vim-surround'
-
-" syntax checker
-Plug 'scrooloose/syntastic'
+" syntax
+Plug 'dense-analysis/ale'
 
 " good statusline
 Plug 'vim-airline/vim-airline'
 " theme for statusline
 Plug 'vim-airline/vim-airline-themes'
 
-" handles comments
-Plug 'scrooloose/nerdcommenter'
-
-" use editorconfig
-Plug 'editorconfig/editorconfig-vim'
-
 " fuzzy finder
 Plug 'junegunn/fzf'
 
-" allow multiple cursors
-Plug 'terryma/vim-multiple-cursors'
-
 " Monokai theme
 Plug 'sickill/vim-monokai'
-
-" JSON handler
-Plug 'elzr/vim-json'
-
-" Arm syntax handler
-Plug 'arm9/arm-syntax-vim'
 
 " completion
 if has('nvim')
@@ -226,23 +203,16 @@ try
 catch
 endtry
 
-" set up syntastic
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
+" set up ale
+let g:ale_lint_on_enter = 0
+let g:ale_lint_on_insert_leave = 0
 
-" set up NERD commenter
-"" Add spaces after comment delimiters by default
-let g:NERDSpaceDelims = 1
-"" Use compact syntax for prettified multi-line comments
-let g:NERDCompactSexyComs = 1
-"" Allow commenting and inverting empty lines (useful when commenting a region)
-let g:NERDCommentEmptyLines = 1
-"" Enable trimming of trailing whitespace when uncommenting
-let g:NERDTrimTrailingWhitespace = 1
-"" Enable NERDCommenterToggle to check all selected lines is commented or not
-let g:NERDToggleCheckAllLines = 1
+"" Use ALE as completion sources for all code.
+call deoplete#custom#option('sources', {
+\ '_': ['ale'],
+\})
+"" use airline
+let g:airline#extensions#ale#enabled = 1
 
 " set up editorconfig
 "" don't mess with fugitive
@@ -251,17 +221,6 @@ let g:NERDToggleCheckAllLines = 1
 "let g:EditorConfig_exclude_patterns = ['scp://.*']
 "" above two combined
 let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
-
-" open NERD tree if opened without arguments
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-
-" open NERD tree if directory specified
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
-
-" close vim if NERD tree is the only window open
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 " source filetype info
 source ~/.vim/filetypes.vimrc
