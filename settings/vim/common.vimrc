@@ -224,3 +224,7 @@ let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
 
 " source filetype info
 source ~/.vim/filetypes.vimrc
+
+
+set list
+set listchars=eol:¬,tab:>·,space:·,trail:·,precedes:⇠,extends:⇢,nbsp:×
