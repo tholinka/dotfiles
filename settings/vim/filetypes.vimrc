@@ -61,6 +61,14 @@ augroup json_autocmd
 	autocmd FileType json set foldmethod=syntax
 augroup END
 
+" yaml
+" Fix auto-indentation for YAML files
+augroup yaml_fix
+	autocmd!
+	autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab indentkeys-=0# indentkeys-=<:>
+	autocmd FileType yaml set foldmethod=indent
+augroup END
+
 """"""""""""""""""""""""""""""
 " => CoffeeScript section
 """""""""""""""""""""""""""""""
