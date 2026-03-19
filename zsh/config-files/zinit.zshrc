@@ -157,7 +157,7 @@ _zload wait"0d" if"(( $+commands[docker] ))" pick"contrib/completion/zsh/_docker
 ## git flow
 _zload wait"0d" if"git flow version &>/dev/null" for "petervanderdoes/git-flow-completion"
 ## python virtual environment
-_zload wait"0d" if"(( $+commands[python] ))" for "MichaelAquilina/zsh-autoswitch-virtualenv"
+_zload wait"0d" if"(( $+commands[python] )) || (( $+commands[python3] ))" for "MichaelAquilina/zsh-autoswitch-virtualenv"
 
 # zinit packages
 zinit blockf $_ZLOAD_NON_DEBUG wait"0e" pack for dircolors-material
