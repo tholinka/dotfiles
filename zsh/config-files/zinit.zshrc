@@ -150,7 +150,7 @@ zinit blockf $_ZLOAD_NON_DEBUG wait"0e" pack for dircolors-material
 
 # shell history sync - ctrl-r history search
 zinit blockf $_ZLOAD_NON_DEBUG \
-	bpick"atuin-*.tar.gz" \
+	bpick"atuin-(X86_64|aarch64)*.tar.gz" \
 	mv"atuin*/atuin -> atuin" \
 	atclone"mkdir -p $ZPFX/bin && ./atuin init zsh --disable-up-arrow > key-bindings.zsh && ./atuin gen-completions --shell zsh > _atuin" \
 	atpull"%atclone" \
