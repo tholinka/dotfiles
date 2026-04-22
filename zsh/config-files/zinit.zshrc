@@ -162,6 +162,11 @@ zinit blockf $_ZLOAD_NON_DEBUG \
 	src'key-bindings.zsh' \
 	for atuinsh/atuin
 
+# if this is jetbrains, we want a seperate author (for e.g. intellij copilot plugin)
+if [[ $TERMINAL_EMULATOR == "JetBrains-JediTerm" ]]; then
+	export ATUIN_HISTORY_AUTHOR="jetbrains"
+fi
+
 # FZF, hotkeys: ctrl-t file/dir search, alt-c dir search + cd
 # add bin-gem-node entries to PATH. Only needed on the very first time, after that bgn auto sets this
 # also, only add fzf on the very first run, or we get warnings about duplicate plugins
