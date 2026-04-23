@@ -1,0 +1,17 @@
+root = true
+
+[*]
+charset = utf-8
+indent_style = tab
+indent_size = 4
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+[Makefile]
+indent_style = tab
+
+[*.{md,yml,yaml,toml,md.j2,yml.j2,yaml.j2,toml.j2,md.tmpl,yml.tmpl,yaml.tmpl,toml.tmpl}]
+indent_style = space
+indent_size = 2
+quote_type = single

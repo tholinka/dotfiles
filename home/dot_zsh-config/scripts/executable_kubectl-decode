@@ -1,0 +1,79 @@
+#!/usr/bin/env bash
+
+# originally from https://github.com/drewburr/dotfiles/blob/master/Scripts/kubectl-decode
+
+function help() {
+	cat << EOF
+Get a secret and decode the data object. Will show secrets in cleartext.
+
+Requirements:
+	Decodes with yq or jq. Default behavior is to prefer yq.
+	If neither are installed, falls back to a go-template that only shows the .data fields instead.
+
+Examples:
+	# Decode a secret
+	kubectl decode secret-name
+
+	# Decode a secret and display as YAML (Default)
+	kubectl decode -o yaml secret-name
+
+	# Decode a secret and display as JSON
+	kubectl decode -o json secret-name
+
+	# Decode a secret in an alternate namespace
+	kubectl decode -n namespace secret-name
+EOF
+}
+
+CLEANER='cat'
+if command -v kubectl-neat >/dev/null 2>&1 ; then
+	CLEANER='kubectl neat'
+fi
+
+function kubectl_decode() {
+	func=''
+
+	# Check for -o flag first
+	if [[ "$*" == *"-oyaml"* || "$*" == *"-o yaml"* ]]; then
+		func=yq_decode
+	elif [[ "$*" == *"-ojson"* || "$*" == *"-o json"* ]]; then
+		func=jq_decode
+	# Determine parser by installation
+	elif command -v yq >/dev/null 2>&1; then
+		func=yq_decode
+	elif command -v jq >/dev/null 2>&1; then
+		func=jq_decode
+	else
+		func=go_decode
+	fi
+
+	$func "$@"
+}
+
+function yq_decode() {
+	kubectl get secret "$@" -o yaml | $CLEANER | yq '.data.[] |= @base64d'
+}
+
+function jq_decode() {
+	kubectl get secret "$@" -o json | $CLEANER | jq '.data |= map_values(@base64d)'
+}
+
+function go_decode() {
+	# shellcheck disable=SC2016
+	kubectl get secret "$@" -o go-template='{{range $k,$v := .data}}{{printf "%s: " $k}}{{if not $v}}{{$v}}{{else}}{{$v | base64decode}}{{end}}{{"\n"}}{{end}}'
+}
+
+if [[ -z $1 ]]; then
+	help
+	exit 0;
+fi
+
+for var in "$@"; do
+	if [[ "$var" == "--help" || "$var" = "-help" || $var == "-h" ]]; then
+		help
+		exit 0
+	fi
+done
+
+echo "args1: $@"
+kubectl_decode "$@"

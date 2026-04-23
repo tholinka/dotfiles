@@ -1,0 +1,9 @@
+[".vim/vim-plug"]
+type = "git-repo"
+url = "https://github.com/junegunn/vim-plug.git"
+refreshPeriod = "168h"
+
+[".zsh-config/zinit"]
+type = "git-repo"
+url = "https://github.com/zdharma-continuum/zinit.git"
+refreshPeriod = "168h"

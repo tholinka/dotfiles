@@ -1,0 +1,23 @@
+#!/usr/bin/env zsh
+
+# wrapper for kubectl-decode to add bash completions
+compdef _kubectl-decode kubectl-decode
+
+_kubectl-decode()
+{
+	local _words=" "
+
+	if (( CURRENT > 2 )); then
+		_words="${=words[2,CURRENT]}"
+	fi
+
+	export CURRENT=$(( CURRENT + 2)) # we're adding two commands, so move the CURRENT pointer to the right
+	export words=(kubectl get secrets "${_words[*]}")
+
+	_kubectl
+}
+
+# don't run the completion function when being source-ed or eval-ed
+if [ "${funcstack[1]}" = "_kubectl-decode" ]; then
+    _kubectl-decode
+fi

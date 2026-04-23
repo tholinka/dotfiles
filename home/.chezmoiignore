@@ -1,0 +1,20 @@
+.config/QtProject {{/* Never currently use QtCreator, but if I ever do again I have it */}}
+
+{{- if eq .chezmoi.os "darwin" }}
+.config/mpv
+
+.config/chromium-flags.conf
+.config/chrome-flags.conf
+{{- else }}
+Library
+{{- end }}
+
+{{- if not .ui }}
+.config/mpv
+.config/QtProject
+
+.config/chromium-flags.conf
+.config/chrome-flags.conf
+
+.local/share/konsole
+{{- end }}
