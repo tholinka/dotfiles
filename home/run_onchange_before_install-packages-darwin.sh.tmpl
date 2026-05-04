@@ -4,5 +4,28 @@
 brew bundle --file=/dev/stdin <<EOF
 brew "git"
 brew "coreutils"
+brew "mise"
+brew "helm"
+brew "helmfile"
+brew "fluxcd/tap/flux"
+brew "kubecolor"
+brew "kubeconform"
+brew "kubernetes-cli"
+brew "krew"
+brew "cilium-cli"
+tap "siderolabs/tap"
+brew "siderolabs/tap/talosctl"
+brew "kubeconform"
+brew "kustomize"
+brew "stern"
+brew "minijinja-cli"
+brew "jq"
+brew "yq"
+brew "k9s"
+brew "viddy"
 EOF
+
+kubectl krew update
+kubectl krew upgrade
+kubectl krew install cert-manager browse-pvc node-shell rook-ceph view-secret
 {{ end -}}
