@@ -49,7 +49,8 @@ wait"0d" if"(( $+commands[gradle] ))" OMZ::"plugins/gradle" \
 wait"0b" if"(( $+_MAC ))" OMZ::"plugins/macos" \
 wait"0b" if"(( $+commands[git] ))" OMZ::"plugins/git" \
 wait"0b" if"(( $+commands[kubectl] ))" OMZ::"plugins/kubectl" \
-wait"0b" if"(( $+commands[flux] ))" OMZ::"plugins/fluxcd"
+wait"0b" if"(( $+commands[flux] ))" OMZ::"plugins/fluxcd" \
+wait"0b" if"(( $+commands[mise] ))" OMZ::"plugins/mise" \
 
 # load tmux first
 zinit ice $_ZLOAD_NON_DEBUG if"(( $+commands[tmux] ))" atinit"ZSH_TMUX_AUTOSTART=false"
