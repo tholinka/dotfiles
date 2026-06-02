@@ -44,8 +44,8 @@ mkdir -p "$ZSH_CACHE_DIR/completions"
 
 # oh-my-zsh plugins
 _zload atpull"%atclone" atclone"_fix-omz-plugin" for \
-wait"0d" OMZ::"plugins/command-not-found" \
-wait"0d" if"(( $+commands[gradle] ))" OMZ::"plugins/gradle" \
+wait"0c" OMZ::"plugins/command-not-found" \
+wait"0c" if"(( $+commands[gradle] ))" OMZ::"plugins/gradle" \
 wait"0b" if"(( $+_MAC ))" OMZ::"plugins/macos" \
 wait"0b" if"(( $+commands[git] ))" OMZ::"plugins/git" \
 wait"0b" if"(( $+commands[kubectl] ))" OMZ::"plugins/kubectl" \
@@ -60,46 +60,46 @@ zinit snippet "$ZSH_CONFIG/plugins/tmux.plugin.zshrc"
 zinit ice light-mode ludid wait"0a"
 zinit snippet "$ZSH_CONFIG/plugins/zsh.plugin.zshrc"
 # general variables, used for instance in aliases
-zinit ice $_ZLOAD_NON_DEBUG wait"0b"
+zinit ice $_ZLOAD_NON_DEBUG wait"0a"
 zinit snippet "$ZSH_CONFIG/plugins/variables.plugin.zshrc"
 # general functions, used for intsnace in aliases
-zinit ice $_ZLOAD_NON_DEBUG wait"0b"
+zinit ice $_ZLOAD_NON_DEBUG wait"0a"
 zinit snippet "$ZSH_CONFIG/plugins/functions.plugin.zshrc"
 # general aliases
-zinit ice $_ZLOAD_NON_DEBUG wait"0c"
+zinit ice $_ZLOAD_NON_DEBUG wait"0a"
 zinit snippet "$ZSH_CONFIG/plugins/aliases.plugin.zshrc"
 
 # command specific settings
-zinit ice $_ZLOAD_NON_DEBUG wait"0z" if"(( $+commands[pacman] ))"
+zinit ice $_ZLOAD_NON_DEBUG wait"0c" if"(( $+commands[pacman] ))"
 zinit snippet "$ZSH_CONFIG/plugins/arch.plugin.zshrc"
-zinit ice $_ZLOAD_NON_DEBUG wait"0z" if"(( $+commands[apt-get] ))"
+zinit ice $_ZLOAD_NON_DEBUG wait"0c" if"(( $+commands[apt-get] ))"
 zinit snippet "$ZSH_CONFIG/plugins/debian.plugin.zshrc"
-zinit ice $_ZLOAD_NON_DEBUG wait"0z" if"(( $+commands[wine] ))"
+zinit ice $_ZLOAD_NON_DEBUG wait"0c" if"(( $+commands[wine] ))"
 zinit snippet "$ZSH_CONFIG/plugins/wine.plugin.zshrc"
-zinit ice $_ZLOAD_NON_DEBUG wait"0z" if"(( $+commands[youtube-dl] ))"
+zinit ice $_ZLOAD_NON_DEBUG wait"0c" if"(( $+commands[youtube-dl] ))"
 zinit snippet "$ZSH_CONFIG/plugins/youtube-dl.plugin.zshrc"
-zinit ice $_ZLOAD_NON_DEBUG wait"0z" if"(( $+commands[docker] ))"
+zinit ice $_ZLOAD_NON_DEBUG wait"0c" if"(( $+commands[docker] ))"
 zinit snippet "$ZSH_CONFIG/plugins/docker.plugin.zshrc"
-zinit ice $_ZLOAD_NON_DEBUG wait"0z" if"(( $+commands[git] ))"
+zinit ice $_ZLOAD_NON_DEBUG wait"0c" if"(( $+commands[git] ))"
 zinit snippet "$ZSH_CONFIG/plugins/git.plugin.zshrc"
 
-zinit ice $_ZLOAD_NON_DEBUG wait"0z" if"(( $+commands[java] ))"
+zinit ice $_ZLOAD_NON_DEBUG wait"0c" if"(( $+commands[java] ))"
 zinit snippet "$ZSH_CONFIG/plugins/java.plugin.zshrc"
 
-zinit ice $_ZLOAD_NON_DEBUG wait"0z" if"(( $+commands[basenc] ))"
+zinit ice $_ZLOAD_NON_DEBUG wait"0c" if"(( $+commands[basenc] ))"
 zinit snippet "$ZSH_CONFIG/plugins/base64.plugin.zshrc"
 
-zinit ice $_ZLOAD_NON_DEBUG wait"0z" if"(( $+commands[kubectl] ))"
+zinit ice $_ZLOAD_NON_DEBUG wait"0c" if"(( $+commands[kubectl] ))"
 zinit snippet "$ZSH_CONFIG/plugins/k8s.plugin.zshrc"
 
-zinit ice $_ZLOAD_NON_DEBUG wait"0z" if"(( $+commands[bws] ))"
+zinit ice $_ZLOAD_NON_DEBUG wait"0c" if"(( $+commands[bws] ))"
 zinit snippet "$ZSH_CONFIG/plugins/bws.plugin.zshrc"
 
-zinit ice $_ZLOAD_NON_DEBUG wait"0z" if"(( $+commands[chezmoi] ))"
+zinit ice $_ZLOAD_NON_DEBUG wait"0c" if"(( $+commands[chezmoi] ))"
 zinit snippet "$ZSH_CONFIG/plugins/chezmoi.plugin.zshrc"
 
 # nvm settings, sets up nvm if not present
-zinit ice $_ZLOAD_NON_DEBUG wait"0z"
+zinit ice $_ZLOAD_NON_DEBUG wait"0c"
 zinit snippet "$ZSH_CONFIG/plugins/nvm.plugin.zshrc"
 
 # we use these annex's to load others
@@ -123,7 +123,7 @@ zinit snippet "$ZSH_CONFIG/plugins/powerlevel10k.plugin.zshrc"
 ## don't run anything pasted until I manually hit enter key
 # _zload wait"0a" for "oz/safe-paste"
 ## additional syntax highlighting, zsh completions, command suggestion
-_zload wait"0zzz" for \
+_zload wait"0c" for \
 atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" zdharma-continuum/fast-syntax-highlighting \
 zsh-users/zsh-completions \
 atload"!_zsh_autosuggest_start; _zsh_autosuggest_bind_widgets" zsh-users/zsh-autosuggestions
@@ -133,20 +133,20 @@ export ZSH_AUTOSUGGEST_MANUAL_REBIND=1
 _zload wait"0a" for "chrissicool/zsh-256color"
 
 ## automatically change terminal title based on location / task
-_zload wait"0e" for "jreese/zsh-titles"
+_zload wait"0c" for "jreese/zsh-titles"
 # note: if these fail to clone, try running the ice and load manually
-# Only load these if the relevent program is installed
+# Only load these if the relevant program is installed
 ## adds clipboard helper functions to pipe into/out of clipboard
-_zload wait"0d" if"(( $+commands[xclip] ))" for "zpm-zsh/clipboard"
+_zload wait"0c" if"(( $+commands[xclip] ))" for "zpm-zsh/clipboard"
 ## docker autocomplete
-_zload wait"0d" if"(( $+commands[docker] ))" pick"contrib/completion/zsh/_docker" for "docker/cli"
+_zload wait"0c" if"(( $+commands[docker] ))" pick"contrib/completion/zsh/_docker" for "docker/cli"
 ## git flow
-_zload wait"0d" if"git flow version &>/dev/null" for "petervanderdoes/git-flow-completion"
+_zload wait"0c" if"git flow version &>/dev/null" for "petervanderdoes/git-flow-completion"
 ## python virtual environment
-_zload wait"0d" if"(( $+commands[python] )) || (( $+commands[python3] ))" for "MichaelAquilina/zsh-autoswitch-virtualenv"
+_zload wait"0c" if"(( $+commands[python] )) || (( $+commands[python3] ))" for "MichaelAquilina/zsh-autoswitch-virtualenv"
 
 # zinit packages
-zinit blockf $_ZLOAD_NON_DEBUG wait"0e" pack for dircolors-material
+zinit blockf $_ZLOAD_NON_DEBUG wait"0b" pack for dircolors-material
 
 # shell history sync - ctrl-r history search
 zinit blockf $_ZLOAD_NON_DEBUG \
