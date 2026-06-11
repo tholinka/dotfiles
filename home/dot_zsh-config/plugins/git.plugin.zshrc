@@ -14,3 +14,11 @@ function git-gc-all()
 
 	git -c gc.reflogExpire=0 -c gc.reflogExpireUnreachable=now -c gc.rerereResolved=0 -c gc.rerereUnresolved=0 -c gc.worktreePruneExpire=now -c gc.pruneExpire=now gc --prune=now --aggressive "$@"
 }
+
+function git-remove-branches()
+{
+	git fetch -p
+	for branch in $(git for-each-ref --format '%(refname) %(upstream:track)' refs/heads | awk '$2 == "[gone]" {sub("refs/heads/", "", $1); print $1}'); do
+ 		git branch -D $branch;
+	done
+}
