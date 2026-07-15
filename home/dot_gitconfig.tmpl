@@ -122,14 +122,22 @@
 {{- end }}
 
 # URL shorthands
+{{- if .work }}
+[url "https://github.com/"]
+{{- else }}
 [url "git@github.com:"]
+{{- end }}
 	insteadOf = "gh:"
 	pushInsteadOf = "github:"
 	pushInsteadOf = "gh:"
 	pushInsteadOf = "git://github.com/"
 [url "git://github.com/"]
 	insteadOf = "github:"
+{{- if .work }}
+[url "https://gist.github.com/"]
+{{- else }}
 [url "git@gist.github.com:"]
+{{- end }}
 	insteadOf = "gst:"
 	pushInsteadOf = "gist:"
 	pushInsteadOf = "git://gist.github.com/"
