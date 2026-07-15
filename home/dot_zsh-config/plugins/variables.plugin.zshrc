@@ -76,3 +76,7 @@ fi
 # export FZF_DEFAULT_OPTS='--height 40% --layout=reverse'
 # zsh-autoswitch-virtualenv plugin
 export AUTOSWITCH_DEFAULT_PYTHON="/usr/bin/python3"
+
+if (( $+commands[wslpath] )); then # WSL
+	export BROWSER="$(wslpath 'C:\Windows\explorer.exe')"
+fi

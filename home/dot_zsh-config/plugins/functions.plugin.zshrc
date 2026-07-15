@@ -180,9 +180,7 @@ fi
 if (( ! $+commands[open] )); then
 	if (( $+functions[powershell] )); then # WSL
 		function open() {
-			for fil in $@; do
-				powershell Start \"$(wslpath -w "$fil")\"
-			done
+			"$BROWSER" "$@"
 		}
 	elif (( $+commands[xdg-open] )); then # linux
 		alias open="xdg-open"
