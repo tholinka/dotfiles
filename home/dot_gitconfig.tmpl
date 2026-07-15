@@ -47,6 +47,10 @@
 	untrackedCache = true
 
 	autocrlf = input
+
+	{{- if .git.sshCommand }}
+	sshCommand = {{ .git.sshCommand }}
+	{{- end}}
 [apply]
 	whitespace = fix
 [rebase]
