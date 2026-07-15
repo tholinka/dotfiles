@@ -101,9 +101,10 @@ if (( $+commands[wslpath] )); then # WSL
 	if [[ ! -e $cmd ]]; then
 		echo "failed to find window's cmd.exe"
 	else
-		function cmd() {
-			"$cmd" "$@"
-		}
+		function cmd() (
+			# cmd absolutely hates starting in a UNC (aka network) path and WILL alert you about it at every possible chance
+			cd "$(wslpath 'C:\')" && "$cmd" "$@"
+		)
 	fi
 
 	powershell="$(wslpath 'C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe')"
@@ -121,13 +122,12 @@ if (( $+commands[wslpath] )); then # WSL
 		done
 	}
 
-	function windows_user_folder() {
-		cmd /c "echo %USERPROFILE%"
-	}
+	# the shell deeply hates the \ in windows paths when we get it back from a $()
+	printf -v windows_user_folder "%q" "$(cmd /c 'echo|set /p=%USERPROFILE%')"
 
 	code=$(wslpath 'C:\Program Files\Microsoft VS Code\Code.exe')
 	if [[ ! -e "$code" ]]; then
-		code=$(wslpath 'C:\Users\$(windows_user_folder)\AppData\Local\Programs\Microsoft VS Code\Code.exe')
+		code=$(wslpath "$windows_user_folder\AppData\Local\Programs\Microsoft VS Code\Code.exe")
 	fi
 
 	if [[ -e "$code" ]]; then
@@ -151,7 +151,7 @@ if (( $+commands[wslpath] )); then # WSL
 
 	idea=$(wslpath 'C:\Program Files\JetBrains\IntelliJ IDEA\bin\idea64.exe')
 	if [[ ! -e "$idea" ]]; then
-		idea=$(wslpath 'C:\Users\$(windows_user_folder)\AppData\Local\Programs\Intellij IDEA\bin\idea64.exe')
+		idea=$(wslpath "$windows_user_folder\AppData\Local\Programs\Intellij IDEA\bin\idea64.exe")
 	fi
 
 	if [[ -e "$idea" ]]; then
