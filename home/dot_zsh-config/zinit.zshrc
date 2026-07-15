@@ -52,56 +52,6 @@ wait"0b" if"(( $+commands[kubectl] ))" OMZ::"plugins/kubectl" \
 wait"0b" if"(( $+commands[flux] ))" OMZ::"plugins/fluxcd" \
 wait"0b" if"(( $+commands[mise] ))" OMZ::"plugins/mise"
 
-# load tmux first
-zinit ice $_ZLOAD_NON_DEBUG if"(( $+commands[tmux] ))" atinit"ZSH_TMUX_AUTOSTART=false"
-zinit snippet "$ZSH_CONFIG/plugins/tmux.plugin.zshrc"
-
-# zsh settings
-zinit ice light-mode ludid wait"0a"
-zinit snippet "$ZSH_CONFIG/plugins/zsh.plugin.zshrc"
-# general variables, used for instance in aliases
-zinit ice $_ZLOAD_NON_DEBUG wait"0a"
-zinit snippet "$ZSH_CONFIG/plugins/variables.plugin.zshrc"
-# general functions, used for intsnace in aliases
-zinit ice $_ZLOAD_NON_DEBUG wait"0a"
-zinit snippet "$ZSH_CONFIG/plugins/functions.plugin.zshrc"
-# general aliases
-zinit ice $_ZLOAD_NON_DEBUG wait"0a"
-zinit snippet "$ZSH_CONFIG/plugins/aliases.plugin.zshrc"
-
-# command specific settings
-zinit ice $_ZLOAD_NON_DEBUG wait"0c" if"(( $+commands[pacman] ))"
-zinit snippet "$ZSH_CONFIG/plugins/arch.plugin.zshrc"
-zinit ice $_ZLOAD_NON_DEBUG wait"0c" if"(( $+commands[apt-get] ))"
-zinit snippet "$ZSH_CONFIG/plugins/debian.plugin.zshrc"
-zinit ice $_ZLOAD_NON_DEBUG wait"0c" if"(( $+commands[wine] ))"
-zinit snippet "$ZSH_CONFIG/plugins/wine.plugin.zshrc"
-zinit ice $_ZLOAD_NON_DEBUG wait"0c" if"(( $+commands[youtube-dl] ))"
-zinit snippet "$ZSH_CONFIG/plugins/youtube-dl.plugin.zshrc"
-zinit ice $_ZLOAD_NON_DEBUG wait"0c" if"(( $+commands[docker] ))"
-zinit snippet "$ZSH_CONFIG/plugins/docker.plugin.zshrc"
-zinit ice $_ZLOAD_NON_DEBUG wait"0c" if"(( $+commands[git] ))"
-zinit snippet "$ZSH_CONFIG/plugins/git.plugin.zshrc"
-
-zinit ice $_ZLOAD_NON_DEBUG wait"0c" if"(( $+commands[java] ))"
-zinit snippet "$ZSH_CONFIG/plugins/java.plugin.zshrc"
-
-zinit ice $_ZLOAD_NON_DEBUG wait"0c" if"(( $+commands[basenc] ))"
-zinit snippet "$ZSH_CONFIG/plugins/base64.plugin.zshrc"
-
-zinit ice $_ZLOAD_NON_DEBUG wait"0c" if"(( $+commands[kubectl] ))"
-zinit snippet "$ZSH_CONFIG/plugins/k8s.plugin.zshrc"
-
-zinit ice $_ZLOAD_NON_DEBUG wait"0c" if"(( $+commands[bws] ))"
-zinit snippet "$ZSH_CONFIG/plugins/bws.plugin.zshrc"
-
-zinit ice $_ZLOAD_NON_DEBUG wait"0c" if"(( $+commands[chezmoi] ))"
-zinit snippet "$ZSH_CONFIG/plugins/chezmoi.plugin.zshrc"
-
-# nvm settings, sets up nvm if not present
-zinit ice $_ZLOAD_NON_DEBUG wait"0c"
-zinit snippet "$ZSH_CONFIG/plugins/nvm.plugin.zshrc"
-
 # we use these annex's to load others
 _zload for \
 zdharma-continuum/zinit-annex-patch-dl \
@@ -124,7 +74,7 @@ zinit snippet "$ZSH_CONFIG/plugins/powerlevel10k.plugin.zshrc"
 # _zload wait"0a" for "oz/safe-paste"
 ## additional syntax highlighting, zsh completions, command suggestion
 _zload wait"0c" for \
-atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" zdharma-continuum/fast-syntax-highlighting \
+atinit"ZINIT[COMPINIT_OPTS]=-C; zicdreplay" zdharma-continuum/fast-syntax-highlighting \
 zsh-users/zsh-completions \
 atload"!_zsh_autosuggest_start; _zsh_autosuggest_bind_widgets" zsh-users/zsh-autosuggestions
 export ZSH_AUTOSUGGEST_MANUAL_REBIND=1

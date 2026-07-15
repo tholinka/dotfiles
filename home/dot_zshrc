@@ -13,6 +13,9 @@ fi
 # zinit setup
 source "$ZSH_CONFIG/zinit.zshrc"
 
+# customized config setup
+source "$ZSH_CONFIG/config.zshrc"
+
 # machine specific settings, only source if its present
 [[ -r $HOME/.zsh-local.zshrc ]] && source "$HOME/.zsh-local.zshrc"
 

@@ -12,7 +12,7 @@ fi
 
 if (( $+commands[kubecolor] )); then
 	alias kubectl="kubecolor"
-	compdef kubecolor=kubectl
+	zicompdef kubecolor=kubectl
 fi
 
 source "$ZSH_CONFIG/completions/_kubectl-decode"

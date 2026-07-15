@@ -3,6 +3,8 @@ if ! (( $+commands[tmux] )); then
   return 1
 fi
 
+export ZSH_TMUX_AUTOSTART=false
+
 # CONFIGURATION VARIABLES
 # Automatically start tmux
 : ${ZSH_TMUX_AUTOSTART:=false}
@@ -100,7 +102,7 @@ function _zsh_tmux_plugin_run() {
 }
 
 # Use the completions for tmux for our function
-compdef _tmux _zsh_tmux_plugin_run
+zicompdef _tmux _zsh_tmux_plugin_run
 # Alias tmux to our wrapper function.
 alias tmux=_zsh_tmux_plugin_run
 

@@ -1,7 +1,7 @@
 #!/usr/bin/env zsh
 
 # wrapper for kubectl-decode to add bash completions
-compdef _kubectl-decode kubectl-decode
+zicompdef _kubectl-decode kubectl-decode
 
 _kubectl-decode()
 {
