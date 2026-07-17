@@ -30,7 +30,9 @@
 	ui = auto
 
 [commit]
+{{- if .git.signingkey }}
 	gpgsign = true
+{{- end }}
 	verbose = true
 
 [core]
@@ -132,12 +134,11 @@
 	enabled = true
 	autoupdate = true
 
-{{- if .git.signingkey }}
 [tag]
+{{- if .git.signingkey }}
 	gpgSign = true
+{{- end }}
 	sort = version:refname
-{{/*extra newline required since the non-gpg case should have none*/}}
-{{- end -}}
 
 [transfer]
 	fsckObjects = true
