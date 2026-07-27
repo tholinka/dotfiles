@@ -78,5 +78,13 @@ fi
 export AUTOSWITCH_DEFAULT_PYTHON="/usr/bin/python3"
 
 if (( $+commands[wslpath] )); then # WSL
-	export BROWSER="$(wslpath 'C:\Windows\explorer.exe')"
+	if (( $+commands[xdg-open] )); then
+		export BROWSER="xdg-open"
+	else
+		if [[ "$_WORK" == "true" ]]; then
+			export BROWSER="$(wslpath 'C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe')"
+		else
+			export BROWSER="$(wslpath 'C:\Program Files\Mozilla Firefox\firefox.exe')"
+		fi
+	fi
 fi

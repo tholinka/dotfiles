@@ -116,12 +116,6 @@ if (( $+commands[wslpath] )); then # WSL
 		}
 	fi
 
-	function open() {
-		for fil in $@; do
-			powershell Start \"$(wslpath -w "$fil")\"
-		done
-	}
-
 	# the shell deeply hates the \ in windows paths when we get it back from a $()
 	printf -v windows_user_folder "%q" "$(cmd /c 'echo|set /p=%USERPROFILE%')"
 
@@ -178,11 +172,12 @@ fi
 
 # set open if 1) not present (e.g. not mac) and 2) we have some way of opening apps (xdg-open, powershell.exe, etc)
 if (( ! $+commands[open] )); then
-	if (( $+functions[powershell] )); then # WSL
+	# prefer xdg-open
+	if (( $+commands[xdg-open] )); then # linux
+		alias open="xdg-open"
+	elif (( $+functions[powershell] )); then # WSL
 		function open() {
 			"$BROWSER" "$@"
 		}
-	elif (( $+commands[xdg-open] )); then # linux
-		alias open="xdg-open"
 	fi
 fi
