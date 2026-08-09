@@ -2,7 +2,7 @@
 zicompinit
 
 # load tmux first
-source "$ZSH_CONFIG/plugins/tmux.plugin.zshrc"
+(( $+commands[tmux] )) && source "$ZSH_CONFIG/plugins/tmux.plugin.zshrc"
 
 # zsh settings
 source "$ZSH_CONFIG/plugins/zsh.plugin.zshrc"

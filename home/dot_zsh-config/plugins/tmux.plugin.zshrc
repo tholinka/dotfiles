@@ -1,10 +1,3 @@
-if ! (( $+commands[tmux] )); then
-  print "zsh tmux plugin: tmux not found. Please install tmux before using this plugin." >&2
-  return 1
-fi
-
-export ZSH_TMUX_AUTOSTART=false
-
 # CONFIGURATION VARIABLES
 # Automatically start tmux
 : ${ZSH_TMUX_AUTOSTART:=false}
