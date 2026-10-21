@@ -34,4 +34,9 @@ if (( $+commands[mvn] )); then
 	alias mvn="mvn -T 1C"
 	# java 6 and up debug
 	alias mvn-debug='JAVA_OPTS="-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005" mvn'
+
+	if [[ "$_WORK" == "true" ]]; then
+		# maven 3.10 adds filtering on remote repositories - but we must always pull from the internal one
+		export MAVEN_ARGS="-Daether.remoteRepositoryFilter.prefixes=false"
+	fi
 fi
