@@ -18,3 +18,7 @@ Library
 
 .local/share/konsole
 {{- end }}
+
+{{- if .work }}
+.gemini
+{{- end }}
