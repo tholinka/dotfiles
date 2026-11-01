@@ -3,4 +3,19 @@
 	extends: [
 		'github>tholinka/renovate-config',
 	],
+	customManagers: [
+		{
+			customType: 'regex',
+			description: 'Chemoi template Github functions version detection',
+			managerFilePatterns: ['/.*/'],
+			matchStrings: [
+				// # renovate: chezmoi
+				// {{ (gitHubRelease "docker/compose" "v2.29.1").TagName }}
+				// # renovate: chezmoi
+				// url: '{{ gitHubReleaseAssetURL "perfectra1n/kubesearch-mcp" "v1.3.0" "*.tgz" }}'
+				'chezmoi\\n.*\\{\\{.*gitHubRelease(AssetURL)? "(?<depName>.+?)" "(?<currentValue>.+?)"',
+			],
+			datasourceTemplate: 'github-releases',
+		}
+	]
 }

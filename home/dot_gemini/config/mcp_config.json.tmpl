@@ -1,0 +1,20 @@
+{{ $pat := output "op" "read" "op://home-ops/antigravity/github-pat" | trim -}}
+{
+  "mcpServers": {
+    "github-mcp-server": {
+      "serverUrl": "https://api.githubcopilot.com/mcp/",
+      "headers": {
+      	"Authorization": "Bearer {{ $pat }}"
+      }
+    },
+    "kubesearch": {
+      "args": [
+        "{{ .chezmoi.homeDir }}/.gemini/kubesearch-mcp/dist/index.js"
+      ],
+      "command": "node",
+      "env": {
+        "GITHUB_TOKEN": "{{ $pat }}"
+      }
+    }
+  }
+}
