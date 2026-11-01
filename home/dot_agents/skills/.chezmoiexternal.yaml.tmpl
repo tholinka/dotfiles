@@ -1,0 +1,8 @@
+simple-english:
+  type: archive
+  # renovate: chezmoi
+  url: '{{ gitHubReleaseAssetURL "AminBlg/SimpleEnglish" "v2.1.0" "*.tar.gz" }}'
+  exact: true
+  stripComponents: 3
+  include: ['*/skills/**']
+  refreshPeriod: 168h
