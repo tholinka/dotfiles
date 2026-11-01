@@ -10,7 +10,7 @@
 			managerFilePatterns: ['/.*/'],
 			matchStrings: [
 				// # renovate: chezmoi
-				// {{ (gitHubRelease "docker/compose" "v2.29.1").TagName }}
+				// {{ (gitHubRelease "docker/compose" "v5.6.1").TagName }}
 				// # renovate: chezmoi
 				// url: '{{ gitHubReleaseAssetURL "perfectra1n/kubesearch-mcp" "v1.3.0" "*.tgz" }}'
 				'chezmoi\\n.*\\{\\{.*gitHubRelease(AssetURL)? "(?<depName>.+?)" "(?<currentValue>.+?)"',
