@@ -1,4 +1,7 @@
-{{ $pat := output "op" "read" "op://home-ops/antigravity/github-pat" | trim -}}
+{{ $pat := "" -}}
+{{ if lookPath "op" -}}
+{{   $pat = output "op" "read" "op://home-ops/antigravity/github-pat" | trim -}}
+{{ end -}}
 {
   "mcpServers": {
     "github-mcp-server": {
