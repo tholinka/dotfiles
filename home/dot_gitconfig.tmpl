@@ -73,7 +73,7 @@
 	helper = git-credential-libsecret
 {{- else if eq .chezmoi.os "darwin" }}
 [credential]
-	helper = git-credential-osxkeychain
+	helper = osxkeychain
 {{- else if eq .chezmoi.os "windows" }}
 [credential]
 	helper = git-credential-wincred
