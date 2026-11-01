@@ -1,0 +1,8 @@
+simple-english:
+  type: archive
+  # renovate: datasource=github-releases depName=AminBlg/SimpleEnglish
+  url: https://github.com/AminBlg/SimpleEnglish/archive/refs/tags/v2.1.1.tar.gz
+  exact: true
+  stripComponents: 3
+  include: ['*/skills/**']
+  refreshPeriod: 168h
