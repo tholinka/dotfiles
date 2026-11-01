@@ -1,0 +1,8 @@
+[tools]
+"aqua:evilmartians/lefthook" = "latest"
+"aqua:koalaman/shellcheck" = "latest"
+
+"npm:oxfmt" = "latest"
+
+[hooks]
+postinstall = "lefthook install"

@@ -1,0 +1,26 @@
+[pre-commit]
+parallel = true
+
+[pre-commit.commands.format-mise]
+glob = [".mise.toml"]
+run = "mise fmt"
+stage_fixed = true
+
+[pre-commit.commands.format-json]
+glob = ["*.json", "*.json5", "*.jsonc"]
+run = "oxfmt {staged_files}"
+stage_fixed = true
+
+[pre-commit.commands.format-markdown]
+glob = ["*.md", "*.markdown", "*.mdx"]
+run = "oxfmt {staged_files}"
+stage_fixed = true
+
+[pre-commit.commands.format-yaml]
+glob = ["*.yaml", "*.yml"]
+run = "oxfmt {staged_files}"
+stage_fixed = true
+
+[pre-commit.commands.shellcheck]
+run = "shellcheck {staged_files}"
+glob = ["*.sh"]

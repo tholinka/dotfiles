@@ -1,0 +1,6 @@
+* text=auto eol=lf
+*.yml.tmpl linguist-language=YAML
+*.yaml.tmpl linguist-language=YAML
+*.toml.tmpl linguist-language=TOML
+*.md.tmpl linguist-language=Markdown
+*.sh.tmpl linguist-language=Shell

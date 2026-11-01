@@ -1,0 +1,18 @@
+# Trash
+.DS_Store
+Thumbs.db
+# misc
+.decrypted~*.yaml
+.config.env
+*.agekey
+*.pub
+*.key
+# Private
+.private
+.bin
+# Ansible
+.venv*
+# intellij
+.idea
+# wiki
+wiki
