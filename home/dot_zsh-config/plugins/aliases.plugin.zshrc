@@ -153,3 +153,6 @@ alias fdiskl="fdisk -l"
 
 # space at the end causes aliases to be expanded
 alias sudo='sudo '
+
+# allow 1password cli to connect to desktop app
+export OP_BIOMETRIC_UNLOCK_ENABLED=true
