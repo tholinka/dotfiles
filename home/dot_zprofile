@@ -1,0 +1,10 @@
+# Path to config folder if not already set
+[[ -v ZSH_CONFIG ]] || export ZSH_CONFIG="$HOME/.zsh-config"
+
+source ~/.profile
+
+# add scripts
+pathappend "$ZSH_CONFIG/scripts"
+
+# notify that this file was ran
+export ZPROFILE_SOURCED=true

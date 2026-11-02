@@ -6,25 +6,43 @@ if [ -n "$BASH_VERSION" ]; then
 	fi
 fi
 
+pathprepend() {
+	for ARG in "$@"; do
+		if [[ ":$PATH:" != *":$ARG:"* ]]; then
+			PATH="$ARG${PATH:+":$PATH"}"
+		fi
+	done
+}
+pathappend() {
+	for ARG in "$@"; do
+		if [[ ":$PATH:" != *":$ARG:"* ]]; then
+			PATH="${PATH:+"$PATH:"}$ARG"
+		fi
+	done
+}
+
 # add global executable folders to PATH
-PATH="/bin:/usr/bin:/sbin:/usr/sbin:$PATH"
+pathappend /usr/local/bin /usr/bin /bin /usr/sbin /sbin
 
 # add local-user executable folders to PATH
-PATH="$HOME/bin:$HOME/usr/bin:$HOME/bin:$HOME/.local/bin:$PATH"
+pathprepend "$HOME/.local/bin"
 
 # add rust-lang's cargo executables to PATH
-PATH="$HOME/.cargo/bin:$PATH"
+pathappend "$HOME/.cargo/bin"
 
 # add Golang
 export GOPATH="$HOME/.go"
 export GOBIN="$HOME/.go/bin"
-PATH="$GOBIN:$PATH"
+pathappend "$GOBIN"
 
 # add rbenv
-PATH="$HOME/.rbenv/bin:$PATH"
+pathappend "$HOME/.rbenv/bin"
+
+# add snap - only if needed, just to minimize PATH clutter
+[[ -d /snap/bin ]] && pathappend /snap/bin
 
 # add colorgcc
-PATH="/usr/lib/colorgcc/bin:$PATH"
+pathprepend /usr/lib/colorgcc/bin
 
 {{ if eq .chezmoi.os "darwin" -}}
 # include brew and coreutils

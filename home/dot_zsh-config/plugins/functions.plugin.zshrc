@@ -103,59 +103,6 @@ if (( $+commands[wslpath] )); then # WSL
 			cd "$(wslpath 'C:\')" && "$cmd" "$@"
 		)
 	fi
-
-	# the shell deeply hates the \ in windows paths when we get it back from a $()
-	printf -v windows_user_folder "%q" "$(cmd /c 'echo|set /p=%USERPROFILE%')"
-
-	code=$(wslpath 'C:\Program Files\Microsoft VS Code\Code.exe')
-	if [[ ! -e "$code" ]]; then
-		code=$(wslpath "$windows_user_folder\AppData\Local\Programs\Microsoft VS Code\Code.exe")
-	fi
-
-	if [[ -e "$code" ]]; then
-		function code() {
-			a=()
-
-			for var in "$@"
-			do
-				case "$var" in
-				-*) ;;                              # Leave command-line options alone
-				/*) ;;                              # Leave absolute paths alone
-				*) rp=$(realpath -s "$var");
-					[[ -n "$rp" ]] && var="$rp" ;;  # replace relative paths with absolute
-				esac
-				a+=("$var")
-			done
-
-			$code --remote "wsl+$WSL_DISTRO_NAME" "${a[@]}" &>/dev/null &
-		}
-	fi
-
-	idea=$(wslpath 'C:\Program Files\JetBrains\IntelliJ IDEA\bin\idea64.exe')
-	if [[ ! -e "$idea" ]]; then
-		idea=$(wslpath "$windows_user_folder\AppData\Local\Programs\Intellij IDEA\bin\idea64.exe")
-	fi
-
-	if [[ -e "$idea" ]]; then
-		function idea() {
-			a=()
-
-			for var in "$@"
-			do
-				case "$var" in
-				-*) ;;                              # Leave command-line options alone
-				/*) ;;                              # Leave absolute paths alone
-				*) rp=$(realpath -s "$var");
-					[[ -n "$rp" ]] && var="$rp" ;;  # replace relative paths with absolute
-				esac
-				a+=("$var")
-			done
-
-			# need to open in windows first, and then this will work, for some reason, it just hangs forever if first startup is from wsl
-			# not even opening it through powershell as a bouncer workers...
-			"$idea" "${a[@]}"
-		}
-	fi
 fi
 
 # set open if 1) not present (e.g. not mac) and 2) we have some way of opening apps (xdg-open, powershell.exe, etc)
