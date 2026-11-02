@@ -96,24 +96,12 @@ fi
 
 # WSL specific things
 if (( $+commands[wslpath] )); then # WSL
-	cmd="$(wslpath 'C:\Windows\System32\cmd.exe')"
-
-	if [[ ! -e $cmd ]]; then
-		echo "failed to find window's cmd.exe"
-	else
+	if (( $+commands[cmd] )); then
+		cmd="$(which cmd)"
 		function cmd() (
 			# cmd absolutely hates starting in a UNC (aka network) path and WILL alert you about it at every possible chance
 			cd "$(wslpath 'C:\')" && "$cmd" "$@"
 		)
-	fi
-
-	powershell="$(wslpath 'C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe')"
-	if [[ ! -e $powershell ]]; then
-		echo "failed to find window's powershell.exe"
-	else
-		function powershell() {
-			"$powershell" "$@"
-		}
 	fi
 
 	# the shell deeply hates the \ in windows paths when we get it back from a $()

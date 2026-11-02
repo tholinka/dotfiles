@@ -62,10 +62,6 @@
 
 	autocrlf = input
 
-	{{- if .git.sshCommand }}
-	sshCommand = {{ .git.sshCommand }}
-	{{- end}}
-
 {{- /* setup credential.helper if possible */}}
 {{- if .ui }}
 {{- if eq .chezmoi.os "linux" }}
@@ -102,6 +98,16 @@
 	prune = true
 	pruneTags = true
 	all = true
+
+{{ if .git.signingkey -}}
+[gpg]
+	format = ssh
+{{- if .git.gpgProgram }}
+[gpg "ssh"]
+	program = {{ .git.gpgProgram }}
+{{- end }}{{- /* extra newline for formatting */}}
+
+{{ end -}}
 
 [help]
 	# Automatically correct and execute mistyped commands

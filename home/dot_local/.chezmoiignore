@@ -1,0 +1,9 @@
+{{ if (lookPath "wslpath") }}
+{{ if not (exec "/mnt/c/Windows/System32/WindowsPowerShell/v1.0/powershell.exe" "where op") }}
+bin/op
+bin/ssh
+bin/ssh-add
+{{ end }}
+{{ else }}
+bin
+{{ end }}
