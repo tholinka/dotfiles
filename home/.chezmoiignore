@@ -22,3 +22,8 @@ Library
 {{- if .work }}
 .gemini
 {{- end }}
+
+{{- if not .ai }}
+.agents
+.gemini
+{{- end }}
