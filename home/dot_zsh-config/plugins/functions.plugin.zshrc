@@ -103,6 +103,29 @@ if (( $+commands[wslpath] )); then # WSL
 			cd "$(wslpath 'C:\')" && "$cmd" "$@"
 		)
 	fi
+
+	if (( $+commands[code] )); then
+		code="$(which code)"
+
+		# we're running code.exe (to prevent announces, like updating at startup), instead of the shell script code ships with
+		# so we need to do a few things the shell script does for us
+		function code() {
+			a=()
+
+			for var in "$@"
+			do
+				case "$var" in
+				-*) ;;                              # Leave command-line options alone
+				/*) ;;                              # Leave absolute paths alone
+				*) rp=$(realpath -s "$var");
+					[[ -n "$rp" ]] && var="$rp" ;;  # replace relative paths with absolute
+				esac
+				a+=("$var")
+			done
+
+			$code --remote "wsl+$WSL_DISTRO_NAME" "${a[@]}" &>/dev/null &
+		}
+	fi
 fi
 
 # set open if 1) not present (e.g. not mac) and 2) we have some way of opening apps (xdg-open, powershell.exe, etc)
@@ -110,7 +133,7 @@ if (( ! $+commands[open] )); then
 	# prefer xdg-open
 	if (( $+commands[xdg-open] )); then # linux
 		alias open="xdg-open"
-	elif (( $+functions[powershell] )); then # WSL
+	elif (( $+commands[powershell] )); then # WSL
 		function open() {
 			"$BROWSER" "$@"
 		}

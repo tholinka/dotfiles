@@ -1,6 +1,6 @@
 {{ $pat := "" -}}
 {{ if lookPath "op" -}}
-{{   $pat = output "op" "read" "op://home-ops/antigravity/github-pat" | trim -}}
+{{   $pat = onepasswordRead "op://home-ops/antigravity/github-pat" | trim -}}
 {{ end -}}
 {
   "mcpServers": {

@@ -1,10 +1,13 @@
 {{ if (lookPath "wslpath") }}
 {{- /* Need to use Get-Command because we want an error code if the app doesn't exist, so where.exe doesn't work */}}
-{{ if not (exec "/mnt/c/Windows/System32/WindowsPowerShell/v1.0/powershell.exe" "Get-Command -Name op -ErrorAction SilentlyContinue | Select-Object -ExpandProperty Path -ErrorAction SilentlyContinue") }}
+{{ if not (exec "/mnt/c/Windows/System32/WindowsPowerShell/v1.0/powershell.exe" "Get-Command -Name op -ErrorAction SilentlyContinue") }}
 bin/op-ssh-sign-wsl
 bin/op
 bin/ssh
 bin/ssh-add
+{{ end }}
+{{ if not (exec "/mnt/c/Windows/System32/WindowsPowerShell/v1.0/powershell.exe" "Get-Command -Name code -ErrorAction SilentlyContinue") }}
+bin/code
 {{ end }}
 {{ else }}
 bin

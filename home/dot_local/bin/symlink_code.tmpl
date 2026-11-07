@@ -1,0 +1,2 @@
+{{/** we don't want to use the "code" helper, because it does annoying things, like trying to update the code install before the app runs. Instead, we'll just run the windows binary directly. */}}
+{{ output "wslpath" "-u" ( output "/mnt/c/Windows/System32/WindowsPowerShell/v1.0/powershell.exe" "@(where.exe code)[0] | Split-Path | Split-Path" ) | trim }}/code.exe
